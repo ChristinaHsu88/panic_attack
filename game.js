@@ -79,7 +79,7 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             changeScore: function() {}
         }
     })
-    const selector = Crafty.e('2D, DOM, Color, Collision')
+    const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
             h: 20,
@@ -96,15 +96,17 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER) {
-                console.log(this.selectOption.optionObj['0'])
+                const optionID = this.selectOption.optionObj['0']
+                const selectedOption = Crafty(optionID)
+                console.log(selectedOption)
+                Crafty('Collision').unfreeze()
+                Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
         .checkHits('Option')
         .bind('HitOn', function(hitOption) {
             this.selectOption.optionObj = hitOption[0].obj
             this.selectOption.canSelect = true
-            // console.log(hitOption[0].obj['0']) // this is the ID of the selected option
-            // console.log(this.selectOption.optionObj['0']); // so is this
         })
 }
 
