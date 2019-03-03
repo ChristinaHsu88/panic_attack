@@ -26,8 +26,9 @@ Crafty.c('OptionsBox', {
     optionsList: function(optionsObj) {
         let iteration = 0
         for (const option in optionsObj) {
+            let optionTitle = optionsObj[option].title
             iteration = iteration + 50
-            Crafty.e('Option').text(option).place(iteration)
+            Crafty.e('Option').text(optionTitle).place(iteration)
         }
     }
 })
@@ -85,19 +86,22 @@ const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
     .bind('HitOn', function() {
         let hitItem = player.hit('Item')
         player.killBox.obj = hitItem[0].obj
+        makePopUp(hitItem) // no use for passed data yet
+        this.freeze() // stops player while options are up
     })
-    // .bind('HitOn', function() {
-    //     const popUp = Crafty.e('OptionsBox').color('grey').optionsList({
-    //         option1: function() {},
-    //         option2: function() {}
-    //     })
-    //     const selector = Crafty.e('Selector').color('rgba(255, 99, 71, 0.5)')
-    //     this.freeze() // stops player from moving while options are up
-    // })
 
-var hits = player.hit('Item')
-if (hits) {
-    console.log('meoow')
+function makePopUp (hitItem) { // hitItem will be passed in order to set the options in popUp
+    const popUp = Crafty.e('OptionsBox').color('grey').optionsList({
+        option1: {
+            title: 'CALL A GOOD FRIEND',
+            changeScore: function() {}
+        },
+        option2: {
+            title: 'BROWSE TWITTER',
+            changeScore: function() {}
+        }
+    })
+    const selector = Crafty.e('Selector').color('rgba(255, 99, 71, 0.5)')
 }
 
 Crafty.e('Item')
@@ -112,5 +116,4 @@ Crafty.e('Item')
     .place(300, 300)
     .color('green')
 
-// make multiple Items
-// when player collides with item, what is the object? it looks like an array of objects! let's explore.
+// give the selector the functionality the player has.
