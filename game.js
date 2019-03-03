@@ -19,7 +19,17 @@ Crafty.e('Item')
     .place(150, 100)
     .color('black')
     .attr({
-        type: 'phone'
+        type: 'phone',
+        optionsList: {
+            option1: {
+                title: 'CALL A GOOD FRIEND',
+                changeScore: function() {}
+            },
+            option2: {
+                title: 'BROWSE TWITTER',
+                changeScore: function() {}
+            }
+        }
     })
 
 Crafty.e('Item')
@@ -113,16 +123,7 @@ function itemPopUp(hitItem) {
 }
 
 function makePopUp (hitItem) { // hitItem will be passed in order to set the options in popUp
-    const popUp = Crafty.e('OptionsBox').color('grey').optionsList({
-        option1: {
-            title: 'CALL A GOOD FRIEND',
-            changeScore: function() {}
-        },
-        option2: {
-            title: 'BROWSE TWITTER',
-            changeScore: function() {}
-        }
-    })
+    const popUp = Crafty.e('OptionsBox').color('grey').optionsList(hitItem[0].obj.optionsList)
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
