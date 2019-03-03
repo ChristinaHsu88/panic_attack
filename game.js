@@ -59,7 +59,6 @@ const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
         y: 10,
         w: 40,
         h: 40,
-        // killBox: { canKill: false, obj: undefined } // logic to be moved to selector
     })
     .color('red')
     .fourway(200)
@@ -97,14 +96,15 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER) {
+                console.log(this.selectOption.optionObj['0'])
             }
         })
         .checkHits('Option')
         .bind('HitOn', function(hitOption) {
             this.selectOption.optionObj = hitOption[0].obj
             this.selectOption.canSelect = true
-            console.log(hitOption[0].obj['0']) // this is the ID of the selected option
-            console.log(this.selectOption.optionObj['0']); // so is this
+            // console.log(hitOption[0].obj['0']) // this is the ID of the selected option
+            // console.log(this.selectOption.optionObj['0']); // so is this
         })
 }
 
