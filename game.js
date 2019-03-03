@@ -72,19 +72,45 @@ Crafty.c('Selector', {
 
 // player
 const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
-    .attr({x: 10, y: 10, w: 40, h: 40})
+    .attr({
+        x: 10,
+        y: 10,
+        w: 40,
+        h: 40,
+        killBox: { canKill: false, obj: undefined }
+    })
     .color('red')
     .fourway(200)
     .checkHits('Item')
     .bind('HitOn', function() {
-        const popUp = Crafty.e('OptionsBox').color('grey').optionsList({
-            option1: function() {},
-            option2: function() {}
-        })
-        const selector = Crafty.e('Selector').color('rgba(255, 99, 71, 0.5)')
-        this.freeze() // stops player from moving while options are up
+        let hitItem = player.hit('Item')
+        player.killBox.obj = hitItem[0].obj
     })
+    // .bind('HitOn', function() {
+    //     const popUp = Crafty.e('OptionsBox').color('grey').optionsList({
+    //         option1: function() {},
+    //         option2: function() {}
+    //     })
+    //     const selector = Crafty.e('Selector').color('rgba(255, 99, 71, 0.5)')
+    //     this.freeze() // stops player from moving while options are up
+    // })
 
-const greenItem = Crafty.e('Item')
+var hits = player.hit('Item')
+if (hits) {
+    console.log('meoow')
+}
+
+Crafty.e('Item')
     .place(150, 100)
     .color('green')
+
+Crafty.e('Item')
+    .place(250, 150)
+    .color('green')
+
+Crafty.e('Item')
+    .place(300, 300)
+    .color('green')
+
+// make multiple Items
+// when player collides with item, what is the object? it looks like an array of objects! let's explore.
