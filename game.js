@@ -1,6 +1,6 @@
 Crafty.init(500, 350, document.getElementById('game'));
 
-// creates all interactable items
+// defines interactable items
 Crafty.c('Item', {
     init: function() {
         this.addComponent('2D, DOM, Color')
@@ -14,7 +14,20 @@ Crafty.c('Item', {
     }
 })
 
-// creates pop up
+// generate interactable items
+Crafty.e('Item')
+    .place(150, 100)
+    .color('green')
+
+Crafty.e('Item')
+    .place(250, 150)
+    .color('green')
+
+Crafty.e('Item')
+    .place(300, 300)
+    .color('green')
+
+// defines pop up
 Crafty.c('OptionsBox', {
     init: function() {
         this.addComponent('2D, DOM, Color')
@@ -33,7 +46,7 @@ Crafty.c('OptionsBox', {
     }
 })
 
-// creates options in pop up
+// define options in pop up
 Crafty.c('Option', {
     init: function() {
         this.addComponent('2D, DOM, Color, Text')
@@ -52,7 +65,7 @@ Crafty.c('Option', {
     }
 })
 
-// player
+// define and generate player
 const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision')
     .attr({
         x: 10,
@@ -64,9 +77,28 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision')
     .fourway(200)
     .checkHits('Item')
     .bind('HitOn', function(hitItem) {
-        makePopUp(hitItem) // no use for passed data yet
-        this.freeze() // stops player while options are up
+        itemPopUp()
+        // makePopUp(hitItem) // no use for passed data yet
+        // this.freeze() // stops player while options are up
     })
+
+function itemPopUp() {
+    Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
+        .color('grey')
+        .attr({
+            x: 300,
+            y: 300,
+            w: 100,
+            h: 30,
+        })
+        .text('HIT ENTER TO SELECT')
+        .bind('KeyDown', function(e) {
+            if (e.key == Crafty.keys.ENTER) {
+                makePopUp() // how to pass the stuff??
+                this.destroy()
+            }
+        })
+}
 
 function makePopUp (hitItem) { // hitItem will be passed in order to set the options in popUp
     const popUp = Crafty.e('OptionsBox').color('grey').optionsList({
@@ -111,19 +143,6 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             this.selectOption.canSelect = true
         })
 }
-
-Crafty.e('Item')
-    .place(150, 100)
-    .color('green')
-
-Crafty.e('Item')
-    .place(250, 150)
-    .color('green')
-
-Crafty.e('Item')
-    .place(300, 300)
-    .color('green')
-
 // limit selectors movement
 
 // get player to not move until directed to with arrows after removing options popup
