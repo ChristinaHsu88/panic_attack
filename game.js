@@ -55,7 +55,20 @@ Crafty.e('Item')
     .place(300, 300)
     .color('orange')
     .attr({
-        type: 'laundry'
+        type: 'laundry',
+        optionsList: {
+            option1: {
+                title: 'TIDY ROOM',
+                changeScore: function(){}
+            },
+            option2: {
+                title: 'SIT ON LAUNDRY AND NAP',
+                changeScore: function () {}
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
     })
 
 // defines pop up
