@@ -100,16 +100,10 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             }
         })
         .checkHits('Option')
-        .bind('HitOn', function(hitEvent) {
-            // console.log(hitEvent); // returns the same object as the hitOption lines below
-            let hitOption = this.hit('Option')
+        .bind('HitOn', function(hitOption) {
             this.selectOption.optionObj = hitOption[0].obj
-            console.log(hitOption[0].obj['0']) // this is the ID of the selected option
+            // console.log(hitOption[0].obj['0']) // this is the ID of the selected option
             this.resetHitChecks()
-        })
-        .bind('HitOff', function() {
-            console.log('dogj') // this function won't trigger unless the select moves off all options, so jumping between them isn't working
-            // i could either have the selector slide between options (which is not ideal for UX), or find another way of ensuring Crafty knows the option has changed...
         })
 }
 
