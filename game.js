@@ -90,12 +90,14 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         .color('rgba(255, 99, 71, 0.5)')
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
+                this.selectOption.canSelect = false
                 this.y = this.y - 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
+                this.selectOption.canSelect = false
                 this.y = this.y + 50
                 this.resetHitChecks()
-            } else if (e.key == Crafty.keys.ENTER) {
+            } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
                 console.log(selectedOption)
