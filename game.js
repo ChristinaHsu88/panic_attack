@@ -84,7 +84,7 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             w: 300,
             h: 20,
             x: 30,
-            y: 20,
+            y: 70,
             selectOption: { canSelect: false, optionObj: undefined },
         })
         .color('rgba(255, 99, 71, 0.5)')
@@ -122,4 +122,5 @@ Crafty.e('Item')
     .place(300, 300)
     .color('green')
 
-// give the selector the functionality the player has.
+// limit selectors movement
+// maybe also now allow ENTER event to fire if canSelect is false (which also means I need to reset it to false when user moves) <- this will be redundant if selector cannot move off options
