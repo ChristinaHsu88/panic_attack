@@ -52,25 +52,6 @@ Crafty.c('Option', {
     }
 })
 
-Crafty.c('Selector', {
-    init: function() {
-        this.addComponent('2D, DOM, Color')
-        this.w = 300
-        this.h = 20
-        this.x = 30
-        this.y = 20
-        this.bind('KeyDown', function(e) {
-            if (e.key == Crafty.keys.DOWN_ARROW) {
-                this.y = this.y + 50
-            } else if (e.key == Crafty.keys.UP_ARROW) {
-                this.y = this.y - 50
-            } else if (e.key == Crafty.keys.ENTER) {
-                console.log(e)
-            }
-        })
-    }
-})
-
 // player
 const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
     .attr({
@@ -78,14 +59,14 @@ const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
         y: 10,
         w: 40,
         h: 40,
-        killBox: { canKill: false, obj: undefined }
+        // killBox: { canKill: false, obj: undefined } // logic to be moved to selector
     })
     .color('red')
     .fourway(200)
     .checkHits('Item')
     .bind('HitOn', function() {
-        let hitItem = player.hit('Item')
-        player.killBox.obj = hitItem[0].obj
+        let hitItem = player.hit('Item') // logic to selector
+        // player.killBox.obj = hitItem[0].obj // logic to selector
         makePopUp(hitItem) // no use for passed data yet
         this.freeze() // stops player while options are up
     })
@@ -101,8 +82,58 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             changeScore: function() {}
         }
     })
-    const selector = Crafty.e('Selector').color('rgba(255, 99, 71, 0.5)')
+    const selector = Crafty.e('2D, DOM, Color, Collision')
+        .attr({
+            w: 300,
+            h: 20,
+            x: 30,
+            y: 20,
+            selectOption: { canSelect: false, optionObj: undefined },
+        })
+        .color('rgba(255, 99, 71, 0.5)')
+        .bind('KeyDown', function(e) {
+            if (e.key == Crafty.keys.UP_ARROW) {
+                this.y = this.y - 50
+            } else if (e.key == Crafty.keys.DOWN_ARROW) {
+                this.y = this.y + 50
+            } else if (e.key == Crafty.keys.ENTER) {
+            }
+        })
+        .checkHits('Option')
+        .bind('HitOn', function(hitEvent) {
+            // console.log(hitEvent); // returns the same object as the hitOption lines below
+            let hitOption = this.hit('Option')
+            this.selectOption.optionObj = hitOption[0].obj
+            console.log(hitOption[0].obj['0']) // this is the ID of the selected option
+            this.resetHitChecks()
+        })
+        .bind('HitOff', function() {
+            console.log('dogj') // this function won't trigger unless the select moves off all options, so jumping between them isn't working
+            // i could either have the selector slide between options (which is not ideal for UX), or find another way of ensuring Crafty knows the option has changed...
+        })
 }
+
+
+// Crafty.c('Selector', {
+//     init: function() {
+//         this.addComponent('2D, DOM, Color')
+//         this.w = 300
+//         this.h = 20
+//         this.x = 30
+//         this.y = 20
+//         this.bind('KeyDown', function(e) {
+//             if (e.key == Crafty.keys.DOWN_ARROW) {
+//                 this.y = this.y + 50
+//             } else if (e.key == Crafty.keys.UP_ARROW) {
+//                 this.y = this.y - 50
+//             } else if (e.key == Crafty.keys.ENTER) {
+//                 console.log(e)
+//             }
+//         })
+//     }
+// })
+
+
 
 Crafty.e('Item')
     .place(150, 100)
