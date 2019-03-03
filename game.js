@@ -17,15 +17,24 @@ Crafty.c('Item', {
 // generate interactable items
 Crafty.e('Item')
     .place(150, 100)
-    .color('green')
+    .color('black')
+    .attr({
+        type: 'phone'
+    })
 
 Crafty.e('Item')
     .place(250, 150)
     .color('green')
+    .attr({
+        type: 'weed'
+    })
 
 Crafty.e('Item')
     .place(300, 300)
-    .color('green')
+    .color('orange')
+    .attr({
+        type: 'laundry'
+    })
 
 // defines pop up
 Crafty.c('OptionsBox', {
@@ -78,7 +87,9 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision')
     .checkHits('Item')
     .bind('HitOn', function(hitItem) {
         itemPopUp(hitItem)
-        // this.freeze() // stops player while options are up
+    })
+    .bind('HitOff', function() {
+        Crafty('ItemPopUp').destroy()
     })
 
 function itemPopUp(hitItem) {
@@ -145,5 +156,4 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
 }
 // limit selectors movement
 
-// get player to not move until directed to with arrows after removing options popup
-// as a workaround, I could have a popup the describes the hit entity and allows the user to hit enter to select that item, THEN trigger the popup to occur
+// get options title to dynamically generate from item itself
