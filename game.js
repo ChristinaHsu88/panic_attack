@@ -64,9 +64,7 @@ const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
     .color('red')
     .fourway(200)
     .checkHits('Item')
-    .bind('HitOn', function() {
-        let hitItem = player.hit('Item') // logic to selector
-        // player.killBox.obj = hitItem[0].obj // logic to selector
+    .bind('HitOn', function(hitItem) {
         makePopUp(hitItem) // no use for passed data yet
         this.freeze() // stops player while options are up
     })
@@ -94,8 +92,10 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
                 this.y = this.y - 50
+                this.resetHitChecks()
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
                 this.y = this.y + 50
+                this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER) {
             }
         })
@@ -103,33 +103,10 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         .bind('HitOn', function(hitOption) {
             this.selectOption.optionObj = hitOption[0].obj
             this.selectOption.canSelect = true
-            // console.log(hitOption[0].obj['0']) // this is the ID of the selected option
-            this.resetHitChecks()
-            console.log(this);
+            console.log(hitOption[0].obj['0']) // this is the ID of the selected option
+            console.log(this.selectOption.optionObj['0']); // so is this
         })
 }
-
-
-// Crafty.c('Selector', {
-//     init: function() {
-//         this.addComponent('2D, DOM, Color')
-//         this.w = 300
-//         this.h = 20
-//         this.x = 30
-//         this.y = 20
-//         this.bind('KeyDown', function(e) {
-//             if (e.key == Crafty.keys.DOWN_ARROW) {
-//                 this.y = this.y + 50
-//             } else if (e.key == Crafty.keys.UP_ARROW) {
-//                 this.y = this.y - 50
-//             } else if (e.key == Crafty.keys.ENTER) {
-//                 console.log(e)
-//             }
-//         })
-//     }
-// })
-
-
 
 Crafty.e('Item')
     .place(150, 100)
