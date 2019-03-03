@@ -28,6 +28,9 @@ Crafty.e('Item')
             option2: {
                 title: 'BROWSE TWITTER',
                 changeScore: function() {}
+            },
+            option3: {
+                title: 'GO BACK'
             }
         }
     })
@@ -36,7 +39,16 @@ Crafty.e('Item')
     .place(250, 150)
     .color('green')
     .attr({
-        type: 'weed'
+        type: 'weed',
+        optionsList: {
+            option1: {
+                title: 'SMOKE WEED',
+                changeScore: function() {}
+            },
+            option2: {
+                title: 'GO BACK'
+            }
+        }
     })
 
 Crafty.e('Item')
