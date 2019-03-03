@@ -102,8 +102,10 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         .checkHits('Option')
         .bind('HitOn', function(hitOption) {
             this.selectOption.optionObj = hitOption[0].obj
+            this.selectOption.canSelect = true
             // console.log(hitOption[0].obj['0']) // this is the ID of the selected option
             this.resetHitChecks()
+            console.log(this);
         })
 }
 
