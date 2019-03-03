@@ -77,12 +77,11 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision')
     .fourway(200)
     .checkHits('Item')
     .bind('HitOn', function(hitItem) {
-        itemPopUp()
-        // makePopUp(hitItem) // no use for passed data yet
+        itemPopUp(hitItem)
         // this.freeze() // stops player while options are up
     })
 
-function itemPopUp() {
+function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
         .color('grey')
         .attr({
@@ -94,7 +93,7 @@ function itemPopUp() {
         .text('HIT ENTER TO SELECT')
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.ENTER) {
-                makePopUp() // how to pass the stuff??
+                makePopUp(hitItem) // no use for passed data yet
                 this.destroy()
             }
         })
