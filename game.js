@@ -53,7 +53,7 @@ Crafty.c('Option', {
 })
 
 // player
-const player = Crafty.e('2D, DOM, Color, Fourway, Collision')
+const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision')
     .attr({
         x: 10,
         y: 10,
@@ -101,7 +101,7 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
                 console.log(selectedOption)
-                Crafty('Collision').unfreeze()
+                Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
