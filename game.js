@@ -23,11 +23,11 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'CALL A GOOD FRIEND',
-                changeScore: function() {}
+                changeScore: function() {} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'BROWSE TWITTER',
-                changeScore: function() {}
+                changeScore: function() {} // END POINT FOR BACKEND LOGIC
             },
             option3: {
                 title: 'GO BACK'
@@ -43,7 +43,7 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'SMOKE WEED',
-                changeScore: function() {}
+                changeScore: function() {} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'GO BACK'
@@ -59,11 +59,11 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'TIDY ROOM',
-                changeScore: function(){}
+                changeScore: function(){} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'SIT ON LAUNDRY AND NAP',
-                changeScore: function () {}
+                changeScore: function () {} // END POINT FOR BACKEND LOGIC
             },
             option3: {
                 title: 'GO BACK'
@@ -182,5 +182,3 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         })
 }
 // limit selectors movement
-
-// get options title to dynamically generate from item itself
