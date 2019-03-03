@@ -125,4 +125,6 @@ Crafty.e('Item')
     .color('green')
 
 // limit selectors movement
-// maybe also now allow ENTER event to fire if canSelect is false (which also means I need to reset it to false when user moves) <- this will be redundant if selector cannot move off options
+
+// get player to not move until directed to with arrows after removing options popup
+// as a workaround, I could have a popup the describes the hit entity and allows the user to hit enter to select that item, THEN trigger the popup to occur
