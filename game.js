@@ -94,6 +94,7 @@ function itemPopUp(hitItem) {
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.ENTER) {
                 makePopUp(hitItem) // no use for passed data yet
+                Crafty('Player').freeze()
                 this.destroy()
             }
         })
