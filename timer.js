@@ -1,11 +1,10 @@
-var timersCount = 0;
+// borrowed from https://stackoverflow.com/questions/38539000/javascript-countdown-with-pause-resume
+
 var pause = false; //is timer paused
 
 countTimers();
 
 function countTimers() {
-  timersCount++;
-
   var count = 26;
   var counter = setInterval(timer, 1000);
 
@@ -14,24 +13,22 @@ function countTimers() {
       count = count - 1;
       if (count < 0) {
         clearInterval(counter);
-        setTimeout(countTimers, 5000); //start count from 26 again
         return;
       }
 
       document.getElementById("timer").innerHTML = count;
     }
   }
-
-  document.getElementById("countTimers").innerHTML = timersCount;
 }
 
 document.getElementById('pause').addEventListener('click', function () {
-    pause = true;
+    pause ? pause = false : pause = true
+    // pause = true;
 });
 
-document.getElementById('resume').addEventListener('click', function () {
-    pause = false;
-});
+// document.getElementById('resume').addEventListener('click', function () {
+//     pause = false;
+// });
 
 // const gameTime = 3 // min
 // const activityTime = 10 // sec
