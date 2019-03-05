@@ -7,7 +7,7 @@ Crafty.c('OptionsBox', {
         this.w = 400
         this.h = 400
     },
-    optionsList: function(optionsObj) {
+    optionsListMaker: function(optionsObj) {
         let iteration = 0
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
@@ -37,7 +37,7 @@ Crafty.c('Option', {
 })
 
 function makePopUp (hitItem) { // hitItem will be passed in order to set the options in popUp
-    const popUp = Crafty.e('OptionsBox').color('grey').optionsList(hitItem[0].obj.optionsList)
+    const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList)
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
@@ -59,12 +59,12 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
-                
+
                 console.log(selectedOption._text);
-                
+
                     energyValue(selectedOption._text)
-    
-                
+
+
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
@@ -82,7 +82,7 @@ this.stress = 7;
 function energyValue(source) {
     if (source === 'CALL A GOOD FRIEND') {
         console.log('soooo excited');
-        this.energy++; 
+        this.energy++;
         console.log(this.energy);
     }
     if (source === 'BROWSE TWITTER') {
