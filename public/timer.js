@@ -7,7 +7,7 @@ function timer() {
   var counter = setInterval(tickTock, 1000);
 
   function tickTock() {
-    if (!pause) {
+    if (!pause && gameTime > 0) {
       gameTime = gameTime - 1;
       document.getElementById("timer").innerHTML = gameTime;
     }
