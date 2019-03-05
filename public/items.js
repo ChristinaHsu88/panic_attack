@@ -23,7 +23,6 @@ Crafty.e('Item')
             option1: {
                 title: 'CALL A GOOD FRIEND',
                 changeScore: function() {
-                    this.energy --;
                 } // END POINT FOR BACKEND LOGIC
             },
             option2: {
@@ -84,7 +83,7 @@ function itemPopUp(hitItem) {
         .text(`HIT ENTER TO SELECT THIS ${hitItem[0].obj.type}`)
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.ENTER) {
-                console.log(hitItem[0].obj.type);
+                console.log(hitItem[0].obj.type)
                 makePopUp(hitItem) // no use for passed data yet
                 Crafty('Player').freeze()
                 this.destroy()

@@ -58,13 +58,8 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
-                const selectedOption = Crafty(optionID)
-                
-                console.log(selectedOption._text);
-                
-                    energyValue(selectedOption._text)
-    
-                
+                const selectedOption = Crafty(optionID)        
+                energyValue(selectedOption._text)
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
@@ -76,32 +71,40 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         })
 }
 
-this.energy = 7;
-this.stress = 7;
+
+console.log(Crafty('ChangeEnergy'))
+this.energy = 7
+this.stress = 7
+
 /* calculate energy level based on the actions chosen */
 function energyValue(source) {
     if (source === 'CALL A GOOD FRIEND') {
-        console.log('soooo excited');
-        this.energy++; 
-        console.log(this.energy);
+        console.log('soooo excited')
+        this.energy++
+        console.log(this.energy)
     }
     if (source === 'BROWSE TWITTER') {
-        console.log('exciting news');
-        this.stress++;
+        console.log('exciting news')
+        this.stress++
     }
     if (source === 'SMOKE WEED') {
-        console.log('sooo chilled');
-        this.stress--;
+        console.log('sooo chilled')
+        this.stress--
     }
     if (source === 'TIDY ROOM') {
-        console.log('the room is so clean now');
-        this.stress--;
+        console.log('the room is so clean now')
+        this.stress--
     }
     if (source === 'SIT ON LAUNDRY AND NAP') {
-        console.log('so much shit to do');
-        this.stress++;
-        this.energy++;
+        console.log('so much shit to do')
+        this.stress++
+        this.energy++
     }
-    console.log('your energy level is ' + this.energy);
-    console.log('your stress level now is ', this.stress);
+    console.log('your energy level is ' + this.energy)
+    console.log('your stress level now is ', this.stress)
 }
+
+let energy = this.energy
+let stress = this.energy
+console.log('final result ', energy)
+
