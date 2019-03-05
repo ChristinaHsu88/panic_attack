@@ -2,10 +2,11 @@ const express = require("express")
 const app = express()
 const PORT = 8080
 const path = require("path")
+const bodyParser = require('body-parser')
 
 
 app.use(express.static('public'));
-
+app.use(bodyParser.json())
 
 let users = {
     "user1": {
@@ -14,7 +15,7 @@ let users = {
         hunger: 7,
         energy: 7
     }
-};
+}
 
 let vitalValue = {
     "user1": {
@@ -26,18 +27,24 @@ let vitalValue = {
         connecting: 7,
         focus: 7
     }
-};
+}
 
 
 /* connect with the index.html file */
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname+ '/index.html'))
-  });
+  })
+
+app.post('/', function(req, res) {
+    // console.log('REQ', req.body)
+    // res.send()
+    console.log(req.body);
+})
 
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}!`)
 
-});
+})
 
