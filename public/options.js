@@ -32,15 +32,10 @@ Crafty.c('Option', {
     place: function(iteration) {
         this.x = 35
         this.y = 23 + iteration
-        return this
+        return this // without this line, custom methods will not work
     },
     changeScore: function(effectArr) {
-        effectArr.forEach(effect => {
-            if (effect === 'energyUp') {
-                Crafty('Player').energy++
-            }
-        })
-        // action of each option goes here
+        this.scoreEffect = effectArr
     }
 })
 
@@ -74,6 +69,13 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
+                selectedOption.scoreEffect.forEach(effect => {
+                    if (effect === 'energyUp') {
+                        Crafty('Player').energy++
+                    } else {
+                        console.log(effect)
+                    }
+                })
 
                 // console.log(selectedOption._text);
                 // energyValue(selectedOption._text)
