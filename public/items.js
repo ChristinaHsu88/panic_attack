@@ -22,24 +22,25 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'CALL A GOOD FRIEND',
-                // scoreEffect: {
-                //     timeIn: 0,
-                //     downTime: 0,
-                //     focusTime: 0,
-                //     playTime: 0,
-                //     connectingTime: 1,
-                //     sleepTime: 0,
-                //     physicalTime: 0
-                // }
-                scoreEffect: ['energyUp', 'stressDown']
+                scoreEffect: {
+                    stress: -1,
+                    energy: 1,
+                    timeIn: 0,
+                    downTime: 0,
+                    focusTime: 0,
+                    playTime: 0,
+                    connectingTime: 1,
+                    sleepTime: 0,
+                    physicalTime: 0
+                }
             },
             option2: {
                 title: 'BROWSE TWITTER',
-                scoreEffect: ['energyDown', 'stressUp']
+                scoreEffect: {}
             },
             option3: {
                 title: 'GO BACK',
-                scoreEffect: []
+                scoreEffect: {}
             }
         }
     })
@@ -52,7 +53,6 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'SMOKE WEED',
-                changeScore: function() {} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'GO BACK'
@@ -68,11 +68,9 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'TIDY ROOM',
-                changeScore: function(){} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'SIT ON LAUNDRY AND NAP',
-                changeScore: function () {} // END POINT FOR BACKEND LOGIC
             },
             option3: {
                 title: 'GO BACK'
