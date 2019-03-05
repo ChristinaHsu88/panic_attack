@@ -5,26 +5,27 @@ var pause = false; //is timer paused
 countTimers();
 
 function countTimers() {
-  var count = 26;
+  var gameTime = 180;
   var counter = setInterval(timer, 1000);
 
   function timer() {
     if (!pause) { //do something if not paused
-      count = count - 1;
-      if (count < 0) {
+      gameTime = gameTime - 1;
+      if (gameTime < 0) {
         clearInterval(counter);
         return;
       }
 
-      document.getElementById("timer").innerHTML = count;
+      document.getElementById("timer").innerHTML = gameTime;
     }
   }
 }
 
-document.getElementById('pause').addEventListener('click', function () {
-    pause ? pause = false : pause = true
-    // pause = true;
-});
+document.onkeydown = function (e) {
+    if (e.code === 'Space') {
+        pause ? pause = false : pause = true
+    }
+}
 
 // document.getElementById('resume').addEventListener('click', function () {
 //     pause = false;
