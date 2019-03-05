@@ -31,4 +31,3 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
             console.log('Player stats:', this.metrics);
         }
     })
-

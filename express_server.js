@@ -31,14 +31,13 @@ let vitalValue = {
 /* connect with the index.html file */
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+ '/index.html'));
-    
+    res.sendFile(path.join(__dirname+ '/index.html'))
   });
 
 
 
 app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}!`);
+    console.log(`Example app listening on port ${PORT}!`)
 
 });
 
