@@ -77,7 +77,7 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                     Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
                 }
                 console.log(Crafty('Player').metrics)
-                /* Update data when users select an action */
+                /* Update data when users select an action note: days_play needs to be updated here */
                 axios.post('/', {
                     metrics: Crafty('Player').metrics
                 })
