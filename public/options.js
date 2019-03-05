@@ -12,7 +12,6 @@ Crafty.c('OptionsBox', {
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
-            console.log(optionsObj[option]);
             iteration = iteration + 50
             Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect)
         }
@@ -76,42 +75,8 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                         console.log(effect)
                     }
                 })
-
-                // console.log(selectedOption._text);
-                // energyValue(selectedOption._text)
-
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
-}
-
-this.energy = 7; // this refers to the window
-this.stress = 7;
-/* calculate energy level based on the actions chosen */
-function energyValue(source) {
-    if (source === 'CALL A GOOD FRIEND') {
-        console.log('soooo excited');
-        this.energy++;
-        console.log(this.energy);
-    }
-    if (source === 'BROWSE TWITTER') {
-        console.log('exciting news');
-        this.stress++;
-    }
-    if (source === 'SMOKE WEED') {
-        console.log('sooo chilled');
-        this.stress--;
-    }
-    if (source === 'TIDY ROOM') {
-        console.log('the room is so clean now');
-        this.stress--;
-    }
-    if (source === 'SIT ON LAUNDRY AND NAP') {
-        console.log('so much shit to do');
-        this.stress++;
-        this.energy++;
-    }
-    console.log('your energy level is ' + this.energy);
-    console.log('your stress level now is ', this.stress);
 }

@@ -22,6 +22,15 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'CALL A GOOD FRIEND',
+                // scoreEffect: {
+                //     timeIn: 0,
+                //     downTime: 0,
+                //     focusTime: 0,
+                //     playTime: 0,
+                //     connectingTime: 1,
+                //     sleepTime: 0,
+                //     physicalTime: 0
+                // }
                 scoreEffect: ['energyUp', 'stressDown']
             },
             option2: {
