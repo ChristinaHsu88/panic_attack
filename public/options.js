@@ -36,9 +36,11 @@ Crafty.c('Option', {
     }
 })
 
-function makePopUp (hitItem) { // hitItem will be passed in order to set the options in popUp
-    const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList)
-    const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
+function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
+
+    Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList)
+
+    Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
             h: 20,
@@ -47,6 +49,12 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             selectOption: { canSelect: false, optionObj: undefined },
         })
         .color('rgba(255, 99, 71, 0.5)')
+        .checkHits('Option') // the selector will recognize when it hits an option
+        .bind('HitOn', function(hitOption) {
+            this.selectOption.optionObj = hitOption[0].obj // when it hits an option, that option's data will be stored to the selector attr
+            console.log('1', hitOption[0].obj)
+            this.selectOption.canSelect = true // the selector will toggle true when on a valid option
+        })
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
                 this.selectOption.canSelect = false
@@ -59,24 +67,19 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
+                console.log('2', hitItem[0].obj)
 
-                console.log(selectedOption._text);
-
-                    energyValue(selectedOption._text)
+                // console.log(selectedOption._text);
+                // energyValue(selectedOption._text)
 
 
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
-        .checkHits('Option')
-        .bind('HitOn', function(hitOption) {
-            this.selectOption.optionObj = hitOption[0].obj
-            this.selectOption.canSelect = true
-        })
 }
 
-this.energy = 7;
+this.energy = 7; // this refers to the window
 this.stress = 7;
 /* calculate energy level based on the actions chosen */
 function energyValue(source) {
