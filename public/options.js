@@ -68,10 +68,15 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
+                /* test to get response from DB */
+                axios.get('/')
+                    .then(function (response) {
+                        console.log('here is the', response)
+                    })
                 for (effect in selectedOption.scoreEffect) {
                     Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
                 }
-                console.log(Crafty('Player').metrics)
+                //console.log(Crafty('Player').metrics)
                 axios.post('/', {
                     metrics: Crafty('Player').metrics
                 })

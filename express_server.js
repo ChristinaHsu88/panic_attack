@@ -17,6 +17,7 @@ let users = {
     }
 }
 
+/* pseudo DB */
 let vitalValue = {
     "user1": {
         timeIn: 7,
@@ -31,13 +32,15 @@ let vitalValue = {
 
 
 /* connect with the index.html file */
-
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname+ '/index.html'))
+    
   })
 
+/* add data to the pseudo DB now */
 app.post('/', function(req, res) {
-    console.log(req.body);
+    vitalValue['user2'] = req.body 
+    console.log(vitalValue)
 })
 
 
