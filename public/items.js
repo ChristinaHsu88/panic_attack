@@ -22,16 +22,15 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'CALL A GOOD FRIEND',
-                changeScore: function() {
-                    this.energy --;
-                } // END POINT FOR BACKEND LOGIC
+                scoreEffect: ['energyUp', 'stressDown']
             },
             option2: {
                 title: 'BROWSE TWITTER',
-                changeScore: function() {} // END POINT FOR BACKEND LOGIC
+                scoreEffect: ['energyDown', 'stressUp']
             },
             option3: {
-                title: 'GO BACK'
+                title: 'GO BACK',
+                scoreEffect: []
             }
         }
     })
@@ -91,3 +90,4 @@ function itemPopUp(hitItem) {
             }
         })
 }
+
