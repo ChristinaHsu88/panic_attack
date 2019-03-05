@@ -11,8 +11,10 @@ Crafty.c('OptionsBox', {
         let iteration = 0
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
+            let scoreEffect = optionsObj[option].scoreEffect
+            console.log(optionsObj[option]);
             iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration)
+            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect)
         }
     }
 })
@@ -30,17 +32,23 @@ Crafty.c('Option', {
     place: function(iteration) {
         this.x = 35
         this.y = 23 + iteration
+        return this
     },
-    action: function(action) {
+    changeScore: function(effectArr) {
+        effectArr.forEach(effect => {
+            if (effect === 'energyUp') {
+                Crafty('Player').energy++
+            }
+        })
         // action of each option goes here
     }
 })
 
 function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
 
-    Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList)
+    const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
 
-    Crafty.e('Selector, 2D, DOM, Color, Collision')
+    const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
             h: 20,
@@ -52,7 +60,6 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
         .checkHits('Option') // the selector will recognize when it hits an option
         .bind('HitOn', function(hitOption) {
             this.selectOption.optionObj = hitOption[0].obj // when selector hits an option, that option's data will be stored to the selector attr
-            console.log('1', hitOption[0].obj)
             this.selectOption.canSelect = true // gatekeeper, allowing selector to select or not
         })
         .bind('KeyDown', function(e) {
@@ -67,7 +74,6 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
-                console.log('2', hitItem[0].obj)
 
                 // console.log(selectedOption._text);
                 // energyValue(selectedOption._text)
