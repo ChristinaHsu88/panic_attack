@@ -1,6 +1,4 @@
-// borrowed from https://stackoverflow.com/questions/38539000/javascript-countdown-with-pause-resume
-
-var pause = false; //is timer paused
+var pause = false
 
 timer();
 
@@ -9,7 +7,7 @@ function timer() {
   var counter = setInterval(tickTock, 1000);
 
   function tickTock() {
-    if (!pause) { //do something if not paused
+    if (!pause) {
       gameTime = gameTime - 1;
       document.getElementById("timer").innerHTML = gameTime;
     }
