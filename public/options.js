@@ -70,22 +70,23 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 const selectedOption = Crafty(optionID)
                 /* receive response object data from express server i.e. response.request.response*/
                 axios.get('/data')
-                    .then(function (response) {
-                        console.log('here is the data', response.request.response)
-                    })
+                .then(function (response) {
+                    console.log('here is the data', response.request.response)
+                })
                 for (effect in selectedOption.scoreEffect) {
                     Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
                 }
-                //console.log(Crafty('Player').metrics)
-                // axios.post('/', {
-                //     metrics: Crafty('Player').metrics
-                // })
-                // .then(function (response) {
-                //     console.log(response)
-                // })
-                // .catch(function (error) {
-                //     console.log(error)
-                // })
+                console.log(Crafty('Player').metrics)
+                /* Update data when users select an action */
+                axios.post('/', {
+                    metrics: Crafty('Player').metrics
+                })
+                .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }

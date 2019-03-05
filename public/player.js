@@ -15,6 +15,9 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
             connectingTime: 6,
             sleepTime: 6,
             physicalTime: 6
+        },
+        platter: {
+           
         }
     })
     .color('red')
@@ -32,3 +35,8 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
         }
     })
 
+/* receive response object data from express server i.e. response.request.response*/
+let playerData = axios.get('/data')
+.then(function (response) {
+    console.log('here is the data', response.request.response)
+})
