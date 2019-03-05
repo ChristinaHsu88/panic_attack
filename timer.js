@@ -2,20 +2,15 @@
 
 var pause = false; //is timer paused
 
-countTimers();
+timer();
 
-function countTimers() {
+function timer() {
   var gameTime = 180;
-  var counter = setInterval(timer, 1000);
+  var counter = setInterval(tickTock, 1000);
 
-  function timer() {
+  function tickTock() {
     if (!pause) { //do something if not paused
       gameTime = gameTime - 1;
-      if (gameTime < 0) {
-        clearInterval(counter);
-        return;
-      }
-
       document.getElementById("timer").innerHTML = gameTime;
     }
   }
