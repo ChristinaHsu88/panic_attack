@@ -51,15 +51,15 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
         .color('rgba(255, 99, 71, 0.5)')
         .checkHits('Option') // the selector will recognize when it hits an option
         .bind('HitOn', function(hitOption) {
-            this.selectOption.optionObj = hitOption[0].obj // when it hits an option, that option's data will be stored to the selector attr
+            this.selectOption.optionObj = hitOption[0].obj // when selector hits an option, that option's data will be stored to the selector attr
             console.log('1', hitOption[0].obj)
-            this.selectOption.canSelect = true // the selector will toggle true when on a valid option
+            this.selectOption.canSelect = true // gatekeeper, allowing selector to select or not
         })
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
-                this.selectOption.canSelect = false
+                this.selectOption.canSelect = false // remains false for a moment, before recognize new hit event and turning back to true; this boolean will be redundant once the selector's movement is limited, but should remain as a redundant feature
                 this.y = this.y - 50
-                this.resetHitChecks()
+                this.resetHitChecks() // without this method, the selector will not recognize it has hit a new option
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
                 this.selectOption.canSelect = false
                 this.y = this.y + 50
@@ -71,7 +71,6 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
 
                 // console.log(selectedOption._text);
                 // energyValue(selectedOption._text)
-
 
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
