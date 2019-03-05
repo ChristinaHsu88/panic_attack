@@ -71,40 +71,36 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
         })
 }
 
+/* below functions should be moved to other files */
 
-console.log(Crafty('ChangeEnergy'))
-this.energy = 7
-this.stress = 7
+energy = 7
+stress = 7
 
 /* calculate energy level based on the actions chosen */
 function energyValue(source) {
     if (source === 'CALL A GOOD FRIEND') {
         console.log('soooo excited')
-        this.energy++
+        energy++
         console.log(this.energy)
     }
     if (source === 'BROWSE TWITTER') {
         console.log('exciting news')
-        this.stress++
+        stress++
     }
     if (source === 'SMOKE WEED') {
         console.log('sooo chilled')
-        this.stress--
+        stress--
     }
     if (source === 'TIDY ROOM') {
         console.log('the room is so clean now')
-        this.stress--
+        stress--
     }
     if (source === 'SIT ON LAUNDRY AND NAP') {
         console.log('so much shit to do')
-        this.stress++
-        this.energy++
+        stress++
+        energy++
     }
-    console.log('your energy level is ' + this.energy)
-    console.log('your stress level now is ', this.stress)
+    console.log('your energy level is ' + energy)
+    console.log('your stress level now is ', stress)
 }
-
-let energy = this.energy
-let stress = this.energy
-console.log('final result ', energy)
 

@@ -5,7 +5,6 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Energy')
         y: 10,
         w: 40,
         h: 40, 
-        energy: 7
     })
     .color('red')
     .fourway(200)
@@ -15,7 +14,4 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Energy')
     })
     .bind('HitOff', function() {
         Crafty('ItemPopUp').destroy()
-    })
-    .bind('Energy', function() {
-        console.log(this.energy)
     })
