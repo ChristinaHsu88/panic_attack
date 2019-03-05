@@ -28,7 +28,7 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
     })
     .bind('KeyDown', function(e) { // to check score during development
         if (e.key == Crafty.keys.SHIFT) {
-            console.log('Player stats:', this.metrics);
+            console.log('Player stats:', this.metrics)
         }
     })
 

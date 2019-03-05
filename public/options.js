@@ -81,13 +81,6 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 .catch(function (error) {
                     console.log(error)
                 })
-                // axios({
-                //     method: 'post',
-                //     url: '/',
-                //     data: {
-                //         'metrics': Crafty('Player').metrics
-                //     }
-                // })
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }

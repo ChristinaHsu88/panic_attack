@@ -37,8 +37,6 @@ app.get('/', function(req, res) {
   })
 
 app.post('/', function(req, res) {
-    // console.log('REQ', req.body)
-    // res.send()
     console.log(req.body);
 })
 
