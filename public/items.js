@@ -4,6 +4,7 @@ Crafty.c('Item', {
         this.addComponent('2D, DOM, Color')
         this.w = 30
         this.h = 30
+        this.energy = 7
     },
     place: function(x, y) {
         this.x = x
@@ -21,7 +22,9 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'CALL A GOOD FRIEND',
-                changeScore: function() {} // END POINT FOR BACKEND LOGIC
+                changeScore: function() {
+                    this.energy --;
+                } // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'BROWSE TWITTER',
