@@ -27,11 +27,16 @@ function timeScoreChanger(metrics){
       metrics[metric] += timeScoreLoss
     }
   }
+  console.log('Time Score Changer: \n', metrics)
+  if (document.getElementById("timer").innerHTML > 0) {
+    setTimeout(timeScoreChanger, 30000, metrics)
+  }
   return metrics
 }
 
-console.log('Day One Score: \n', dayOneScore(playerMetrics));
-console.log('Time Score Change (once): \n', timeScoreChanger(dayOneScore(playerMetrics)));
+console.log('Day One Score: \n', dayOneScore(playerMetrics))
+setTimeout(timeScoreChanger, 30000, (dayOneScore(playerMetrics)))
+
 /* Metrics:
     - primary:
       - stress
