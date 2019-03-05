@@ -17,5 +17,11 @@ function timer() {
 document.onkeydown = function (e) {
     if (e.code === 'Space') {
         pause ? pause = false : pause = true
+        if (pause) {
+          document.getElementById("pause").innerHTML = 'GAME PAUSED'
+        } else {
+          document.getElementById("pause").innerHTML = ''
+        }
     }
 }
+

@@ -19,8 +19,7 @@ function dayOneScore(metrics){
 }
 
 function timeScoreChanger(metrics){
-  // every 30s, score will be affected by time
-  // all metrics are reduced (unless engaged), except stress & downTime (unless engaged in something else)
+  // should not run if game is paused
   const timeScoreLoss = -1
   for (let metric in metrics) {
     if (metric !== 'stress' &&  metric !== 'downTime') {
@@ -29,7 +28,7 @@ function timeScoreChanger(metrics){
   }
   console.log('Time Score Changer: \n', metrics)
   if (document.getElementById("timer").innerHTML > 0) {
-    setTimeout(timeScoreChanger, 30000, metrics)
+    setTimeout(timeScoreChanger, 30000, metrics) // run every 30 while game in play
   }
   return metrics
 }
