@@ -22,16 +22,25 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'CALL A GOOD FRIEND',
-                changeScore: function() {
-                    this.energy --;
-                } // END POINT FOR BACKEND LOGIC
+                scoreEffect: {
+                    stress: -1,
+                    energy: 1,
+                    timeIn: 0,
+                    downTime: 0,
+                    focusTime: 0,
+                    playTime: 0,
+                    connectingTime: 1,
+                    sleepTime: 0,
+                    physicalTime: 0
+                }
             },
             option2: {
                 title: 'BROWSE TWITTER',
-                changeScore: function() {} // END POINT FOR BACKEND LOGIC
+                scoreEffect: {}
             },
             option3: {
-                title: 'GO BACK'
+                title: 'GO BACK',
+                scoreEffect: {}
             }
         }
     })
@@ -44,7 +53,6 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'SMOKE WEED',
-                changeScore: function() {} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'GO BACK'
@@ -60,11 +68,9 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'TIDY ROOM',
-                changeScore: function(){} // END POINT FOR BACKEND LOGIC
             },
             option2: {
                 title: 'SIT ON LAUNDRY AND NAP',
-                changeScore: function () {} // END POINT FOR BACKEND LOGIC
             },
             option3: {
                 title: 'GO BACK'
@@ -85,9 +91,10 @@ function itemPopUp(hitItem) {
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.ENTER) {
                 console.log(hitItem[0].obj.type);
-                makePopUp(hitItem) // no use for passed data yet
+                makePopUp(hitItem)
                 Crafty('Player').freeze()
                 this.destroy()
             }
         })
 }
+

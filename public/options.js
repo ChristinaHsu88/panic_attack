@@ -7,12 +7,13 @@ Crafty.c('OptionsBox', {
         this.w = 400
         this.h = 400
     },
-    optionsList: function(optionsObj) {
+    optionsListMaker: function(optionsObj) {
         let iteration = 0
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
+            let scoreEffect = optionsObj[option].scoreEffect
             iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration)
+            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect)
         }
     }
 })
@@ -30,14 +31,17 @@ Crafty.c('Option', {
     place: function(iteration) {
         this.x = 35
         this.y = 23 + iteration
+        return this // without this line, custom methods (e.g., changeScore) will not work
     },
-    action: function(action) {
-        // action of each option goes here
+    changeScore: function(effectArr) {
+        this.scoreEffect = effectArr
     }
 })
 
-function makePopUp (hitItem) { // hitItem will be passed in order to set the options in popUp
-    const popUp = Crafty.e('OptionsBox').color('grey').optionsList(hitItem[0].obj.optionsList)
+function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
+
+    const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
+
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
@@ -47,11 +51,16 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             selectOption: { canSelect: false, optionObj: undefined },
         })
         .color('rgba(255, 99, 71, 0.5)')
+        .checkHits('Option') // the selector will recognize when it hits an option
+        .bind('HitOn', function(hitOption) {
+            this.selectOption.optionObj = hitOption[0].obj // when selector hits an option, that option's data will be stored to the selector attr
+            this.selectOption.canSelect = true // gatekeeper, allowing selector to select or not
+        })
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
-                this.selectOption.canSelect = false
+                this.selectOption.canSelect = false // remains false for a moment, before recognize new hit event and turning back to true; this boolean will be redundant once the selector's movement is limited, but should remain as a redundant feature
                 this.y = this.y - 50
-                this.resetHitChecks()
+                this.resetHitChecks() // without this method, the selector will not recognize it has hit a new option
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
                 this.selectOption.canSelect = false
                 this.y = this.y + 50
@@ -59,49 +68,29 @@ function makePopUp (hitItem) { // hitItem will be passed in order to set the opt
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
-                
-                console.log(selectedOption._text);
-                
-                    energyValue(selectedOption._text)
-    
-                
+                /* receive response object data from express server i.e. response.request.response*/
+                axios.get('/data')
+                .then(function (response) {
+                    console.log('here is the data', response.request.response)
+                })
+                for (effect in selectedOption.scoreEffect) {
+                    Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
+                }
+
+                console.log(Crafty('Player').metrics)
+                /* Update data when users select an action */
+                axios.post('/', {
+                    metrics: Crafty('Player').metrics
+                })
+                .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
-        .checkHits('Option')
-        .bind('HitOn', function(hitOption) {
-            this.selectOption.optionObj = hitOption[0].obj
-            this.selectOption.canSelect = true
-        })
-}
-
-this.energy = 7;
-this.stress = 7;
-/* calculate energy level based on the actions chosen */
-function energyValue(source) {
-    if (source === 'CALL A GOOD FRIEND') {
-        console.log('soooo excited');
-        this.energy++; 
-        console.log(this.energy);
-    }
-    if (source === 'BROWSE TWITTER') {
-        console.log('exciting news');
-        this.stress++;
-    }
-    if (source === 'SMOKE WEED') {
-        console.log('sooo chilled');
-        this.stress--;
-    }
-    if (source === 'TIDY ROOM') {
-        console.log('the room is so clean now');
-        this.stress--;
-    }
-    if (source === 'SIT ON LAUNDRY AND NAP') {
-        console.log('so much shit to do');
-        this.stress++;
-        this.energy++;
-    }
-    console.log('your energy level is ' + this.energy);
-    console.log('your stress level now is ', this.stress);
 }
