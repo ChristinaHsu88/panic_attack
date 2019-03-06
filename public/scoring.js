@@ -21,8 +21,8 @@ function timeScoreChanger(metrics){
   return metrics
 }
 
-console.log('Day One Score: \n', dayOneScore(playerMetrics))
-setTimeout(timeScoreChanger, 30000, (dayOneScore(playerMetrics)))
+console.log('Day One Score: \n', dayOneScore(playerMetrics.metrics))
+setTimeout(timeScoreChanger, 30000, playerMetrics.metrics)
 
 /* Metrics:
     - primary:

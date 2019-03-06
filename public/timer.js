@@ -23,3 +23,5 @@ document.onkeydown = function (e) {
         }
     }
 }
+
+// playerMetrics to be sent to db at end of game/timer 0
