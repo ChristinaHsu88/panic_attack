@@ -7,7 +7,7 @@ function timer() {
   var counter = setInterval(tickTock, 1000);
 
   function tickTock() {
-    if (!pause) {
+    if (!pause && gameTime > 0) {
       gameTime = gameTime - 1;
       document.getElementById("timer").innerHTML = gameTime;
     }
@@ -17,5 +17,11 @@ function timer() {
 document.onkeydown = function (e) {
     if (e.code === 'Space') {
         pause ? pause = false : pause = true
+        if (pause) {
+          document.getElementById("pause").innerHTML = 'GAME PAUSED'
+        } else {
+          document.getElementById("pause").innerHTML = ''
+        }
     }
 }
+
