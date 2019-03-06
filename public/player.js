@@ -1,11 +1,13 @@
 // define and generate player
-Crafty.sprite(30, 'public/crafty_sandbow/assets/cat.png', {
-  cat1: [0, 1],
-  cat2: [1, 1],
-  cat3: [2, 1]
-});
+// Crafty.sprite(30, 'public/img/cat.png', {
+//   cat1: [0, 1],
+//   cat2: [1, 1],
+//   cat3: [2, 1]
+// });
 
-const player = Crafty.e('cat1, 2D, DOM, Color, Fourway, Collision, Keyboard')
+// Crafty.e('2D, DOM, cat1').attr({x: 10, y: 10})
+// ATTEMPTS TO RENDER CHARACTER
+const player = Crafty.e('2D, DOM, Fourway, Color, Collision, Keyboard')
   .attr({
     x: 10,
     y: 10,
