@@ -1,5 +1,4 @@
 var pause = false
-
 timer();
 
 function timer() {
@@ -24,4 +23,3 @@ document.onkeydown = function (e) {
         }
     }
 }
-

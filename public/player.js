@@ -31,9 +31,3 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
             console.log('Player stats:', this.metrics)
         }
     })
-
-/* receive response object data from express server i.e. response.request.response*/
-let playerData = axios.get('/data')
-.then(function (response) {
-    console.log('here is the data', response.request.response)
-})
