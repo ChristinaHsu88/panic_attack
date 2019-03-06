@@ -71,15 +71,15 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 /* receive response object data from express server i.e. response.request.response*/
                 axios.get('/data')
                 .then(function (response) {
-                    console.log('here is the data', response.request.response)
+                    console.log('here is the data from the DB', response.request.response)
                 })
                 for (effect in selectedOption.scoreEffect) {
                     Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
                 }
                 console.log(Crafty('Player').metrics)
                 /* Update data when users select an action note: days_play needs to be updated here */
-                axios.post('/', {
-                    metrics: Crafty('Player').metrics
+                axios.post('/data', {
+                    value: Crafty('Player').metrics
                 })
                 .then(function (response) {
                     console.log(response)
