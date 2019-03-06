@@ -4,7 +4,6 @@ Crafty.c('Item', {
         this.addComponent('2D, DOM, Color')
         this.w = 30
         this.h = 30
-        this.energy = 7
     },
     place: function(x, y) {
         this.x = x
