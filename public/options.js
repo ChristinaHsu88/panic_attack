@@ -41,7 +41,6 @@ Crafty.c('Option', {
 function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
 
     const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
-
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
@@ -72,11 +71,13 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 axios.get('/data')
                 .then(function (response) {
                     console.log('here is the data from the DB', response.request.response)
+                    user_data = response.request.response
+                    console.log('here is the JSONFY data>>>', JSON.parse(user_data))
+                    console.log('I have saved data into user_data>>>>>>', user_data)
                 })
                 for (effect in selectedOption.scoreEffect) {
                     Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
                 }
-
                 console.log(Crafty('Player').metrics)
                 /* Update data when users select an action note: days_play needs to be updated here */
                 axios.post('/data', {

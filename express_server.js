@@ -25,7 +25,7 @@ MongoClient.connect(uri, (err, client) => {
 
     /* send data to client side */
     app.get('/data', function (req, res) {
-        let data = userInfo
+        let data = user_info
         res.json(data)
     })
 
@@ -52,19 +52,21 @@ MongoClient.connect(uri, (err, client) => {
 
 
 /* pseudo DB */
-let userInfo = {
+let user_info = {
     "user1": {
-        days_play : {
-            days: 0
-        },
-        platter: {
-            timeIn: 7,
-            sleep: 7,
-            downTime: 7,
-            play: 7,
-            physical: 7,
-            connecting: 7,
-            focus: 7
+        days_play : 0,
+        metrics: {
+            stress: 0,
+            energy: 0,
+            platter: {
+                timeIn: 0,
+                downTime: 0,
+                focusTime: 0,
+                playTime: 0,
+                connectingTime: 0,
+                sleepTime: 0,
+                physicalTime: 0
+            }
         }
     }
 }
