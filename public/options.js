@@ -67,29 +67,10 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
-                /* receive response object data from express server i.e. response.request.response*/
-                axios.get('/data')
-                .then(function (response) {
-                    console.log('here is the data from the DB', response.request.response)
-                    user_data = response.request.response
-                    console.log('here is the JSONFY data>>>', JSON.parse(user_data))
-                    console.log('I have saved data into user_data>>>>>>', user_data)
-                })
+
                 for (effect in selectedOption.scoreEffect) {
                     Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
                 }
-                console.log(Crafty('Player').metrics)
-                /* Update data when users select an action note: days_play needs to be updated here */
-                axios.post('/data', {
-                    value: Crafty('Player').metrics
-                })
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
