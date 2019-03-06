@@ -5,7 +5,6 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
         y: 10,
         w: 40,
         h: 40,
-        metrics: playerMetrics
     })
     .color('red')
     .fourway(200)
@@ -18,7 +17,6 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
     })
     .bind('KeyDown', function(e) { // to check score during development
         if (e.key == Crafty.keys.SHIFT) {
-            console.log('Player stats:', this.metrics)
-            console.log('Global:', playerMetrics.metrics);
+            console.log('Player stats (global):', playerMetrics.metrics)
         }
     })
