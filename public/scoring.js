@@ -1,5 +1,30 @@
-function dayOneScore(metrics){
-  const baseScore = 6
+
+// universal variable that persists throughout gameplay until server is restarted
+// to be sent/saved to DB at the end of the game
+const playerMetrics = {
+        daysPlayed : 0,
+        metrics: {
+            stress: 0,
+            energy: 0,
+            timeIn: 0,
+            downTime: 0,
+            focusTime: 0,
+            playTime: 0,
+            connectingTime: 0,
+            sleepTime: 0,
+            physicalTime: 0
+        }
+    }
+
+startingScore(playerMetrics)
+
+function startingScore(metrics){
+  if (metrics.daysPlayed === 0) {
+  // need to write algorithms for future days, keeping in mind the other metrics will also affect
+  // when games, the daysPlayed will need to be updated
+  // this way, if a user returns to play a game and pulls their playerMetrics from the db, the algorithm I need to write will determine their stress and energy levels
+    const baseScore = 6
+  }
   for (let metric in metrics) {
     metrics[metric] = baseScore
   }
@@ -21,7 +46,7 @@ function timeScoreChanger(metrics){
   return metrics
 }
 
-console.log('Day One Score: \n', dayOneScore(playerMetrics.metrics))
+// console.log('Day One Score: \n', startingScore(playerMetrics.metrics))
 setTimeout(timeScoreChanger, 30000, playerMetrics.metrics)
 
 /* Metrics:
