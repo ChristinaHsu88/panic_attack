@@ -38,12 +38,11 @@ MongoClient.connect(uri, (err, client) => {
     app.post('/data', (req, res) => {
         db.collection('data').save(req.body, (err, result) => {
             if (err) return console.log(err)
-
             console.log('saved to database!')
             res.redirect('/')
         })
     })
-
+    
     app.listen(PORT, () => {
         console.log(`Example app listening on port ${PORT}!`)
     })
