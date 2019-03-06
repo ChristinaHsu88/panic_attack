@@ -1,12 +1,14 @@
+require('dotenv').config();
+
 const express = require("express")
 const app = express()
 const PORT = 8080
 const path = require("path")
 /* set up bodyParser for communicating with axios */
 const bodyParser = require('body-parser')
+/* import URI from .env */
+const uri = process.env.URI
 const MongoClient = require('mongodb').MongoClient
-/* below uri will need to be saved in git ignore file */
-const uri = "mongodb+srv://ChristinaHsu88:Hsu4565150@db-ij8ke.mongodb.net/test?retryWrites=true";
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.use(bodyParser.json())
