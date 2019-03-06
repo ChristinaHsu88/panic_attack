@@ -1,13 +1,13 @@
 // define and generate player
-// Crafty.sprite(30, 'public/img/cat.png', {
-//   cat1: [0, 1],
-//   cat2: [1, 1],
-//   cat3: [2, 1]
-// });
+Crafty.sprite(30, 'assets/cat.png', {
+  cat1: [0, 0],
+  cat2: [1, 1],
+  cat3: [2, 1]
+});
 
 // Crafty.e('2D, DOM, cat1').attr({x: 10, y: 10})
 // ATTEMPTS TO RENDER CHARACTER
-const player = Crafty.e('2D, DOM, Fourway, Color, Collision, Keyboard')
+const player = Crafty.e('2D, DOM, Fourway, Collision, cat1, Keyboard')
   .attr({
     x: 10,
     y: 10,
@@ -25,7 +25,7 @@ const player = Crafty.e('2D, DOM, Fourway, Color, Collision, Keyboard')
       physicalTime: 6
     }
   })
-  .color('red')
+  // .color('red')
   .fourway(200)
   .checkHits('Item')
   .bind('HitOn', function(hitItem) {
