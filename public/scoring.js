@@ -22,7 +22,7 @@ function startingScore(metrics){
   let baseScore;
   if (metrics.daysPlayed === 0) {
   // need to write algorithms for future days, keeping in mind the other metrics will also affect
-  // when games, the daysPlayed will need to be updated
+  // when game ends, the daysPlayed will need to be updated
   // this way, if a user returns to play a game and pulls their playerMetrics from the db, the algorithm I need to write will determine their stress and energy levels
     baseScore = 6
   }
