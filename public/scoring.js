@@ -1,15 +1,3 @@
-const playerMetrics = {
-    stress: 0,
-    energy: 0,
-    timeIn: 0,
-    downTime: 0,
-    focusTime: 0,
-    playTime: 0,
-    connectingTime: 0,
-    sleepTime: 0,
-    physicalTime: 0
-}
-
 function dayOneScore(metrics){
   const baseScore = 6
   for (let metric in metrics) {

@@ -42,32 +42,8 @@ MongoClient.connect(uri, (err, client) => {
             res.redirect('/')
         })
     })
-    
+
     app.listen(PORT, () => {
         console.log(`Example app listening on port ${PORT}!`)
     })
 })
-
-
-
-/* pseudo DB */
-let user_info = {
-    "user1": {
-        days_play : 0,
-        metrics: {
-            stress: 0,
-            energy: 0,
-            platter: {
-                timeIn: 0,
-                downTime: 0,
-                focusTime: 0,
-                playTime: 0,
-                connectingTime: 0,
-                sleepTime: 0,
-                physicalTime: 0
-            }
-        }
-    }
-}
-
-
