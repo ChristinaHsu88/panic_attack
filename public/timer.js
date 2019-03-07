@@ -17,6 +17,7 @@ function timer() {
     }
     if (gameTime === 0) {
       gameOver = true
+      endGame(playerMetrics)
     }
   }
 }
@@ -32,4 +33,7 @@ document.onkeydown = function (e) {
   }
 }
 
+function endGame(metrics) {
+  // axios.post('/data', )
+}
 // playerMetrics to be sent to db at end of game/timer 0
