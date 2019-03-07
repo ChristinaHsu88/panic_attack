@@ -73,8 +73,8 @@ function makePopUp (hitItem) { // hitItem param sets the options in popUp
                     for (effect in scoreEffect.primaryMetrics) {
                         playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
                     }
-                    calculateStress(playerMetrics)
                     console.log('this has had an effect on your mental health')
+                    calculateStress(playerMetrics)
                 } else {
                     console.log('this has had no effect')
                 }

@@ -34,7 +34,9 @@ document.onkeydown = function (e) {
   }
 }
 
+// called when timer runs out or when player has a panic attack
 function endGame(metrics) {
+  console.log('endGame fired -- nothing should be fired after this point');
   gameOver = true
   metrics.daysPlayed += 1
   console.log('Game is over?', gameOver)
@@ -42,6 +44,7 @@ function endGame(metrics) {
   axios.post('/data', { gameData: metrics })
     .then(res => console.log('Game data saved to DB'))
     .catch(err => console.log(err))
+  console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE');
 }
 // if game ends from panic attack, that should effect next day's game play
   // perhaps user will get a notice to do body checks to determine which platter metric needs attention

@@ -20,6 +20,7 @@ const playerMetrics = {
 startingScore(playerMetrics) // calculate player metrics at start of game
 
 function startingScore(metrics){
+  console.log('startingScore fired')
   let baseScore;
   if (metrics.daysPlayed === 0) { // TODO else if algorithms
     baseScore = 6
@@ -36,6 +37,7 @@ function startingScore(metrics){
 
 // called after every metric changing method (except calculateEnergy)
 function calculateStress(metrics) {
+  console.log('calcStress fired')
   if (isPlatterImbalanced(metrics)) {
     metrics.primaryMetrics.stress += 2
     console.log('imbalanced platter has increased stress')
@@ -59,6 +61,7 @@ function calculateStress(metrics) {
 
 // called by calculateStress
 function isPlatterImbalanced(metrics) {
+  console.log('isPlatterImbalanced fired');
   let bigGap
   const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
   const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
@@ -69,6 +72,7 @@ function isPlatterImbalanced(metrics) {
 
 // called after every metric changing method
 function calculateEnergy(metrics) {
+  console.log('calcEnergy fired')
   if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
     metrics.primaryMetrics.energy -= 1
     console.log('ENERGY DOWN')
@@ -80,6 +84,7 @@ function calculateEnergy(metrics) {
 
 // reduces all metrics (except downTime and stress)
 function timeScoreChanger(metrics) { // method called by timer every 30s
+  console.log('timeScoreChanger fired')
   metrics.primaryMetrics.energy -= 1
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
