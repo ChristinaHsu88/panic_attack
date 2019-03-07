@@ -1,4 +1,4 @@
-Crafty.init(600, 350, document.getElementById('game'));
+Crafty.init(600, 300, document.getElementById('game'));
 Crafty.sprite(30, 'assets/cat.png', {
   cat1: [0, 1],
   cat2: [1, 1],
