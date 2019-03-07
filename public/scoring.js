@@ -54,12 +54,12 @@ function calculateEnergy(metrics) {
   // physicalTime +/-
 }
 
-function timeScoreChanger(metrics){ // TODO: should not run if game is paused
+function timeScoreChanger(metrics){ // TODO: should not run if game is paused -- read from DOM, then when unpausing the game, call this method from that event (same with calcStress method)
   const timeScoreLoss = -1
   metrics.primaryMetrics.energy += timeScoreLoss // energy -1 every 30s
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
-      metrics.platter[metric] += timeScoreLoss // all platter metrics too
+      metrics.platter[metric] += timeScoreLoss // all platter metrics -1 (except downTime)
     }
   }
   console.log('Time Score Changer: \n', metrics)
