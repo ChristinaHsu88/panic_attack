@@ -2,39 +2,50 @@
 // universal variable that persists throughout gameplay until browser is refreshed
 const playerMetrics = {
         daysPlayed : 0, // increment up at end of day
-        metrics: {
-            stress: 0, // affected directly actions (up and down, sometimes with same action); indirectly by all
-            energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
-            timeIn: 0,
-            downTime: 0,
-            focusTime: 0,
-            playTime: 0,
-            connectingTime: 0,
-            sleepTime: 0,
-            physicalTime: 0
+        primaryMetrics: {
+          stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
+          energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
+        },
+        platter: {
+          timeIn: 0,
+          downTime: 0,
+          focusTime: 0,
+          playTime: 0,
+          connectingTime: 0,
+          sleepTime: 0,
+          physicalTime: 0
         }
     } // save to DB at end of game
 
 startingScore(playerMetrics) // calculate player metrics at start of game
-setTimeout(timeScoreChanger, 30000, playerMetrics.metrics)
+setTimeout(timeScoreChanger, 30000, playerMetrics)
 
 function startingScore(metrics){
   let baseScore;
   if (metrics.daysPlayed === 0) { // TODO else if algorithms
     baseScore = 6
   }
-  for (let metric in metrics.metrics) {
-    metrics.metrics[metric] = baseScore
+  for (let metric in metrics.platter) {
+    metrics.platter[metric] = baseScore
   }
   return metrics
 }
 
-function timeScoreChanger(metrics){
-  // should not run if game is paused
+function calculateStressAndEnergy(metrics) {
+    for (let metric in metrics.platter) {
+      if (metrics.platter[metric] < 1) {
+        metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
+      }
+    }
+  return metrics
+}
+
+function timeScoreChanger(metrics){ // TODO: should not run if game is paused
   const timeScoreLoss = -1
-  for (let metric in metrics) {
-    if (metric !== 'stress' &&  metric !== 'downTime') {
-      metrics[metric] += timeScoreLoss
+  metrics.primaryMetrics.energy += timeScoreLoss // energy -1 every 30s
+  for (let metric in metrics.platter) {
+    if (metric !== 'downTime') {
+      metrics.platter[metric] += timeScoreLoss // all platter metrics too
     }
   }
   console.log('Time Score Changer: \n', metrics)
