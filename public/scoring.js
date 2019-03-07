@@ -41,12 +41,13 @@ function calculateStress(metrics) {
       metrics.primaryMetrics.stress += 1
       console.log('STRESS UP')
       console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
-      if (metrics.primaryMetrics.stress === 10) {
-        console.log('YOU ARE HAVING A PANIC ATTACK')
-        // CALL IN THE CATS!
-        gameOver = true
-      }
       setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
+    }
+    if (metrics.primaryMetrics.stress >= 10) {
+      console.log('YOU ARE HAVING A PANIC ATTACK')
+      // CALL IN THE CATS!
+      endGame(metrics)
+      return
     }
     // if gap between two metrics > 5, stress up
   }
