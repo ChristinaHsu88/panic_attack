@@ -5,6 +5,7 @@ const express = require("express")
 const app = express()
 const PORT = 8080
 const path = require("path")
+
 /* set up bodyParser for communicating with axios */
 const bodyParser = require('body-parser')
 /* import URI from .env */
@@ -70,5 +71,3 @@ let user_info = {
         }
     }
 }
-
-
