@@ -22,15 +22,19 @@ Crafty.e('Item')
             option1: {
                 title: 'CALL A GOOD FRIEND',
                 scoreEffect: {
-                    stress: -1,
-                    energy: 1,
-                    timeIn: 0,
-                    downTime: 0,
-                    focusTime: 0,
-                    playTime: 0,
-                    connectingTime: 1,
-                    sleepTime: 0,
-                    physicalTime: 0
+                    primaryMetrics: {
+                        stress: -1,
+                        energy: 0,
+                    },
+                    platter: {
+                        timeIn: 0,
+                        downTime: 0,
+                        focusTime: 0,
+                        playTime: 0,
+                        connectingTime: 1,
+                        sleepTime: 0,
+                        physicalTime: 0
+                    }
                 }
             },
             option2: {
