@@ -36,23 +36,28 @@ function startingScore(metrics){
 }
 
 function calculateStress(metrics) { // to be run after every metric changing method
-    for (let metric in metrics.platter) {
-      if (metrics.platter[metric] < 1 && document.getElementById("timer").innerHTML > 0) {
-        metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
-        console.log('STRESS UP')
-        setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
-      }
+  for (let metric in metrics.platter) {
+    if (metrics.platter[metric] < 1 && document.getElementById("timer").innerHTML > 0) {
+      metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
+      console.log('STRESS UP')
+      setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
     }
+  }
   console.log('calculateStress', metrics)
   return metrics
 }
 
 function calculateEnergy(metrics) {
+
   // playTime +
+    // same as physical
   // sleepTime +/-
-    // if > 8, energy down; if < 2 energy down
-  // physicalTime +/-
+    // if > 8, energy down; if < 2, energy down
+  // physicalTime +
+    // if energy < 8, physicalTime +
 }
+
+// I should make a master calculate function that runs all the others
 
 function timeScoreChanger(metrics){ // TODO: should not run if game is paused -- read from DOM, then when unpausing the game, call this method from that event (same with calcStress method)
   const timeScoreLoss = -1
@@ -69,7 +74,6 @@ function timeScoreChanger(metrics){ // TODO: should not run if game is paused --
   calculateStress(metrics)
   return metrics
 }
-
 
 // methods needed:
   // disable available actions if energy too low
