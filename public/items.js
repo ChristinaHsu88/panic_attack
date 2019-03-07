@@ -104,16 +104,9 @@ Crafty.sprite(70, 'assets/red.png', {
     bar3:[0, 0]
 })
 
-<<<<<<< HEAD
-Crafty.e('2D, DOM, bar')
-.attr({x: 350, y: 280})
-
-||||||| merged common ancestors
-=======
 Crafty.e('2D, DOM, bar')
 .attr({x: 370, y: 280})
 
->>>>>>> 557b444c279b1740eb5ebccbf8cc8728b7c1f41a
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
         .color('grey')

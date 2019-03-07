@@ -34,18 +34,10 @@ function renderChart(data) {
 
 /* when user click on the button, will render result */
 $(document).ready(function() {
-    $("#renderClick").click(function () {
-        /* this data will be updated with the user data */
-        data = [0, 2, 4, 5, 6, 8, 7, 7]
-        renderChart(data)
+    $("button").click(function () {
+        $("canvas").toggle(
+            data = [0, 2, 4, 5, 6, 8, 7, 7],
+            renderChart(data)
+        )
     })
 })
-
-// function dissapear() {
-//     let ctx = document.getElementById("myChart")
-//     if (ctx.style.display === "none") {
-//         ctx.style.display = "block"
-//     } else {
-//         ctx.style.display = "none"
-//     }
-// }
