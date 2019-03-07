@@ -92,6 +92,9 @@ Crafty.sprite(70, 'assets/red.png', {
     bar3:[0, 0]
 })
 
+Crafty.e('2D, DOM, bar')
+.attr({x: 350, y: 280})
+
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
         .color('grey')
