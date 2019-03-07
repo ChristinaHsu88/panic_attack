@@ -78,7 +78,7 @@ Crafty.e('Item')
         }
     })
 
-/* stress bar - setup */
+/* stress bar setup: red => the most stressful, orange the second, green the third, blue the least */
 Crafty.sprite(70, 'assets/blue.png', {
     bar:[0, 0]
 })
@@ -91,11 +91,6 @@ Crafty.sprite(70, 'assets/green.png', {
 Crafty.sprite(70, 'assets/red.png', {
     bar3:[0, 0]
 })
-
-/* render initial stress bar */
-Crafty.e('2D, DOM, bar')
- .attr({x: 400, y: 280})
-
 
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
