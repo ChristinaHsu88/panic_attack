@@ -31,7 +31,7 @@ function startingScore(metrics){
   return metrics
 }
 
-function calculateStressAndEnergy(metrics) {
+function calculateStress(metrics) {
     for (let metric in metrics.platter) {
       if (metrics.platter[metric] < 1) {
         metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
@@ -57,7 +57,7 @@ function timeScoreChanger(metrics){ // TODO: should not run if game is paused
 
 
 // methods needed:
-  // calculateStressAndEnergy
+  // calculateStress
     // to be run after every metrics change
     // if any platter metric falls below 1, stress goes up every 10s
     // if any platter metric rises, stress should drop
