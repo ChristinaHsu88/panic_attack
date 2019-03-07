@@ -7,7 +7,7 @@ function renderChart(data) {
             labels: ["Time In", "Sleep Time", "Physical Time", "Down Time", "Play Time", "Focus Time", "Connecting Time"],
             datasets: [{
                 label: 'Your results',
-                data: [0, 2, 4, 5, 6, 8, 7, 7],
+                data: data,
                 backgroundColor: [
                     'rgba(0, 0, 255, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -32,12 +32,13 @@ function renderChart(data) {
     });
 }
 
-/* when user click on the button, will render result */
-$(document).ready(function() {
-    $("button").click(function () {
-        $("canvas").toggle(
-            data = [0, 2, 4, 5, 6, 8, 7, 7],
-            renderChart(data)
-        )
-    })
-})
+/* when user click on the button, will toggle result */
+// $(document).ready(function() {
+//     $("button").click(function () {
+//         $("canvas").toggle(
+//             data = [0, 2, 4, 5, 6, 8, 7, 7],
+//             renderChart(data)
+//         )
+//     })
+// })
+
