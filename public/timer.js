@@ -9,7 +9,8 @@ function timer() {
   function tickTock() {
     if (!pause && gameTime > 0) {
       gameTime = gameTime - 1
-      if (gameTime === 150 || gameTime === 120 || gameTime === 90 || gameTime === 60 || gameTime === 30 || gameTime === 0) { // ripe for a refactor
+      const scoreChangeTimes = [150, 120, 90, 60, 30, 0]
+      if (scoreChangeTimes.includes(gameTime)) {
         timeScoreChanger(playerMetrics)
       }
       document.getElementById("timer").innerHTML = gameTime
