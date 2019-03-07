@@ -1,14 +1,14 @@
-var pause = false
-timer();
+let pause = false
+timer()
 
 function timer() {
-  var gameTime = 180;
-  var counter = setInterval(tickTock, 1000);
+  let gameTime = 180
+  setInterval(tickTock, 1000)
 
   function tickTock() {
     if (!pause && gameTime > 0) {
-      gameTime = gameTime - 1;
-      document.getElementById("timer").innerHTML = gameTime;
+      gameTime = gameTime - 1
+      document.getElementById("timer").innerHTML = gameTime
     }
   }
 }
