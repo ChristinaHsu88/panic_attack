@@ -5,3 +5,5 @@ Crafty.init(500, 350, document.getElementById('game'));
 // options
 // player
 // timer
+
+// lets set up the scenes?
