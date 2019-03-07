@@ -73,6 +73,7 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 for (effect in selectedOption.scoreEffect.primaryMetrics) {
                     playerMetrics.primaryMetrics[effect] += selectedOption.scoreEffect.primaryMetrics[effect]
                 }
+                calculateStress(playerMetrics)
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
