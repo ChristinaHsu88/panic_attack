@@ -28,10 +28,13 @@ Crafty.e('Item')
             },
             option2: {
                 title: 'BROWSE TWITTER',
-                scoreEffect: {}
+                scoreEffect: {
+                    primaryMetrics: { stress: +1 },
+                    platter: { downTime: +1 }
+                }
             },
             option3: {
-                title: 'GO BACK',
+                title: 'GO BACK'
             }
         }
     })
@@ -44,6 +47,10 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'SMOKE WEED',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1, energy: -1 },
+                    platter: { downTime: +1 }
+                }
             },
             option2: {
                 title: 'GO BACK'
@@ -59,9 +66,17 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'TIDY ROOM',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { focusTime: +1 }
+                }
             },
             option2: {
                 title: 'SIT ON LAUNDRY AND NAP',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { sleepTime: +1 }
+                }
             },
             option3: {
                 title: 'GO BACK'
