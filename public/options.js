@@ -67,9 +67,11 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const selectedOption = Crafty(optionID)
-
-                for (effect in selectedOption.scoreEffect) {
-                    playerMetrics.metrics[effect] += selectedOption.scoreEffect[effect]
+                for (effect in selectedOption.scoreEffect.platter) {
+                    playerMetrics.platter[effect] += selectedOption.scoreEffect.platter[effect]
+                }
+                for (effect in selectedOption.scoreEffect.primaryMetrics) {
+                    playerMetrics.primaryMetrics[effect] += selectedOption.scoreEffect.primaryMetrics[effect]
                 }
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
