@@ -1,14 +1,3 @@
-Crafty.sprite(30, 'assets/cat.png', {
-  cat1: [0, 1],
-  cat2: [1, 1],
-  cat3: [2, 1]
-});
-Crafty.e('2D, DOM, cat1').attr({ x: 250, y: 300 });
-//   .color('blue');
-//   .reel('CatWalking', 1000, [[0, 1], [1, 1], [2, 1]])
-//   .animate('CatWalking', -1)
-//   .tween({ alpha: 0.0, x: 280, y: 100 }, 4000);
-
 // define interactable items
 Crafty.c('Item', {
   init: function() {
@@ -57,7 +46,7 @@ Crafty.e('Item')
   });
 
 Crafty.e('Item')
-  .place(250, 150)
+  .place(560, 200)
   .color('green')
   .attr({
     type: 'weed',
@@ -103,7 +92,7 @@ function itemPopUp(hitItem) {
       if (e.key == Crafty.keys.ENTER) {
         console.log(hitItem[0].obj.type);
         makePopUp(hitItem);
-        Crafty('Player').freeze();
+        Crafty('penny').freeze();
         this.destroy();
       }
     });
