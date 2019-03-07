@@ -75,6 +75,7 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                         playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
                     }
                     calculateStress(playerMetrics)
+                    console.log('this has had an effect on your mental health')
                 } else {
                     console.log('this item has no effect')
                 }

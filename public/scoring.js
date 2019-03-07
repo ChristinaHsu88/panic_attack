@@ -42,8 +42,8 @@ function calculateStress(metrics) { // to be run after every metric changing met
       console.log('STRESS UP')
       setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
     }
+    // if gap between two metrics > 5, stress up
   }
-  console.log('calculateStress', metrics)
   return metrics
 }
 
