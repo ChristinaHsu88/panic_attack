@@ -1,18 +1,19 @@
 // define and generate player
-Crafty.sprite(30, 'assets/cat.png', {
-  cat1: [0, 0],
-  cat2: [1, 1],
-  cat3: [2, 1]
+Crafty.sprite(57, 'assets/penny.png', {
+  penny: [0, 0],
+  cat2: [1, 2],
+  cat3: [2, 2]
 });
+/// animating and making player mobile//
 
 // Crafty.e('2D, DOM, cat1').attr({x: 10, y: 10})
 // ATTEMPTS TO RENDER CHARACTER
-const player = Crafty.e('2D, DOM, Fourway, Collision, cat1, Keyboard')
+const player = Crafty.e(
+  '2D, DOM, Fourway, Collision, penny, SpriteAnimation, Keyboard'
+)
   .attr({
     x: 10,
     y: 10,
-    w: 40,
-    h: 40,
     metrics: {
       energy: 6,
       stress: 6,
@@ -28,6 +29,8 @@ const player = Crafty.e('2D, DOM, Fourway, Collision, cat1, Keyboard')
   // .color('red')
   .fourway(200)
   .checkHits('Item')
+  .reel('PennyWalking', 1000, [[2, 0], [2, 1], [2, 2]])
+  .animate('PennyWalking', -1)
   .bind('HitOn', function(hitItem) {
     itemPopUp(hitItem);
   })
