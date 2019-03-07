@@ -18,7 +18,6 @@ const playerMetrics = {
     } // save to DB at end of game
 
 startingScore(playerMetrics) // calculate player metrics at start of game
-setTimeout(timeScoreChanger, 30000, playerMetrics)
 
 function startingScore(metrics){
   let baseScore;
@@ -40,6 +39,10 @@ function calculateStress(metrics) { // to be run after every metric changing met
     if (metrics.platter[metric] < 1 && !gameOver) {
       metrics.primaryMetrics.stress += 1
       console.log('STRESS UP')
+      console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
+      if (metrics.primaryMetrics.stress === 10) {
+        console.log('YOU ARE HAVING A PANIC ATTACK')
+      }
       setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
     }
     // if gap between two metrics > 5, stress up
@@ -68,13 +71,9 @@ function timeScoreChanger(metrics){ // TODO: should not run if game is paused --
     }
   }
   console.log('Time Score Changer: \n', metrics)
-  if (document.getElementById("timer").innerHTML > 0) {
-    setTimeout(timeScoreChanger, 30000, metrics) // run every 30s while game in play
-  }
   calculateStress(metrics)
   return metrics
 }
 
 // methods needed:
   // disable available actions if energy too low
-
