@@ -66,7 +66,7 @@ function makePopUp (hitItem) { // hitItem param sets the options in popUp
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
                 const scoreEffect = Crafty(optionID).scoreEffect
-                if (scoreEffect) { // i.e., if not GO BACK
+                if (scoreEffect) { // i.e., if player selects anything other than 'GO BACK'
                     for (effect in scoreEffect.platter) {
                         playerMetrics.platter[effect] += scoreEffect.platter[effect]
                     }
@@ -76,7 +76,7 @@ function makePopUp (hitItem) { // hitItem param sets the options in popUp
                     calculateStress(playerMetrics)
                     console.log('this has had an effect on your mental health')
                 } else {
-                    console.log('this item has no effect')
+                    console.log('this has had no effect')
                 }
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
