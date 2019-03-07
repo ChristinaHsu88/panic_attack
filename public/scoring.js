@@ -38,6 +38,7 @@ function startingScore(metrics){
 function calculateStress(metrics) {
   if (isPlatterImbalanced(metrics)) {
     metrics.primaryMetrics.stress += 2
+    console.log('imbalanced platter has increased stress')
   }
   for (let metric in metrics.platter) {
     if (metrics.platter[metric] < 1 && !gameOver) {
@@ -52,23 +53,18 @@ function calculateStress(metrics) {
       endGame(metrics)
       return
     }
-    // if gap between two metrics > 5, stress up
   }
   return metrics
 }
 
 // called by calculateStress
 function isPlatterImbalanced(metrics) {
-  const platterArray = Object.values(metrics.platter)
-  platterArray.sort((a,b) => {return a-b})
-  const highestMetric = platterArray[platterArray.length - 1]
-  const lowestMetric = platterArray[0]
-  const biggestGapBetweenMetrics = highestMetric - lowestMetric
-  if (biggestGapBetweenMetrics > 5) {
-    return true
-  } else {
-    return false
-  }
+  let bigGap
+  const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
+  const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
+  console.log('platter gap:', biggestGapBetweenMetrics)
+  biggestGapBetweenMetrics > 5 ? bigGap = true : bigGap = false
+  return bigGap
 }
 // called after every metric changing method
 function calculateEnergy(metrics) {
