@@ -43,7 +43,6 @@ Crafty.e('Item')
             },
             option3: {
                 title: 'GO BACK',
-                scoreEffect: {}
             }
         }
     })
