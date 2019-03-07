@@ -68,7 +68,6 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 const optionID = this.selectOption.optionObj['0']
                 const scoreEffect = Crafty(optionID).scoreEffect
                 if (scoreEffect) { // i.e., if not GO BACK
-                    console.log('this item has no effect')
                     for (effect in scoreEffect.platter) {
                         playerMetrics.platter[effect] += scoreEffect.platter[effect]
                     }
@@ -76,6 +75,8 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                         playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
                     }
                     calculateStress(playerMetrics)
+                } else {
+                    console.log('this item has no effect')
                 }
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
