@@ -1,20 +1,20 @@
 // universal variable that persists throughout gameplay until browser is refreshed
 const playerMetrics = {
-        daysPlayed : 0, // increment up at end of day
-        primaryMetrics: {
-          stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
-          energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
-        },
-        platter: { // affected by player actions; set by startingScore at start of game/round
-          timeIn: 0,
-          downTime: 0,
-          focusTime: 0,
-          playTime: 0,
-          connectingTime: 0,
-          sleepTime: 0,
-          physicalTime: 0
-        }
-    } // save to DB at end of game
+  daysPlayed : 0, // increment up at end of day
+  primaryMetrics: {
+    stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
+    energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
+  },
+  platter: { // affected by player actions; set by startingScore at start of game/round
+    timeIn: 0,
+    downTime: 0,
+    focusTime: 0,
+    playTime: 0,
+    connectingTime: 0,
+    sleepTime: 0,
+    physicalTime: 0
+  }
+} // save to DB at end of game
 
 startingScore(playerMetrics) // calculate player metrics at start of game
 
@@ -29,6 +29,7 @@ function startingScore(metrics){
     }
   } else {
     metrics.platter.sleepTime += 6
+    // stress and energy may need to be manipulated
   }
   calculateStress(metrics)
   return metrics
