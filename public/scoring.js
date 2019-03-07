@@ -66,6 +66,7 @@ function isPlatterImbalanced(metrics) {
   biggestGapBetweenMetrics > 5 ? bigGap = true : bigGap = false
   return bigGap
 }
+
 // called after every metric changing method
 function calculateEnergy(metrics) {
   if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
@@ -77,7 +78,7 @@ function calculateEnergy(metrics) {
   }
 }
 
-// reduces all metrics (except downTime and energy)
+// reduces all metrics (except downTime and stress)
 function timeScoreChanger(metrics) { // method called by timer every 30s
   metrics.primaryMetrics.energy -= 1
   for (let metric in metrics.platter) {
