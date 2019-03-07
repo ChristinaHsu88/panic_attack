@@ -38,7 +38,7 @@ function startingScore(metrics){
 function calculateStress(metrics) { // to be run after every metric changing method
   for (let metric in metrics.platter) {
     if (metrics.platter[metric] < 1 && !gameOver) {
-      metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
+      metrics.primaryMetrics.stress += 1
       console.log('STRESS UP')
       setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
     }
@@ -48,13 +48,13 @@ function calculateStress(metrics) { // to be run after every metric changing met
 }
 
 function calculateEnergy(metrics) {
-
-  // playTime +
-    // same as physical
-  // sleepTime +/-
-    // if > 8, energy down; if < 2, energy down
-  // physicalTime +
+  if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
+    metrics.primaryMetrics.energy -= 1
+    console.log('ENERGY DOWN')
+  }
+  // physicalTime + && playTime +
     // if energy < 8, physicalTime +
+    // these must be checked and increased when the metrics increase (on event)
 }
 
 // I should make a master calculate function that runs all the others
@@ -77,35 +77,4 @@ function timeScoreChanger(metrics){ // TODO: should not run if game is paused --
 
 // methods needed:
   // disable available actions if energy too low
-  // only some actions should affect stress directly?
 
-/* Metrics:
-    - primary:
-      - stress
-      - energy
-    - background:
-      - time in
-      - down time
-      - connecting time
-        focusTime: 0,
-        playTime: 0,
-        connectingTime: 1,
-        sleepTime: 0,
-        physicalTime: 0
-
-Day 1
-  - all metrics = 6
-
-- need little helper functions that affect the score dynamically throughout the game
-
-1. time
-2. actions
-3. inaction
-4. wildcard
-5. interrelationship bw metrics
-
-// what metric is being effected?
-
-TIME:
-unless the player is engaged in a thing, all metrics decrease (except stress, which goes up or down based on the status of the other metrics)
-*/
