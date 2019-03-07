@@ -91,21 +91,23 @@ Crafty.e('Item')
     })
 
 /* stress bar setup: red => the most stressful, orange the second, green the third, blue the least */
-Crafty.sprite(70, 'assets/blue.png', {
+Crafty.sprite(300, 'assets/blue.png', {
     bar:[0, 0]
 })
-Crafty.sprite(70, 'assets/orange.png', {
+Crafty.sprite(300, 'assets/orange.png', {
     bar1:[0, 0]
 })
-Crafty.sprite(70, 'assets/green.png', {
+Crafty.sprite(300, 'assets/green.png', {
     bar2:[0, 0]
 })
-Crafty.sprite(70, 'assets/red.png', {
-    bar3:[0, 0]
+Crafty.sprite(300, 'assets/red.png', {
+    bar3:[0]
 })
 
-Crafty.e('2D, DOM, bar')
-.attr({x: 370, y: 280})
+Crafty.e('2D, DOM, bar3')
+.attr({x: 370, y: 50})
+Crafty.e('2D, DOM, bar2')
+.attr({x: 300, y: 50})
 
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
