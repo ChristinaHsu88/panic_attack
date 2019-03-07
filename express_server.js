@@ -26,49 +26,25 @@ MongoClient.connect(uri, (err, client) => {
 
     /* send data to client side */
     app.get('/data', function (req, res) {
-        let data = user_info
-        res.json(data)
-    })
-
-    /* add data to the pseudo DB now */
-    app.post('/', function(req, res) {
-        platter['user2'] = req.body
+        const data = db.collection('data').find().toArray((err, gameData) => {
+            if (err) {
+                res.status(500).json({ error: err.message })
+            } else {
+                res.json(gameData)
+            }
+        })
     })
 
     /* save user data in MongoDB */
     app.post('/data', (req, res) => {
-        db.collection('data').save(req.body, (err, result) => {
+        db.collection('data').insertOne(req.body, (err, result) => {
             if (err) return console.log(err)
-            console.log('saved to database!')
-            res.redirect('/')
+            console.log(`Game has been saved to DB, with the unique: ${result.ops[0]._id}`)
+            res.json({ player: result.ops[0]._id })
         })
     })
-    
+
     app.listen(PORT, () => {
         console.log(`Example app listening on port ${PORT}!`)
     })
 })
-
-
-
-/* pseudo DB */
-let user_info = {
-    "user1": {
-        days_play : 0,
-        metrics: {
-            stress: 0,
-            energy: 0,
-            platter: {
-                timeIn: 0,
-                downTime: 0,
-                focusTime: 0,
-                playTime: 0,
-                connectingTime: 0,
-                sleepTime: 0,
-                physicalTime: 0
-            }
-        }
-    }
-}
-
-

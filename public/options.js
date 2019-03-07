@@ -33,13 +33,12 @@ Crafty.c('Option', {
         this.y = 23 + iteration
         return this // without this line, custom methods (e.g., changeScore) will not work
     },
-    changeScore: function(effectArr) {
-        this.scoreEffect = effectArr
+    changeScore: function(scoreEffect) {
+        this.scoreEffect = scoreEffect
     }
 })
 
-function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
-
+function makePopUp (hitItem) { // hitItem param sets the options in popUp
     const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
@@ -66,30 +65,19 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 const optionID = this.selectOption.optionObj['0']
-                const selectedOption = Crafty(optionID)
-                /* receive response object data from express server i.e. response.request.response*/
-                axios.get('/data')
-                .then(function (response) {
-                    console.log('here is the data from the DB', response.request.response)
-                    user_data = response.request.response
-                    console.log('here is the JSONFY data>>>', JSON.parse(user_data))
-                    console.log('I have saved data into user_data>>>>>>', user_data)
-                })
-                for (effect in selectedOption.scoreEffect) {
-                    Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
+                const scoreEffect = Crafty(optionID).scoreEffect
+                if (scoreEffect) { // i.e., if player selects anything other than 'GO BACK'
+                    for (effect in scoreEffect.platter) {
+                        playerMetrics.platter[effect] += scoreEffect.platter[effect]
+                    }
+                    for (effect in scoreEffect.primaryMetrics) {
+                        playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
+                    }
+                    console.log('this has had an effect on your mental health')
+                    calculateStress(playerMetrics)
+                } else {
+                    console.log('this has had no effect')
                 }
-                console.log(Crafty('Player').metrics)
-                /* Update data when users select an action note: days_play needs to be updated here */
-                axios.post('/data', {
-                    value: Crafty('Player').metrics
-                })
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-
                 Crafty('Player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
