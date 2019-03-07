@@ -25,19 +25,33 @@ function startingScore(metrics){
   if (metrics.daysPlayed === 0) { // TODO else if algorithms
     baseScore = 6
   }
+  for (let metric in metrics.primaryMetrics) {
+    metrics.primaryMetrics[metric] = baseScore
+  }
   for (let metric in metrics.platter) {
     metrics.platter[metric] = baseScore
   }
+  calculateStress(metrics)
   return metrics
 }
 
-function calculateStress(metrics) {
+function calculateStress(metrics) { // to be run after every metric changing method
     for (let metric in metrics.platter) {
-      if (metrics.platter[metric] < 1) {
+      if (metrics.platter[metric] < 1 && document.getElementById("timer").innerHTML > 0) {
         metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
+        console.log('STRESS UP')
+        setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
       }
     }
+  console.log('calculateStress', metrics)
   return metrics
+}
+
+function calculateEnergy(metrics) {
+  // playTime +
+  // sleepTime +/-
+    // if > 8, energy down; if < 2 energy down
+  // physicalTime +/-
 }
 
 function timeScoreChanger(metrics){ // TODO: should not run if game is paused
@@ -52,15 +66,12 @@ function timeScoreChanger(metrics){ // TODO: should not run if game is paused
   if (document.getElementById("timer").innerHTML > 0) {
     setTimeout(timeScoreChanger, 30000, metrics) // run every 30s while game in play
   }
+  calculateStress(metrics)
   return metrics
 }
 
 
 // methods needed:
-  // calculateStress
-    // to be run after every metrics change
-    // if any platter metric falls below 1, stress goes up every 10s
-    // if any platter metric rises, stress should drop
   // disable available actions if energy too low
   // only some actions should affect stress directly?
 
