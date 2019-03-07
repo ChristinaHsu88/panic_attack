@@ -58,7 +58,7 @@ Crafty.e('Item')
             option3: {
                 title: 'INSTANT PANIC',
                 scoreEffect: {
-                    primaryMetrics: { stress: 10}
+                    primaryMetrics: { stress: 10 }
                 }
             }
         }

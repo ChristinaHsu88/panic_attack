@@ -1,4 +1,3 @@
-
 // universal variable that persists throughout gameplay until browser is refreshed
 const playerMetrics = {
         daysPlayed : 0, // increment up at end of day
@@ -6,7 +5,7 @@ const playerMetrics = {
           stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
           energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
         },
-        platter: {
+        platter: { // affected by player actions; set by startingScore at start of game/round
           timeIn: 0,
           downTime: 0,
           focusTime: 0,
@@ -21,15 +20,15 @@ startingScore(playerMetrics) // calculate player metrics at start of game
 
 function startingScore(metrics){
   console.log('startingScore fired')
-  let baseScore;
   if (metrics.daysPlayed === 0) { // TODO else if algorithms
-    baseScore = 6
-  }
-  for (let metric in metrics.primaryMetrics) {
-    metrics.primaryMetrics[metric] = baseScore
-  }
-  for (let metric in metrics.platter) {
-    metrics.platter[metric] = baseScore
+    for (let metric in metrics.primaryMetrics) {
+      metrics.primaryMetrics[metric] = 6
+    }
+    for (let metric in metrics.platter) {
+      metrics.platter[metric] = 6
+    }
+  } else {
+    metrics.platter.sleepTime += 6
   }
   calculateStress(metrics)
   return metrics
@@ -38,6 +37,7 @@ function startingScore(metrics){
 // called after every metric changing method (except calculateEnergy)
 function calculateStress(metrics) {
   console.log('calcStress fired')
+  calculateEnergy(metrics)
   if (isPlatterImbalanced(metrics)) {
     metrics.primaryMetrics.stress += 2
     console.log('imbalanced platter has increased stress')
@@ -70,7 +70,7 @@ function isPlatterImbalanced(metrics) {
   return bigGap
 }
 
-// called after every metric changing method
+// called by calcStress
 function calculateEnergy(metrics) {
   console.log('calcEnergy fired')
   if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
@@ -83,7 +83,8 @@ function calculateEnergy(metrics) {
 }
 
 // reduces all metrics (except downTime and stress)
-function timeScoreChanger(metrics) { // method called by timer every 30s
+// called by timer at 30s intervals
+function timeScoreChanger(metrics) {
   console.log('timeScoreChanger fired')
   metrics.primaryMetrics.energy -= 1
   for (let metric in metrics.platter) {
