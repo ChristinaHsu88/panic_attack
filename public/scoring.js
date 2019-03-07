@@ -37,7 +37,7 @@ function startingScore(metrics){
 
 function calculateStress(metrics) { // to be run after every metric changing method
   for (let metric in metrics.platter) {
-    if (metrics.platter[metric] < 1 && document.getElementById("timer").innerHTML > 0) {
+    if (metrics.platter[metric] < 1 && !gameOver) {
       metrics.primaryMetrics.stress += metrics.primaryMetrics.stress
       console.log('STRESS UP')
       setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly

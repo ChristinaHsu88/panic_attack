@@ -1,4 +1,5 @@
 let pause = false
+let gameOver = false
 timer()
 
 function timer() {
@@ -9,6 +10,9 @@ function timer() {
     if (!pause && gameTime > 0) {
       gameTime = gameTime - 1
       document.getElementById("timer").innerHTML = gameTime
+    }
+    if (gameTime === 0) {
+      gameOver = true
     }
   }
 }
