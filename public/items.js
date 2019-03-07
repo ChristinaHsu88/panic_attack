@@ -4,7 +4,6 @@ Crafty.c('Item', {
         this.addComponent('2D, DOM, Color')
         this.w = 30
         this.h = 30
-        this.energy = 7
     },
     place: function(x, y) {
         this.x = x
@@ -23,24 +22,19 @@ Crafty.e('Item')
             option1: {
                 title: 'CALL A GOOD FRIEND',
                 scoreEffect: {
-                    stress: -1,
-                    energy: 1,
-                    timeIn: 0,
-                    downTime: 0,
-                    focusTime: 0,
-                    playTime: 0,
-                    connectingTime: 1,
-                    sleepTime: 0,
-                    physicalTime: 0
+                    primaryMetrics: { stress: -1 },
+                    platter: { connectingTime: 1 }
                 }
             },
             option2: {
                 title: 'BROWSE TWITTER',
-                scoreEffect: {}
+                scoreEffect: {
+                    primaryMetrics: { stress: +1 },
+                    platter: { downTime: +1 }
+                }
             },
             option3: {
-                title: 'GO BACK',
-                scoreEffect: {}
+                title: 'GO BACK'
             }
         }
     })
@@ -53,9 +47,19 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'SMOKE WEED',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1, energy: -1 },
+                    platter: { downTime: +1 }
+                }
             },
             option2: {
                 title: 'GO BACK'
+            },
+            option3: {
+                title: 'INSTANT PANIC',
+                scoreEffect: {
+                    primaryMetrics: { stress: 10 }
+                }
             }
         }
     })
@@ -68,9 +72,17 @@ Crafty.e('Item')
         optionsList: {
             option1: {
                 title: 'TIDY ROOM',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { focusTime: +1 }
+                }
             },
             option2: {
                 title: 'SIT ON LAUNDRY AND NAP',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { sleepTime: +1 }
+                }
             },
             option3: {
                 title: 'GO BACK'
@@ -92,9 +104,16 @@ Crafty.sprite(70, 'assets/red.png', {
     bar3:[0, 0]
 })
 
+<<<<<<< HEAD
 Crafty.e('2D, DOM, bar')
 .attr({x: 350, y: 280})
 
+||||||| merged common ancestors
+=======
+Crafty.e('2D, DOM, bar')
+.attr({x: 370, y: 280})
+
+>>>>>>> 557b444c279b1740eb5ebccbf8cc8728b7c1f41a
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
         .color('grey')
