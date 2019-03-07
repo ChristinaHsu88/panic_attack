@@ -38,8 +38,7 @@ Crafty.c('Option', {
     }
 })
 
-function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
-
+function makePopUp (hitItem) { // hitItem param sets the options in popUp
     const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
