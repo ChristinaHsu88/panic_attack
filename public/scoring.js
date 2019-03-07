@@ -27,6 +27,7 @@ function timeScoreChanger(metrics){
     }
   }
   console.log('Time Score Changer: \n', metrics)
+
   if (document.getElementById("timer").innerHTML > 0) {
     setTimeout(timeScoreChanger, 30000, metrics) // run every 30 while game in play
   }

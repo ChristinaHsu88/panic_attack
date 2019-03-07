@@ -1,5 +1,4 @@
 var pause = false
-
 timer();
 
 function timer() {
@@ -9,7 +8,7 @@ function timer() {
   function tickTock() {
     if (!pause && gameTime > 0) {
       gameTime = gameTime - 1;
-      document.getElementById("timer").innerHTML = gameTime;
+      document.getElementById("timer").innerHTML = gameTime;    
     }
   }
 }
@@ -24,4 +23,3 @@ document.onkeydown = function (e) {
         }
     }
 }
-

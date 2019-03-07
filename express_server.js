@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require("express")
+/* design stress bar doesn't require the use of MongoDB */
 const app = express()
 const PORT = 8080
 const path = require("path")
@@ -38,12 +39,11 @@ MongoClient.connect(uri, (err, client) => {
     app.post('/data', (req, res) => {
         db.collection('data').save(req.body, (err, result) => {
             if (err) return console.log(err)
-
             console.log('saved to database!')
             res.redirect('/')
         })
     })
-
+    
     app.listen(PORT, () => {
         console.log(`Example app listening on port ${PORT}!`)
     })
