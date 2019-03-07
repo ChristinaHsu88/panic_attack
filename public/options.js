@@ -33,8 +33,8 @@ Crafty.c('Option', {
         this.y = 23 + iteration
         return this // without this line, custom methods (e.g., changeScore) will not work
     },
-    changeScore: function(effectArr) {
-        this.scoreEffect = effectArr
+    changeScore: function(scoreEffect) {
+        this.scoreEffect = scoreEffect
     }
 })
 
