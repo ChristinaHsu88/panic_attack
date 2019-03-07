@@ -1,3 +1,15 @@
+h1 {
+  color: black;
+  font-size: 55px;
+  font-family: 'VT323', monospace;
+}
+
+#game-style {
+  display: flex;
+  flex-direction: column;
+  padding-left: 25em;
+}
+
 #game {
-  border: 3px solid black;
+  border: 2px black solid;
 }
