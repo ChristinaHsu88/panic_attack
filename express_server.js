@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require("express")
+/* design stress bar doesn't require the use of MongoDB */
 const app = express()
 const PORT = 8080
 const path = require("path")
