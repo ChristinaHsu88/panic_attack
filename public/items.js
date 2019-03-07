@@ -54,6 +54,12 @@ Crafty.e('Item')
             },
             option2: {
                 title: 'GO BACK'
+            },
+            option3: {
+                title: 'INSTANT PANIC',
+                scoreEffect: {
+                    primaryMetrics: { stress: 10}
+                }
             }
         }
     })
