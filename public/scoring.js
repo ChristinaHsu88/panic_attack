@@ -34,7 +34,8 @@ function startingScore(metrics){
   return metrics
 }
 
-function calculateStress(metrics) { // to be run after every metric changing method
+// called after every metric changing method (except calculateEnergy)
+function calculateStress(metrics) {
   for (let metric in metrics.platter) {
     if (metrics.platter[metric] < 1 && !gameOver) {
       metrics.primaryMetrics.stress += 1
@@ -50,24 +51,23 @@ function calculateStress(metrics) { // to be run after every metric changing met
   return metrics
 }
 
+// called after every metric changing method
 function calculateEnergy(metrics) {
   if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
     metrics.primaryMetrics.energy -= 1
     console.log('ENERGY DOWN')
   }
-  // physicalTime + && playTime +
-    // if energy < 8, physicalTime +
-    // these must be checked and increased when the metrics increase (on event)
+  if (metrics.platter.physicalTime > 9) {
+    metrics.primaryMetrics.energy -= 1
+  }
 }
 
-// I should make a master calculate function that runs all the others
-
-function timeScoreChanger(metrics){ // TODO: should not run if game is paused -- read from DOM, then when unpausing the game, call this method from that event (same with calcStress method)
-  const timeScoreLoss = -1
-  metrics.primaryMetrics.energy += timeScoreLoss // energy -1 every 30s
+// reduces all metrics (except downTime and energy)
+function timeScoreChanger(metrics) { // method called by timer every 30s
+  metrics.primaryMetrics.energy -= 1
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
-      metrics.platter[metric] += timeScoreLoss // all platter metrics -1 (except downTime)
+      metrics.platter[metric] -= 1
     }
   }
   console.log('Time Score Changer: \n', metrics)
@@ -75,5 +75,9 @@ function timeScoreChanger(metrics){ // TODO: should not run if game is paused --
   return metrics
 }
 
-// methods needed:
-  // disable available actions if energy too low
+// not being called anywhere yet
+function disableInteractions (metrics) {
+  if (metrics.platter.physicalTime > 9) {
+    // disable certain interactions
+  }
+}
