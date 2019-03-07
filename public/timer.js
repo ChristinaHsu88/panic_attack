@@ -36,10 +36,12 @@ document.onkeydown = function (e) {
 
 function endGame(metrics) {
   gameOver = true
+  metrics.daysPlayed += 1
   console.log('Game is over?', gameOver)
-  console.log('Your day is over. Your metrics are: \n', playerMetrics.primaryMetrics, '\n', playerMetrics.platter)
+  console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.daysPlayed)
   axios.post('/data', { gameData: metrics })
     .then(res => console.log('Game data saved to DB'))
     .catch(err => console.log(err))
 }
-// playerMetrics to be sent to db at end of game/timer 0
+// if game ends from panic attack, that should effect next day's game play
+  // perhaps user will get a notice to do body checks to determine which platter metric needs attention
