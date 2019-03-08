@@ -1,12 +1,18 @@
 // define and generate player
-const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
+Crafty.sprite(56, 'assets/dude.png', {
+  WalkAway: [0, 0]
+});
+
+const player = Crafty.e(
+  'Player, 2D, DOM, Fourway, Collision, Keyboard, WalkAway'
+)
   .attr({
     x: 10,
-    y: 10,
-    w: 40,
-    h: 40
+    y: 10
+    // w: 40,
+    // h: 40
   })
-  .color('red')
+  // .color('red')
   .fourway(200)
   .checkHits('Item')
   .bind('HitOn', function(hitItem) {
@@ -45,7 +51,13 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
 // .animate('WalkLeft', 100, 0, 1, 8)
 // .animate('WalkTowards', 100, 0, 2, 8)
 // .animate('WalkRight', 100, 0, 3, 8)
+
 // give it direction conditionals
+
+//.bind('DirectionChange',
+// function(direction) .......
+
+// )};
 
 //});
 //});
