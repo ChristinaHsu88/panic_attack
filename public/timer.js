@@ -10,14 +10,14 @@ function timer() {
     if (!gameOver) {
       if (!pause && gameTime > 0) {
         gameTime = gameTime - 1
-        const scoreChangeTimes = [150, 120, 90, 60, 30, 0]
-        if (scoreChangeTimes.includes(gameTime)) {
-          timeScoreChanger(playerMetrics)
-        }
+        const scoreChangeTimes = [150, 120, 90, 60, 30]
+        scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
+        console.log('GAME TIME IS 0')
         endGame(playerMetrics)
+        timeScoreChanger(playerMetrics)
       }
     }
   }
