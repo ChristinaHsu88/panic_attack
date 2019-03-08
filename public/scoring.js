@@ -3,7 +3,7 @@ const playerMetrics = {
   daysPlayed : 0, // increment up at end of day
   primaryMetrics: {
     stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
-    energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
+    energy: 0, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
   },
   platter: { // affected by player actions; set by startingScore at start of game/round
     timeIn: 0,
@@ -18,7 +18,7 @@ const playerMetrics = {
 
 function startingScore(metrics){
   console.log('startingScore fired')
-  if (metrics.daysPlayed === 0) { // TODO else if algorithms
+  if (metrics.daysPlayed === 0) {
     for (let metric in metrics.primaryMetrics) {
       metrics.primaryMetrics[metric] = 5
     }
@@ -27,6 +27,7 @@ function startingScore(metrics){
     }
   } else {
     metrics.platter.sleepTime += 6
+    // TODO
     // stress and energy may need to be manipulated
   }
   calculateStress(metrics)
@@ -58,6 +59,7 @@ function calculateStress(metrics) {
     updateStressBar(metrics.primaryMetrics.stress)
     return metrics
   }
+  return console.log('calcStress says: GAME IS OVER')
 }
 
 function areYouPanicking(stressLevel) {
