@@ -34,17 +34,26 @@ document.onkeydown = function (e) {
   }
 }
 
-// called when timer runs out or when player has a panic attack
+// called when timer runs out or when player has a panic attack && when user click on the button, will toggle result
 function endGame(metrics) {
   console.log('endGame fired -- nothing should be fired after this point');
   gameOver = true
   metrics.daysPlayed += 1
   console.log('Game is over?', gameOver)
   console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.daysPlayed)
+    $(document).ready(function() {
+      $("button").click(function () {
+          $("canvas").toggle(
+              data = [0, metrics.platter.sleepTime, metrics.platter.physicalTime, metrics.platter.downTime, metrics.platter.playTime, metrics.platter.focusTime, metrics.platter.connectingTime, metrics.platter.timeIn],
+              renderChart(data)
+          )
+      })
+    })
   axios.post('/data', { gameData: metrics })
     .then(res => console.log('Game data saved to DB'))
     .catch(err => console.log(err))
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE');
 }
+
 // if game ends from panic attack, that should effect next day's game play
   // perhaps user will get a notice to do body checks to determine which platter metric needs attention
