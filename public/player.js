@@ -40,6 +40,12 @@ const player = Crafty.e('Player, 2D, DOM, Color, Fourway, Collision, Keyboard')
 //create crafty component
 // Crafty.c('Penny', {
 //init: function() {
+//set up the animation
+// .animate('WalkAway', 100, 0, 0, 8)
+// .animate('WalkLeft', 100, 0, 1, 8)
+// .animate('WalkTowards', 100, 0, 2, 8)
+// .animate('WalkRight', 100, 0, 3, 8)
+// give it direction conditionals
 
 //});
 //});
