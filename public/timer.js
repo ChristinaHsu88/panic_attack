@@ -48,14 +48,18 @@ function endGame(metrics, panic) {
     .then(res => console.log('Game data saved to DB'))
     .catch(err => console.log(err))
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE');
+  showChart()
+}
+
+function showChart(){
   $(document).ready(function() {
-  $("button").click(function () {
+    $("button").click(function () {
       $("canvas").toggle(
-          data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn],
-          renderChart(data)
+        data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn],
+        renderChart(data)
       )
+    })
   })
-})
 }
 
 // if game ends from panic attack, that should effect next day's game play
