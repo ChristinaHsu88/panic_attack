@@ -8,8 +8,8 @@ Crafty.scene('loading', function() {
     .bind('KeyDown', function(e) {
       if (e.key == Crafty.keys.ENTER) {
         Crafty.enterScene('bedroom')
-    }
-  })
+        }
+    })
 })
 
 load_scene('loading', 0);
@@ -20,7 +20,7 @@ Crafty.scene('bedroom', function() {
     // define and generate player
     Crafty.sprite(32, 'assets/cat.png', {
     penny: [0, 1]
-      })
+    })
 })
 
 /* loading scene function */
@@ -38,7 +38,3 @@ function load_scene(scene, duration) {
     });
 }
   
-
-// animating and making player mobile//
-Crafty.e('2D, DOM, cat1').attr({x: 10, y: 10})
-    // ATTEMPTS TO RENDER CHARACTER
