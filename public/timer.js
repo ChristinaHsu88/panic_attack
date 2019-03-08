@@ -1,6 +1,5 @@
 let pause = false
 let gameOver = false
-timer()
 
 function timer() {
   let gameTime = 180
