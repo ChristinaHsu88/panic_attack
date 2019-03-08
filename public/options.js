@@ -38,7 +38,23 @@ Crafty.c('Option', {
     }
 })
 
-function makePopUp (hitItem) { // hitItem param sets the options in popUp
+// define interactable items
+Crafty.c('Item', {
+    init: function() {
+        this.addComponent('2D, DOM, Color')
+        this.w = 30
+        this.h = 30
+        /* remove this.energy = 7 */
+    },
+    place: function(x, y) {
+        this.x = x
+        this.y = y
+        return this
+    }
+})
+
+// hitItem param sets the options in popUp
+function makePopUp (hitItem) { 
     const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
@@ -78,21 +94,8 @@ function makePopUp (hitItem) { // hitItem param sets the options in popUp
                 } else {
                     console.log('this has had no effect')
                 }
-                Crafty('Player').unfreeze()
+                Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
-}
-
-/* input box for user name */
-Crafty.e('HTML')
-.attr({x:80, y:20, w:100, h:100})
-.append("<form name='Textinput'><div id='Text'>Your name: </div><input type='text' name='username' id='username'><button type='submit' style='display:none' value='Go' onclick='SaveText()'></form>")
-
-/* saving username */
-function SaveText() {
-    let user = $("#username").val()
-    Crafty.e('HTML')
-    .attr({x: 300, y:10, w:100, h:100})
-    .append("<p>Hello, " + user)
 }
