@@ -48,7 +48,7 @@ Crafty.scene('loading', function() {
     // ATTEMPTS TO RENDER CHARACTER
 
     const player = Crafty.e(
-      '2D, DOM, Fourway, Collision, SpriteAnimation, Keyboard, penny'
+      '2D, DOM, Fourway, Collision, SpriteAnimation, Keyboard, penny, Player'
     )
       .attr({
         x: 10,
