@@ -1,8 +1,8 @@
-// scene1 - outside of house
-    // TODO - user types in player name and presses enter
-        // query the DB according to name
-            // if new name, create entry in DB
-            // if name exists, pull entry from DB
+// scene1 - outside of house                                    |* check!
+    // TODO - user types in player name and presses enter       |* check!
+        // query the DB according to name                       |* check!           
+            // if new name, create entry in DB                  |* check!
+            // if name exists, pull entry from DB               |* check!
         // if game has rolled over from previous round, user should not have to type in player name but simply hit enter to start next day
 
 const alphabet = 
@@ -28,8 +28,12 @@ Crafty.scene('welcome', function() {
             Crafty.enterScene('bedroom')
             timer()
             startingScore(playerMetrics)          // calculate player metrics at start of game
-            playerMetrics.name = username         /* store username to playerMetrics */
-            console.log('inside the keydown', playerMetrics)
+            console.log(startingScore(playerMetrics))
+            checkUser(username);
+              
+            //playerMetrics.name = username         /* store username to playerMetrics */
+            
+            //console.log('inside the keydown', playerMetrics)
         }
         for (let letter in alphabet) {            /* loop through alphabet to find letter that user enters and store in username */
             if (e.key == Crafty.keys[letter]) {
@@ -57,3 +61,18 @@ function loadWelcome(scene, duration) {
 
 loadWelcome('welcome', 0);
 
+function checkUser(username) { 
+    for (let user in pseudoDB) {
+        if (pseudoDB[user].name == username) {                                      /* if user exists */
+            pseudoDB[user].daysPlayed++
+            startingScore(pseudoDB[user])
+            /* console.log('existing user score ', startingScore(pseudoDB[user])) */
+        }
+        if (pseudoDB[user].name !== username) {                                     /* if user does not exist */
+            playerMetrics.name = username
+            pseudoDB[username] = playerMetrics
+            startingScore(playerMetrics)
+            /* console.log('new user starting score ', startingScore(playerMetrics)) */
+        }
+    }
+}
