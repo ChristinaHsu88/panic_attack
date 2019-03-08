@@ -7,7 +7,7 @@ let stressColor = 'blueStress' // must hold value for entity creation, could be 
 
 function createStressBar() {
   Crafty.e('2D, DOM, StressBar')
-    .attr({x: 370, y: 50})
+    .attr({ x: 0, y: 15 })
     .addComponent(stressColor)
 }
 
