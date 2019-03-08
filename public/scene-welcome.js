@@ -29,11 +29,7 @@ Crafty.scene('welcome', function() {
             timer()
             startingScore(playerMetrics)          // calculate player metrics at start of game
             console.log(startingScore(playerMetrics))
-            checkUser(username);
-              
-            //playerMetrics.name = username         /* store username to playerMetrics */
-            
-            //console.log('inside the keydown', playerMetrics)
+            checkUser(username);                  /* checking user in DB */
         }
         for (let letter in alphabet) {            /* loop through alphabet to find letter that user enters and store in username */
             if (e.key == Crafty.keys[letter]) {
