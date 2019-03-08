@@ -1,4 +1,4 @@
-Crafty.init(500, 350, document.getElementById('game'));
+Crafty.init(600, 350, document.getElementById('game'));
 
 // LOAD ORDER
   // scoring
@@ -7,3 +7,15 @@ Crafty.init(500, 350, document.getElementById('game'));
   // player
   // stress-bar
   // timer
+// items
+// options
+// player
+// timer
+
+
+
+
+
+
+
+
