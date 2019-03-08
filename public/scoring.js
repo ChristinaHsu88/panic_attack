@@ -1,5 +1,6 @@
 // universal variable that persists throughout gameplay until browser is refreshed
 const playerMetrics = {
+  name: '',
   daysPlayed : 0, // increment up at end of day
   primaryMetrics: {
     stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
