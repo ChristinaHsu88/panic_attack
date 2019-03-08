@@ -1,4 +1,5 @@
-/* comment out as this has been moved to the scene temporaily to initialize the player */
+/* comment out as this has been moved to the scene temporaily to initialize the player. Feel free to edit
+the page here*/
 // // define and generate player
 
 // Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, player')
