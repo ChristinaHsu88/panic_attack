@@ -8,34 +8,40 @@ Crafty.init(600, 350, document.getElementById('game'));
 
 // Scene loader
 function load_scene(scene, duration) {
-  Crafty.e('2D, Canvas, Tween, Color')
+  Crafty.e('2D, DOM, Tween, Color')
     .attr({ alpha: 0.0, x: 0, y: 0, w: 800, h: 600 })
     .color('#000000')
     .tween({ alpha: 1.0 }, duration)
     .bind('TweenEnd', function() {
       Crafty.scene(scene);
-      Crafty.e('2D, Canvas, Tween, Color')
+      Crafty.e('2D, DOM, Tween, Color')
         .attr({ alpha: 1.0, x: 0, y: 0, w: 800, h: 600 })
         .color('#000000')
         .tween({ alpha: 0.0 }, duration);
     });
 }
 
-Crafty.defineScene('test', function() {
-  Crafty.background('white');
-  load_scene('loading', 3000);
+Crafty.defineScene('loading', function() {
+  Crafty.background('white url(assets/loading.png) no-repeat center center');
+  Crafty.e('2D, DOM, Text, Mouse')
+    .attr({ x: 350, y: 200 })
+    .text('Welcome!')
+    .textFont({ size: '40px', weight: 'bold' });
+  load_scene('loading', 1000);
 });
 
-load_scene('test', 3000);
+load_scene('loading', 1000);
 
 Crafty.scene('loading', function() {
   Crafty.background('white url(assets/loading.png) no-repeat center center');
   Crafty.e('2D, DOM, Text, Mouse')
     .attr({ x: 350, y: 200 })
-    .text('Welcome!')
+    .text('bob!')
     .textFont({ size: '40px', weight: 'bold' })
-    .bind('Click', function(MouseEvent) {
-      Crafty.enterScene('bedroom');
+    .bind('KeyDown', function(e) {
+      if (e.key == Crafty.keys.ENTER) {
+        Crafty.enterScene('bedroom');
+      }
     });
 
   // bedroom scene
@@ -43,7 +49,7 @@ Crafty.scene('loading', function() {
     Crafty.background('white url(assets/bedroom2.png) no-repeat center center');
   });
 });
-// Crafty.scene('loading');
+// Crafty.scene('bedroom');
 // lets set up the scenes?
 // Crafty.scene('loading', function() {
 //this sets the 'loading' scene
