@@ -1,5 +1,4 @@
-function renderChart(data) {
-    /* chart setup - IMPORTANT NOTE: data[0] points to the center of the chart. Data for the chart start at data[1], and the data for label[0] stores in data[7] */
+function renderChart(metrics) {
     let ctx = document.getElementById("myChart");
     let myChart = new Chart(ctx, {
     type: 'radar',
@@ -7,7 +6,7 @@ function renderChart(data) {
             labels: ["Time In", "Sleep Time", "Physical Time", "Down Time", "Play Time", "Focus Time", "Connecting Time"],
             datasets: [{
                 label: 'Your results',
-                data: data,
+                data: convertMetricsForChart(metrics.platter),
                 backgroundColor: [
                     'rgba(0, 0, 255, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -32,3 +31,11 @@ function renderChart(data) {
     });
 }
 
+function convertMetricsForChart(platter) {
+    let chartMetrics = [0] // 0 is the center point of the chart
+    for (let metric in platter) {
+        chartMetrics.push(platter[metric])
+    }
+    console.log(chartMetrics);
+    return chartMetrics
+}

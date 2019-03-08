@@ -52,8 +52,7 @@ function endGame(metrics, panic) {
 }
 
 function showChart(){
-  const data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn]
-  renderChart(data)
+  renderChart(playerMetrics)
   const chart = document.getElementById('myChart')
   chart.style.display = 'block'
 }
