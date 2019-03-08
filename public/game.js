@@ -21,22 +21,13 @@ function load_scene(scene, duration) {
     });
 }
 
-Crafty.defineScene('loading', function() {
-  Crafty.background('white url(assets/loading.png) no-repeat center center');
-  Crafty.e('2D, DOM, Text, Mouse')
-    .attr({ x: 350, y: 200 })
-    .text('Welcome!')
-    .textFont({ size: '40px', weight: 'bold' });
-  load_scene('loading', 1000);
-});
-
 load_scene('loading', 1000);
 
 Crafty.scene('loading', function() {
   Crafty.background('white url(assets/loading.png) no-repeat center center');
-  Crafty.e('2D, DOM, Text, Mouse')
+  Crafty.e('2D, DOM, Text, Key')
     .attr({ x: 350, y: 200 })
-    .text('bob!')
+    .text('hit enter!')
     .textFont({ size: '40px', weight: 'bold' })
     .bind('KeyDown', function(e) {
       if (e.key == Crafty.keys.ENTER) {
