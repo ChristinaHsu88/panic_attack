@@ -17,7 +17,7 @@ Crafty.scene('welcome', function() {
     })
 })
 
-function load_scene(scene, duration) {
+function loadWelcome(scene, duration) {
     Crafty.e('2D, DOM, Tween, Color')
     .attr({ alpha: 0.0, x: 0, y: 0, w: 800, h: 600 })
     .color('#000000')
@@ -31,4 +31,4 @@ function load_scene(scene, duration) {
     });
 }
 
-load_scene('welcome', 0);
+loadWelcome('welcome', 0);
