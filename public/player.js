@@ -15,7 +15,6 @@ function makePlayer() {
     .reel('walkRight', 900, 3, 2, 3)
     .reel('walkAway', 900, 3, 3, 3)
     .animate('WalkAway', 900, 3, 3, 3)
-    // .color('red')
     .fourway(200)
     .checkHits('Item')
     .bind('HitOn', function(hitItem) {
