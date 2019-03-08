@@ -4,6 +4,7 @@ let gameOver = false
 function timer() {
   let gameTime = 180
   setInterval(tickTock, 1000)
+  document.getElementById("timer").innerHTML = gameTime
 
   function tickTock() {
     if (!gameOver) {
