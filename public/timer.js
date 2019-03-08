@@ -17,7 +17,7 @@ function timer() {
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
-        endGame(playerMetrics)
+        endGame(playerMetrics, false)
       }
     }
   }
@@ -35,12 +35,15 @@ document.onkeydown = function (e) {
 }
 
 // called when timer runs out or when player has a panic attack && when user click on the button, will toggle result
-function endGame(metrics) {
+function endGame(metrics, panic) {
   console.log('endGame fired -- nothing should be fired after this point');
   gameOver = true
   metrics.daysPlayed += 1
   console.log('Game is over?', gameOver)
   console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.daysPlayed)
+  let endingReason
+  panic ? endingReason = 'had a panic attack' : 'ran out of time'
+  console.log(`Your game ended because you ${endingReason}`)
   axios.post('/data', { gameData: metrics })
     .then(res => console.log('Game data saved to DB'))
     .catch(err => console.log(err))

@@ -49,7 +49,7 @@ function calculateStress(metrics) {
       console.log('imbalanced platter has increased stress')
     }
     if (areYouPanicking(metrics.primaryMetrics.stress)) {
-      endGame(metrics)
+      endGame(metrics, true)
       return
     }
     for (let metric in metrics.platter) {
