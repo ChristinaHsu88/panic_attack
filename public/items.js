@@ -12,8 +12,8 @@ Crafty.c('Item', {
     }
 })
 
-// generate interactable items
-Crafty.e('Item')
+function generateRoomItems() {
+    Crafty.e('Item')
     .place(150, 100)
     .color('black')
     .attr({
@@ -35,11 +35,11 @@ Crafty.e('Item')
             },
             option3: {
                 title: 'GO BACK'
-            }
         }
+    }
     })
 
-Crafty.e('Item')
+    Crafty.e('Item')
     .place(250, 150)
     .color('green')
     .attr({
@@ -70,7 +70,7 @@ Crafty.e('Item')
         }
     })
 
-Crafty.e('Item')
+    Crafty.e('Item')
     .place(300, 300)
     .color('orange')
     .attr({
@@ -95,6 +95,7 @@ Crafty.e('Item')
             }
         }
     })
+}
 
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
@@ -115,4 +116,3 @@ function itemPopUp(hitItem) {
             }
         })
 }
-

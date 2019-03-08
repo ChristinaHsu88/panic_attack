@@ -41,13 +41,3 @@ function renderChart(data) {
     });
 }
 
-/* when user click on the button, will toggle result */
-// $(document).ready(function() {
-//     $("button").click(function () {
-//         $("canvas").toggle(
-//             data = [0, 2, 4, 5, 6, 8, 7, 7],
-//             renderChart(data)
-//         )
-//     })
-// })
-
