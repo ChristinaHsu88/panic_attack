@@ -1,8 +1,8 @@
-h1 {
+/* h1 {
   color: black;
   font-size: 55px;
   font-family: 'VT323', monospace;
-}
+} */
 
 #game-style {
   display: flex;
@@ -12,4 +12,25 @@ h1 {
 
 #game {
   border: 2px black solid;
+}
+h1 {
+  font-family: 'VT323', monospace;
+  font-size: 6rem;
+  font-weight: 100;
+  letter-spacing: 2px;
+  text-align: center;
+  color: black;
+  background-image: -webkit-linear-gradient(92deg, black, red, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: hue 5s infinite linear;
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
 }
