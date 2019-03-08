@@ -53,12 +53,10 @@ function endGame(metrics, panic) {
 
 function showChart(){
   $(document).ready(function() {
-    $("button").click(function () {
-      $("canvas").toggle(
-        data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn],
-        renderChart(data)
-      )
-    })
+    $("canvas").toggle(
+      data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn],
+      renderChart(data)
+    )
   })
 }
 
