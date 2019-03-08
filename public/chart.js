@@ -1,3 +1,12 @@
+$(document).ready(function() {
+  $("button").click(function () {
+      $("canvas").toggle(
+          data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn],
+          renderChart(data)
+      )
+  })
+})
+
 function renderChart(data) {
     /* chart setup - IMPORTANT NOTE: data[0] points to the center of the chart. Data for the chart start at data[1], and the data for label[0] stores in data[7] */
     let ctx = document.getElementById("myChart");
