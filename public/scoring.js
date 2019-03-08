@@ -36,6 +36,10 @@ function startingScore(metrics){
 }
 
 // called after every metric changing method (except calculateEnergy)
+  // interaction events
+  // startingScore
+  // self (recursive)
+  // timeScoreChanger
 function calculateStress(metrics) {
   if (!gameOver) {
     console.log('calcStress fired')
@@ -73,7 +77,7 @@ function areYouPanicking(stressLevel) {
   return panicking
 }
 
-// called by calculateStress
+// called by calcStress
 function isPlatterImbalanced(metrics) {
   console.log('isPlatterImbalanced fired');
   let bigGap
@@ -111,6 +115,7 @@ function timeScoreChanger(metrics) {
   return metrics
 }
 
+// TODO
 // not being called anywhere yet
 function disableInteractions (metrics) {
   if (metrics.platter.physicalTime > 9) {
@@ -120,3 +125,5 @@ function disableInteractions (metrics) {
 
 // body check
 // don't let anything go above 10
+// don't let anything go below 0
+// pass param to endGame to determine HOW game ended (time out or panic attack)
