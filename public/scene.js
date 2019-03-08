@@ -17,12 +17,12 @@ load_scene('loading', 0);
 /* Loading bedroom scene including items and users */
 Crafty.scene('bedroom', function() {
     Crafty.background('white url(assets/bedroom2.png) no-repeat center center');
-    /* loading cat pic as player - is there a better way to organize files here? */
+    /* create a sprite using cat.png */
     Crafty.sprite(32, 'assets/cat.png', {
-    /* changed to player from penny for testing */
     player: [0, 1]
     })
    
+    /* initialize player entity here, as it doesn't appear working in player.js file independently */
     Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, player')
     .attr({
         x: 10,
@@ -45,8 +45,7 @@ Crafty.scene('bedroom', function() {
         }
     })
 
-
-// generate interactable items
+    /* initialize phone item. Not yet figure out a way to initialize this item in item.js and call it here */
     Crafty.e('Item')
     .place(150, 100)
     .color('black')
@@ -73,6 +72,7 @@ Crafty.scene('bedroom', function() {
     }
     })
 
+    /* initialize second item. see comment above */
     Crafty.e('Item')
     .place(250, 150)
     .color('green')
@@ -104,6 +104,7 @@ Crafty.scene('bedroom', function() {
         }
     })
 
+    /* initialize third item. see comment above */
     Crafty.e('Item')
     .place(300, 300)
     .color('orange')
@@ -130,8 +131,9 @@ Crafty.scene('bedroom', function() {
         }
     })
     
+    /* initialize stressbar function here. see relevant comment above */
     Crafty.e('2D, DOM, StressBar')
-    .attr({x: 370, y: 50})
+    .attr({x: 400, y: 50})
     .addComponent(stressColor)
     startingScore(playerMetrics) 
 })
