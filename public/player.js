@@ -2,7 +2,7 @@
 
 function makePlayer() {
   Crafty.e(
-    'Player, 2D, DOM, SpriteAnimation, Fourway, Collision, Keyboard, walk1'
+    'Player, 2D, DOM, SpriteAnimation, Fourway, Collision, Keyboard, walkTowards'
   )
     .attr({
       x: 10,
@@ -10,18 +10,11 @@ function makePlayer() {
       // w: 40,
       // h: 40
     })
-    .reel('WalkAway', 5000, [
-      'walk1',
-      'walk2',
-      'walk3',
-      'walk4',
-      'walk5',
-      'walk6',
-      'walk7',
-      'walk8',
-      'walk9'
-    ])
-    .animate('WalkAway', -1)
+    .reel('walkTowards', 900, 3, 0, 3)
+    .reel('walkLeft', 900, 3, 1, 3)
+    .reel('walkRight', 900, 3, 2, 3)
+    .reel('walkAway', 900, 3, 3, 3)
+    .animate('WalkAway', 900, 3, 3, 3)
     // .color('red')
     .fourway(200)
     .checkHits('Item')
