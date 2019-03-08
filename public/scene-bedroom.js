@@ -7,12 +7,14 @@ Crafty.scene('bedroom', function() {
     })
     makePlayer()
     generateRoomItems()
+    createStressBar()
+    startingScore(playerMetrics) // calculate player metrics at start of game
 
     /* initialize stressbar function here. see relevant comment above */
-    Crafty.e('2D, DOM, StressBar')
-    .attr({x: 400, y: 50})
-    .addComponent(stressColor)
-    startingScore(playerMetrics)
+    // Crafty.e('2D, DOM, StressBar')
+    // .attr({x: 400, y: 50})
+    // .addComponent(stressColor)
+    // startingScore(playerMetrics)
 })
 
 /* loading scene function */

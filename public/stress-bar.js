@@ -5,12 +5,12 @@ Crafty.sprite(300, 'assets/red.png', { redStress:[0, 0] }) // stress 9-10
 
 let stressColor = 'blueStress' // must hold value for entity creation, could be anything
 
-/* comment out the following lines as they appear to be an issue according to console */
-// Crafty.e('2D, DOM, StressBar')
-//   .attr({x: 370, y: 50})
-//   .addComponent(stressColor)
-//startingScore(playerMetrics) // calculate player metrics at start of game
-/************************************************************************************/
+function createStressBar() {
+  Crafty.e('2D, DOM, StressBar')
+    .attr({x: 370, y: 50})
+    .addComponent(stressColor)
+}
+
 
 // called by calcStress after stress is adjusted
 function updateStressBar(stressLevel) {
