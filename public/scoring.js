@@ -38,7 +38,6 @@ function startingScore(metrics){
 function calculateStress(metrics) {
   if (!gameOver) {
     console.log('calcStress fired')
-    updateStressBar(metrics.primaryMetrics.stress)
     calculateEnergy(metrics)
     if (isPlatterImbalanced(metrics)) {
       metrics.primaryMetrics.stress += 2
