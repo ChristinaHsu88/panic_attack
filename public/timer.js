@@ -52,12 +52,10 @@ function endGame(metrics, panic) {
 }
 
 function showChart(){
-  $(document).ready(function() {
-    $("canvas").toggle(
-      data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn],
-      renderChart(data)
-    )
-  })
+  const data = [0, playerMetrics.platter.sleepTime, playerMetrics.platter.physicalTime, playerMetrics.platter.downTime, playerMetrics.platter.playTime, playerMetrics.platter.focusTime, playerMetrics.platter.connectingTime, playerMetrics.platter.timeIn]
+  renderChart(data)
+  const chart = document.getElementById('myChart')
+  chart.style.display = 'block'
 }
 
 // if game ends from panic attack, that should effect next day's game play
