@@ -17,4 +17,18 @@ Crafty.scene('welcome', function() {
     })
 })
 
+function load_scene(scene, duration) {
+    Crafty.e('2D, DOM, Tween, Color')
+    .attr({ alpha: 0.0, x: 0, y: 0, w: 800, h: 600 })
+    .color('#000000')
+    .tween({ alpha: 1.0 }, duration)
+    .bind('TweenEnd', function() {
+        Crafty.scene(scene);
+        Crafty.e('2D, DOM, Tween, Color')
+        .attr({ alpha: 1.0, x: 0, y: 0, w: 800, h: 600 })
+        .color('#000000')
+        .tween({ alpha: 0.0 }, duration);
+    });
+}
+
 load_scene('welcome', 0);
