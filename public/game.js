@@ -5,4 +5,5 @@ Crafty.init(500, 350, document.getElementById('game'));
   // items
   // options
   // player
+  // stress-bar
   // timer

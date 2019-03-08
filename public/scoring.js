@@ -3,7 +3,7 @@ const playerMetrics = {
   daysPlayed : 0, // increment up at end of day
   primaryMetrics: {
     stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
-    energy: 0, // affected directly by time and eating; indirectly by playTime, sleepTime, physicalTime
+    energy: 0, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
   },
   platter: { // affected by player actions; set by startingScore at start of game/round
     timeIn: 0,
@@ -16,48 +16,61 @@ const playerMetrics = {
   }
 } // save to DB at end of game
 
-startingScore(playerMetrics) // calculate player metrics at start of game
-
 function startingScore(metrics){
   console.log('startingScore fired')
-  if (metrics.daysPlayed === 0) { // TODO else if algorithms
+  if (metrics.daysPlayed === 0) {
     for (let metric in metrics.primaryMetrics) {
-      metrics.primaryMetrics[metric] = 6
+      metrics.primaryMetrics[metric] = 5
     }
     for (let metric in metrics.platter) {
       metrics.platter[metric] = 6
     }
   } else {
     metrics.platter.sleepTime += 6
+    // TODO
     // stress and energy may need to be manipulated
   }
   calculateStress(metrics)
+  updateStressBar(metrics.primaryMetrics.stress)
   return metrics
 }
 
 // called after every metric changing method (except calculateEnergy)
 function calculateStress(metrics) {
-  console.log('calcStress fired')
-  calculateEnergy(metrics)
-  if (isPlatterImbalanced(metrics)) {
-    metrics.primaryMetrics.stress += 2
-    console.log('imbalanced platter has increased stress')
-  }
-  for (let metric in metrics.platter) {
-    if (metrics.platter[metric] < 1 && !gameOver) {
-      metrics.primaryMetrics.stress += 1
-      console.log('STRESS UP')
-      console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
-      setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
+  if (!gameOver) {
+    console.log('calcStress fired')
+    calculateEnergy(metrics)
+    if (isPlatterImbalanced(metrics)) {
+      metrics.primaryMetrics.stress += 2
+      console.log('imbalanced platter has increased stress')
     }
-    if (metrics.primaryMetrics.stress >= 10) {
-      console.log('YOU ARE HAVING A PANIC ATTACK')
-      // CALL IN THE CATS!
+    if (areYouPanicking(metrics.primaryMetrics.stress)) {
       endGame(metrics)
       return
     }
+    for (let metric in metrics.platter) {
+      if (metrics.platter[metric] < 1) {
+        metrics.primaryMetrics.stress += 1
+        console.log('STRESS UP')
+        console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
+        setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
+      }
+    }
+    updateStressBar(metrics.primaryMetrics.stress)
+    return metrics
   }
-  return metrics
+  return console.log('calcStress says: GAME IS OVER')
+}
+
+function areYouPanicking(stressLevel) {
+  let panicking = false
+  if (stressLevel >= 10) {
+    updateStressBar(stressLevel)
+    console.log('YOU ARE HAVING A PANIC ATTACK')
+    // CALL IN THE CATS
+    panicking = true
+  }
+  return panicking
 }
 
 // called by calculateStress
@@ -106,3 +119,4 @@ function disableInteractions (metrics) {
 }
 
 // body check
+// don't let anything go above 10

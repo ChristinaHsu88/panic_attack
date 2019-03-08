@@ -60,6 +60,12 @@ Crafty.e('Item')
                 scoreEffect: {
                     primaryMetrics: { stress: 10 }
                 }
+            },
+            option4: {
+                title: 'REDUCE METRIC',
+                scoreEffect: {
+                    platter: { downTime: -6 }
+                }
             }
         }
     })
@@ -89,25 +95,6 @@ Crafty.e('Item')
             }
         }
     })
-
-/* stress bar setup: red => the most stressful, orange the second, green the third, blue the least */
-Crafty.sprite(300, 'assets/blue.png', {
-    bar:[0, 0]
-})
-Crafty.sprite(300, 'assets/orange.png', {
-    bar1:[0, 0]
-})
-Crafty.sprite(300, 'assets/green.png', {
-    bar2:[0, 0]
-})
-Crafty.sprite(300, 'assets/red.png', {
-    bar3:[0]
-})
-
-Crafty.e('2D, DOM, bar3')
-.attr({x: 370, y: 50})
-Crafty.e('2D, DOM, bar2')
-.attr({x: 300, y: 50})
 
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
