@@ -12,6 +12,91 @@ Crafty.c('Item', {
     }
 })
 
+function generateRoomItems() {
+    Crafty.e('Item')
+    .place(150, 100)
+    .color('black')
+    .attr({
+        type: 'phone',
+        optionsList: {
+            option1: {
+                title: 'CALL A GOOD FRIEND',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { connectingTime: 1 }
+                }
+            },
+            option2: {
+                title: 'BROWSE TWITTER',
+                scoreEffect: {
+                    primaryMetrics: { stress: +1 },
+                    platter: { downTime: +1 }
+                }
+            },
+            option3: {
+                title: 'GO BACK'
+        }
+    }
+    })
+
+    Crafty.e('Item')
+    .place(250, 150)
+    .color('green')
+    .attr({
+        type: 'weed',
+        optionsList: {
+            option1: {
+                title: 'SMOKE WEED',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1, energy: -1 },
+                    platter: { downTime: +1 }
+                }
+            },
+            option2: {
+                title: 'GO BACK'
+            },
+            option3: {
+                title: 'INSTANT PANIC',
+                scoreEffect: {
+                    primaryMetrics: { stress: 10 }
+                }
+            },
+            option4: {
+                title: 'REDUCE METRIC',
+                scoreEffect: {
+                    platter: { downTime: -6 }
+                }
+            }
+        }
+    })
+
+    Crafty.e('Item')
+    .place(300, 300)
+    .color('orange')
+    .attr({
+        type: 'laundry',
+        optionsList: {
+            option1: {
+                title: 'TIDY ROOM',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { focusTime: +1 }
+                }
+            },
+            option2: {
+                title: 'SIT ON LAUNDRY AND NAP',
+                scoreEffect: {
+                    primaryMetrics: { stress: -1 },
+                    platter: { sleepTime: +1 }
+                }
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
+    })
+}
+
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
         .color('grey')
