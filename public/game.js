@@ -1,4 +1,4 @@
-Crafty.init(600, 350, document.getElementById('game'));
+Crafty.init(715, 325, document.getElementById('game'));
 
 // LOAD ORDER
   // scoring
