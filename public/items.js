@@ -59,7 +59,12 @@ Crafty.e('Item')
                 title: 'INSTANT PANIC',
                 scoreEffect: {
                     primaryMetrics: { stress: 10 }
-                    // platter: { timeIn: -10 }
+                }
+            },
+            option4: {
+                title: 'REDUCE METRIC',
+                scoreEffect: {
+                    platter: { downTime: -6 }
                 }
             }
         }

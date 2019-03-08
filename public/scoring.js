@@ -44,10 +44,7 @@ function calculateStress(metrics) {
       metrics.primaryMetrics.stress += 2
       console.log('imbalanced platter has increased stress')
     }
-    if (metrics.primaryMetrics.stress >= 10) {
-      updateStressBar(metrics.primaryMetrics.stress)
-      console.log('YOU ARE HAVING A PANIC ATTACK')
-      // CALL IN THE CATS!
+    if (areYouPanicking(metrics.primaryMetrics.stress)) {
       endGame(metrics)
       return
     }
@@ -62,6 +59,17 @@ function calculateStress(metrics) {
     updateStressBar(metrics.primaryMetrics.stress)
     return metrics
   }
+}
+
+function areYouPanicking(stressLevel) {
+  let panicking = false
+  if (stressLevel >= 10) {
+    updateStressBar(stressLevel)
+    console.log('YOU ARE HAVING A PANIC ATTACK')
+    // CALL IN THE CATS
+    panicking = true
+  }
+  return panicking
 }
 
 // called by calculateStress
