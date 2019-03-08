@@ -21,29 +21,29 @@ Crafty.scene('bedroom', function() {
     Crafty.sprite(32, 'assets/cat.png', {
     player: [0, 1]
     })
-   
+    makePlayer()
     /* initialize player entity here, as it doesn't appear working in player.js file independently */
-    Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, player')
-    .attr({
-        x: 10,
-        y: 10,
-        w: 40,
-        h: 40,
-    })
-    .fourway(200)
-    .checkHits('Item')
-    .bind('HitOn', function(hitItem) {
-        itemPopUp(hitItem)
-    })
-    .bind('HitOff', function() {
-        Crafty('ItemPopUp').destroy()
-    })
-    .bind('KeyDown', function(e) { // to check score during development
-        if (e.key == Crafty.keys.SHIFT) {
-            console.log('Player stats (primary):', playerMetrics.primaryMetrics)
-            console.log('Player stats (platter):', playerMetrics.platter)
-        }
-    })
+    // Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, player')
+    // .attr({
+    //     x: 10,
+    //     y: 10,
+    //     w: 40,
+    //     h: 40,
+    // })
+    // .fourway(200)
+    // .checkHits('Item')
+    // .bind('HitOn', function(hitItem) {
+    //     itemPopUp(hitItem)
+    // })
+    // .bind('HitOff', function() {
+    //     Crafty('ItemPopUp').destroy()
+    // })
+    // .bind('KeyDown', function(e) { // to check score during development
+    //     if (e.key == Crafty.keys.SHIFT) {
+    //         console.log('Player stats (primary):', playerMetrics.primaryMetrics)
+    //         console.log('Player stats (platter):', playerMetrics.platter)
+    //     }
+    // })
 
     /* initialize phone item. Not yet figure out a way to initialize this item in item.js and call it here */
     Crafty.e('Item')
@@ -130,12 +130,12 @@ Crafty.scene('bedroom', function() {
             }
         }
     })
-    
+
     /* initialize stressbar function here. see relevant comment above */
     Crafty.e('2D, DOM, StressBar')
     .attr({x: 400, y: 50})
     .addComponent(stressColor)
-    startingScore(playerMetrics) 
+    startingScore(playerMetrics)
 })
 
 /* loading scene function */
@@ -152,4 +152,4 @@ function load_scene(scene, duration) {
         .tween({ alpha: 0.0 }, duration);
     });
 }
-  
+
