@@ -13,6 +13,7 @@ Crafty.scene('welcome', function() {
     .bind('KeyDown', function(e) {
       if (e.key == Crafty.keys.ENTER) {
         Crafty.enterScene('bedroom')
+        startingScore(playerMetrics) // calculate player metrics at start of game
         }
     })
 })

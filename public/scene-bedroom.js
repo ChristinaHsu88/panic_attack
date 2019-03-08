@@ -7,5 +7,4 @@ Crafty.scene('bedroom', function() {
     makePlayer()
     generateRoomItems()
     createStressBar()
-    startingScore(playerMetrics) // calculate player metrics at start of game // TODO - move this method because it should only be called ONCE per game
 })
