@@ -83,3 +83,16 @@ function makePopUp (hitItem) { // hitItem param sets the options in popUp
             }
         })
 }
+
+/* input box for user name */
+Crafty.e('HTML')
+.attr({x:80, y:20, w:100, h:100})
+.append("<form name='Textinput'><div id='Text'>Your name: </div><input type='text' name='username' id='username'><button type='submit' style='display:none' value='Go' onclick='SaveText()'></form>")
+
+/* saving username */
+function SaveText() {
+    let user = $("#username").val()
+    Crafty.e('HTML')
+    .attr({x: 300, y:10, w:100, h:100})
+    .append("<p>Hello, " + user)
+}
