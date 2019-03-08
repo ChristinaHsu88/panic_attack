@@ -12,14 +12,9 @@ Crafty.scene('loading', function() {
     })
 })
 
-/* not sure where to place cat1 now. Feel free to move */
-// animating and making player mobile//
-Crafty.e('2D, DOM, cat1').attr({x: 10, y: 10})
-// ATTEMPTS TO RENDER CHARACTER
-
 load_scene('loading', 0);
 
-/* Loading bedroom scene */
+/* Loading bedroom scene including items and users */
 Crafty.scene('bedroom', function() {
     Crafty.background('white url(assets/bedroom2.png) no-repeat center center');
     /* loading cat pic as player - is there a better way to organize files here? */
@@ -137,6 +132,7 @@ Crafty.scene('bedroom', function() {
     
     Crafty.e('2D, DOM, StressBar')
     .attr({x: 370, y: 50})
+    .addComponent(stressColor)
     startingScore(playerMetrics) 
 })
 
