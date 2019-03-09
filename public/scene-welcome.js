@@ -67,7 +67,7 @@ function checkUser(username) {
         for (let user in db) {
             if (db[user].gameData.name === username) {
                 db[user].gameData.primaryMetrics.stress = 0 /* have to reset for now otherwise the game will be over right away on the second day because the stress level was too high the day before */
-                console.log('this is existing user data', db[user].gameData)
+                console.log('this is existing user data', db[user].gameData) /* some data for the existing user still has issues. ie. days_plays not render properly after the first day also how to reset some of the value*/
                 startingScore(db[user].gameData)
                 }
             if (db[user].gameData.name !== username) {
