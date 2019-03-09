@@ -36,14 +36,18 @@ function worldEventsTimes(){
   return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
 
+function togglePause() {
+  pause ? pause = false : pause = true
+  if (pause) {
+    document.getElementById("pause").innerHTML = 'GAME PAUSED'
+  } else {
+    document.getElementById("pause").innerHTML = ''
+  }
+}
+
 document.onkeydown = function (e) { // TODO disable player
   if (e.code === 'Space') {
-    pause ? pause = false : pause = true
-    if (pause) {
-      document.getElementById("pause").innerHTML = 'GAME PAUSED'
-    } else {
-      document.getElementById("pause").innerHTML = ''
-    }
+    togglePause()
   }
 }
 
