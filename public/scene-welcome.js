@@ -8,17 +8,19 @@ const alphabet = {A:'A',B:'B',C:'C',D:'D',E:'E',F:'F',G:'G',H:'H',I:'I',J:'J',K:
 Crafty.scene('welcome', function() {
     Crafty.background('white url(assets/loading.png) no-repeat center center')
     /* greetings */
-    Crafty.e('2D, DOM, Text, Mouse')
-    .attr({ x: 230, y: 180 })
-    .text('Hello! ')
-    .textFont({ size: '40px', weight: 'bold' })
+    Crafty.e('2D, DOM, Canvas, Text, Mouse')
+    .attr({ x: 130, y: 200 })
+    .text('Hello! Please enter your name :')
+    .textFont({ size: '30px', weight: 'bold', type: 'italic'})
+    .textColor('black')
 
     /* store username */
     let username = ''
     Crafty.e('2D, DOM, Text, Mouse')
-    .attr({ x: 230, y: 220 })
+    .attr({ x: 270, y: 240 })
     .text(username)
-    .textFont({ size: '40px', weight: 'bold' })
+    .textFont({ size: '35px', weight: 'bold'})
+    .textColor('white')
     .bind('KeyDown', function(e) {
         if (e.key == Crafty.keys.ENTER) {
             playerMetrics.name = username
@@ -31,7 +33,7 @@ Crafty.scene('welcome', function() {
             startingScore(playerMetrics)
             }
         }
-        // TODO
+        // TODO /* all done */
             // let user backspace or clear name before enter
             // tell user how to log in (i.e., press enter)
             // do not allow empty username
