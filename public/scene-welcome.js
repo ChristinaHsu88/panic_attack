@@ -56,7 +56,7 @@ loadWelcome('welcome', 0);
 
 // if user in DB, replace playerMetrics with saved
 function checkUser(username) {
-    axios.get('/data', { gameData: { name: username } })
+    axios.get('/data')
     .then(function (response) {
         let db = response.data
         for (let user in db) {
