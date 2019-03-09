@@ -11,9 +11,10 @@ Crafty.scene('nightCats', function() {
     .textColor('white')
     .bind('KeyDown', function(e) {
         if (e.key == Crafty.keys.ENTER) {
-          Crafty.enterScene('bedroom')
-          //console.log(playerMetrics)
-          startingScore(playerMetrics)
+            Crafty.enterScene('bedroom')
+            gameOver = false
+            gameTime = 180
+            startingScore(playerMetrics)
         }
       })
 })

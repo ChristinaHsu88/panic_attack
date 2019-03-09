@@ -1,8 +1,9 @@
 let pause = false
 let gameOver = false
+let gameTime = 180 /* move this line to global variable so the game time can be reset when user start on the second day right away */
 
 function timer() {
-  let gameTime = 180
+  //let gameTime = 180
   setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
 
