@@ -38,6 +38,7 @@ MongoClient.connect(uri, (err, client) => {
 
     /* save user data in MongoDB */
     app.post('/data', (req, res) => {
+        console.log(req.body)
         db.collection('data').insertOne(req.body, (err, result) => {
             if (err) return console.log(err)
             console.log(`Game has been saved to DB, with the unique: ${result.ops[0]._id}`)

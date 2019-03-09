@@ -27,8 +27,6 @@ Crafty.scene('welcome', function() {
         if (e.key == Crafty.keys.ENTER) {
             Crafty.enterScene('bedroom')
             timer()
-            startingScore(playerMetrics)          // calculate player metrics at start of game
-            console.log(startingScore(playerMetrics))
             checkUser(username);                  /* checking user in DB */
         }
         for (let letter in alphabet) {            /* loop through alphabet to find letter that user enters and store in username */
@@ -57,18 +55,28 @@ function loadWelcome(scene, duration) {
 
 loadWelcome('welcome', 0);
 
-function checkUser(username) { 
-    for (let user in pseudoDB) {
-        if (pseudoDB[user].name == username) {                                      /* if user exists */
-            pseudoDB[user].daysPlayed++
-            startingScore(pseudoDB[user])
-            /* console.log('existing user score ', startingScore(pseudoDB[user])) */
+/* check whether the user exists in the DB already. If yes, grab the data from DB; if not, use the default template to start */
+function checkUser(username) {
+    axios.get('/data', {
+            gameData: {
+             name: username
+         }
+    })
+    .then(function (response) {
+        let db = response.data 
+        for (let user in db) {
+            if (db[user].gameData.name === username) {
+                db[user].gameData.primaryMetrics.stress = 0 /* have to reset for now otherwise the game will be over right away on the second day because the stress level was too high the day before */
+                console.log('this is existing user data', db[user].gameData)
+                startingScore(db[user].gameData)
+                }
+            if (db[user].gameData.name !== username) {
+                playerMetrics.name = username
+                startingScore(playerMetrics)
+            }
         }
-        if (pseudoDB[user].name !== username) {                                     /* if user does not exist */
-            playerMetrics.name = username
-            pseudoDB[username] = playerMetrics
-            startingScore(playerMetrics)
-            /* console.log('new user starting score ', startingScore(playerMetrics)) */
-        }
-    }
+    })
+    .catch(function (error) {
+        console.log(error)
+    })       
 }
