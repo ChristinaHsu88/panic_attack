@@ -15,11 +15,15 @@ function timer() {
   function tickTock() {
     if (!gameOver) {
       if (!pause && gameTime > 0) {
+        // count down time
         gameTime = gameTime - 1
+        // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
+        // trigger game prompts
         eatPromptTimes.includes(gameTime) ? promptEat() : ''
         napPromptTime.includes(gameTime) ? promptNap() : ''
         worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
@@ -85,6 +89,3 @@ function saveUserData (metrics) {
 }
 // if game ends from panic attack, that should effect next day's game play
   // perhaps user will get a notice to do body checks to determine which platter metric needs attention
-
-// bio cues
-// world cues
