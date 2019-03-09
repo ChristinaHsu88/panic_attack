@@ -17,7 +17,7 @@ function timer() {
       if (!pause && gameTime > 0) {
         gameTime = gameTime - 1
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
-        // eatPromptTimes.includes(gameTime) ? promptEat() : ''
+        eatPromptTimes.includes(gameTime) ? promptEat() : ''
         // napPromptTime.includes(gameTime) ? promptNap() : ''
         // worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         document.getElementById("timer").innerHTML = gameTime

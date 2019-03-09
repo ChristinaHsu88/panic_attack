@@ -1,18 +1,26 @@
-// DRY helper
-function allPrompts(optionsObj){
-  // for (const option in optionsObj) {
-  //   Crafty.e('Option').text(optionTitle).place(iteration).
-  // }
-  // pop up with options
-  // skip time forward if YES
-}
-
 function promptEat(){
-  // allPrompts(options)
-  // increase energy if YES
+  const eatOptionsObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          title: 'YOU\'RE HUNGRY. EAT?',
+          scoreEffect: {
+            primaryMetrics: { energy: +1 }
+          }
+        },
+        option2: {
+          title: 'GO BACK'
+        }
+      }
+    }
+  }]
+  makePopUp(eatOptionsObj)
 }
 
 function promptNap(){
+  // const napOptionsObj = [{
+  //   obj
+  // }]
   // allPrompts(options)
   // increase sleep if YES
 }
