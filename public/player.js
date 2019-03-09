@@ -18,7 +18,7 @@ function makePlayer (argument) {
       })
       .bind('KeyDown', function(e) { // to check score during development
         if (e.key == Crafty.keys.SHIFT) {
-          console.log('Player stats: \n', playerMetrics.primaryMetrics, '\n', playerMetrics.platter)
+          console.log('Player stats: \n', playerMetrics)
         }
   })
 }
