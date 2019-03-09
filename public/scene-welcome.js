@@ -14,7 +14,7 @@ Crafty.scene('welcome', function() {
     .textFont({ size: '30px', weight: 'bold', type: 'italic'})
     .textColor('black')
 
-    /* store username */
+    /* grab username & start game */
     let username = ''
     Crafty.e('2D, DOM, Text, Mouse')
     .attr({ x: 270, y: 240 })
@@ -24,25 +24,21 @@ Crafty.scene('welcome', function() {
     .bind('KeyDown', function(e) {
         if (e.key == Crafty.keys.ENTER) {
             playerMetrics.name = username
-            if (username === '') {                  /* alert user to enter a name */
+            if (username === '') {
                 alert('you have to enter a name!')
             } else {
-            Crafty.enterScene('bedroom')            /* scene will only load when the user has entered a name */
-            timer()
-            checkUser(username) // checks DB for existing user; sets playerMetrics to saved DB
+                Crafty.enterScene('bedroom') // destroys this scene
+                timer()
+                checkUser(username) // checks DB for exising user; startingScore called within
             }
         }
-        // TODO /* all done */
-            // let user backspace or clear name before enter
-            // tell user how to log in (i.e., press enter)
-            // do not allow empty username
         for (let letter in alphabet) {
             if (e.key == Crafty.keys[letter]) {
                 username += this.text(alphabet[letter])._text
                 this.text(username)
             }
         }
-        if (e.key == Crafty.keys.BACKSPACE) {       /* allow user to edit their name */
+        if (e.key == Crafty.keys.BACKSPACE) {
             username = username.slice(0, - 1)
             this.text(username)
         }
@@ -66,6 +62,7 @@ function loadWelcome(scene, duration) {
 loadWelcome('welcome', 0);
 
 // if user in DB, replace playerMetrics with saved
+    // call startingScore
 function checkUser(username) {
     axios.get('/data')
     .then(function (response) {
