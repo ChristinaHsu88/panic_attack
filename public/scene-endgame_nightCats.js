@@ -1,4 +1,3 @@
-/* post endScene - bedroom with no cats */
 Crafty.scene('nightCats', function() {
     /* cat image source https://www.levelwinner.com/meow-match-beginners-guide-tips-cheats-strategies/ */
     Crafty.background('white url(assets/sleepWCats.jpg) no-repeat center right')
@@ -16,5 +15,5 @@ Crafty.scene('nightCats', function() {
             gameTime = 180
             startingScore(playerMetrics)
         }
-      })
+    })
 })
