@@ -1,5 +1,5 @@
-// // universal variable that persists throughout gameplay until browser is refreshed
-const playerMetrics = {
+// universal variable that persists throughout gameplay until browser is refreshed
+let playerMetrics = {
   name: '',
   daysPlayed : 0, // increment up at end of day
   primaryMetrics: {
@@ -16,25 +16,6 @@ const playerMetrics = {
     physicalTime: 0
   }
 } // save to DB at end of game
-
-// /* testing */
-// const pseudoDB = {
-//     name: 'AMY',
-//     daysPlayed : 1, // increment up at end of day
-//     primaryMetrics: {
-//       stress: 6, // affected directly actions (+ and -, sometimes with same action); indirectly by all
-//       energy: 7, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
-//     },
-//     platter: { // affected by player actions; set by startingScore at start of game/round
-//       timeIn: 3,
-//       downTime: 5,
-//       focusTime: 5,
-//       playTime: 2,
-//       connectingTime: 7,
-//       sleepTime: 2,
-//       physicalTime: 8 
-//   }
-// } // save to DB at end of game
 
 function startingScore(metrics){
   console.log('startingScore fired')
@@ -146,4 +127,3 @@ function disableInteractions (metrics) {
 // body check
 // don't let anything go above 10
 // don't let anything go below 0
-// pass param to endGame to determine HOW game ended (time out or panic attack)
