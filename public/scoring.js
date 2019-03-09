@@ -19,7 +19,7 @@ let playerMetrics = {
 
 // sets score for day 1 and day 1+ games
 function startingScore(metrics){
-  console.log('startingScore fired')
+  // console.log('startingScore fired')
   metrics.platter.sleepTime += 6
   metrics.primaryMetrics.stress = 5
   metrics.primaryMetrics.energy = 5
@@ -40,11 +40,11 @@ function startingScore(metrics){
   // interaction events // startingScore // self (recursive) // timeScoreChanger
 function calculateStress(metrics) {
   if (!gameOver) {
-    console.log('calcStress fired')
+    // console.log('calcStress fired')
     calculateEnergy(metrics)
     if (isPlatterImbalanced(metrics)) {
       metrics.primaryMetrics.stress += 1
-      console.log('imbalanced platter has increased stress')
+      // console.log('imbalanced platter has increased stress')
     }
     if (areYouPanicking(metrics.primaryMetrics.stress)) {
       endGame(metrics, true)
@@ -53,8 +53,8 @@ function calculateStress(metrics) {
     for (let metric in metrics.platter) {
       if (metrics.platter[metric] < 1) {
         metrics.primaryMetrics.stress += 1
-        console.log('STRESS UP')
-        console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
+        // console.log('STRESS UP')
+        // console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
         setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
         return // don't up stress PER metric, but only once (otherwise game is too hard)
       }
@@ -62,7 +62,8 @@ function calculateStress(metrics) {
     updateStressBar(metrics.primaryMetrics.stress)
     return
   }
-  return console.log('calcStress says: GAME IS OVER')
+  return
+  // return console.log('calcStress says: GAME IS OVER')
 }
 
 function areYouPanicking(stressLevel) {
@@ -78,7 +79,7 @@ function areYouPanicking(stressLevel) {
 
 // called by calcStress
 function isPlatterImbalanced(metrics) {
-  console.log('isPlatterImbalanced fired');
+  // console.log('isPlatterImbalanced fired');
   let bigGap
   const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
   const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
@@ -89,10 +90,10 @@ function isPlatterImbalanced(metrics) {
 
 // called by calcStress
 function calculateEnergy(metrics) {
-  console.log('calcEnergy fired')
+  // console.log('calcEnergy fired')
   if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
     metrics.primaryMetrics.energy -= 1
-    console.log('ENERGY DOWN')
+    // console.log('ENERGY DOWN')
   }
   if (metrics.platter.physicalTime > 9) {
     metrics.primaryMetrics.energy -= 1
@@ -102,14 +103,14 @@ function calculateEnergy(metrics) {
 // reduces all metrics (except downTime and stress)
 // called by timer at 30s intervals
 function timeScoreChanger(metrics) {
-  console.log('timeScoreChanger fired')
+  // console.log('timeScoreChanger fired')
   metrics.primaryMetrics.energy -= 1
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
       metrics.platter[metric] -= 1
     }
   }
-  console.log('Time Score Changer: \n', metrics)
+  // console.log('Time Score Changer: \n', metrics)
   calculateStress(metrics)
   return metrics
 }

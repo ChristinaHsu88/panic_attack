@@ -54,7 +54,7 @@ Crafty.c('Item', {
 })
 
 // hitItem param sets the options in popUp
-function makePopUp (hitItem) { 
+function makePopUp (hitItem) {
     const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
@@ -89,10 +89,7 @@ function makePopUp (hitItem) {
                     for (effect in scoreEffect.primaryMetrics) {
                         playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
                     }
-                    console.log('this has had an effect on your mental health')
                     calculateStress(playerMetrics)
-                } else {
-                    console.log('this has had no effect')
                 }
                 Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
