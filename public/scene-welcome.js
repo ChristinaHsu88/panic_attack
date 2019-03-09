@@ -69,7 +69,7 @@ function checkUser(username) {
         let db = response.data
         for (let user in db) {
             if (db[user].gameData.name === username) {
-                // console.log('User Found!', db[user].gameData)
+                console.log('User Found!', db[user].gameData)
                 playerMetrics = db[user].gameData
                 return
             }
