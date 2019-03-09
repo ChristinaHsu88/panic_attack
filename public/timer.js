@@ -73,7 +73,7 @@ function endGame(metrics, panic) {
   saveUserData(metrics)
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
-  // call a function that starts the endGame scene
+  loadEndgame('endgame', 0)// call a function that starts the endGame scene
 }
 
 function showChart(){
