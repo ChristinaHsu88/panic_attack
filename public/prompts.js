@@ -18,14 +18,51 @@ function promptEat(){
 }
 
 function promptNap(){
-  // const napOptionsObj = [{
-  //   obj
-  // }]
-  // allPrompts(options)
-  // increase sleep if YES
+  const napOptionsObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          title: 'YOU\'RE SLEEPY. NAP?',
+          scoreEffect: {
+            primaryMetrics: { sleepTime: +2 }
+          }
+        },
+        option2: {
+          title: 'GO BACK'
+        }
+      }
+    }
+  }]
+  makePopUp(napOptionsObj)
 }
 
-function promptWorldEvents(){
-  // allPrompts(options)
-  // generate appropriate in-game response based on event options
+function promptWorldEvent(){
+  const friendEventObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
+          playerMove: 'living room'
+        },
+        option2: {
+          title: 'GO BACK'
+        }
+      }
+    }
+  }]
+  const outsideEventObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          title: 'YOU HEAR AN ICE CREAM TRUCK. GO OUTSIDE?',
+          playerMove: 'outside'
+        },
+        option2: {
+          title: 'GO BACK'
+        }
+      }
+    }
+  }]
+  const worldEventsArr = [friendEventObj, outsideEventObj]
+  makePopUp(outsideEventObj)
 }

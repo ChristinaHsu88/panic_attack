@@ -7,7 +7,8 @@ function timer() {
   setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
 
-  const worldTimes = worldEventsTimes()
+  // const worldTimes = worldEventsTimes()
+  const worldTimes = [170]
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
   const napPromptTime = [85]
@@ -18,8 +19,8 @@ function timer() {
         gameTime = gameTime - 1
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         eatPromptTimes.includes(gameTime) ? promptEat() : ''
-        // napPromptTime.includes(gameTime) ? promptNap() : ''
-        // worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        napPromptTime.includes(gameTime) ? promptNap() : ''
+        worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
