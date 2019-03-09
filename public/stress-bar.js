@@ -29,7 +29,5 @@ function updateStressBar(stressLevel) {
     stressColor = 'redStress'
   }
   Crafty('StressBar').addComponent(stressColor)
-  console.log('updateStressBar - stressLevel:', stressLevel);
-  console.log('updateStressBar - stressBar:', stressColor);
   return
 }
