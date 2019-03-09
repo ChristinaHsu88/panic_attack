@@ -3,48 +3,41 @@ let playerMetrics = {
   name: '',
   daysPlayed: 0, // increment up at end of day
   primaryMetrics: {
-    stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
-    energy: 0, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
+    stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
+    energy: 5, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
   },
   platter: { // affected by player actions; set by startingScore at start of game/round
-    timeIn: 0,
-    downTime: 0,
-    focusTime: 0,
-    playTime: 0,
-    connectingTime: 0,
-    sleepTime: 0,
-    physicalTime: 0
+    timeIn: 6,
+    downTime: 6,
+    focusTime: 6,
+    playTime: 6,
+    connectingTime: 6,
+    sleepTime: 0, // set by startingScore
+    physicalTime: 6
   }
 } // save to DB at end of game
 
+// sets score for day 1 and day 1+ games
 function startingScore(metrics){
   console.log('startingScore fired')
-  if (metrics.daysPlayed === 0) {
-    for (let metric in metrics.primaryMetrics) {
-      metrics.primaryMetrics[metric] = 5
+  metrics.platter.sleepTime += 6
+  metrics.primaryMetrics.stress = 5
+  metrics.primaryMetrics.energy = 5
+  for (let metric in metrics.platter) {
+    if (metrics.platter[metric] < 3) {
+      metrics.platter[metric] = 2 // no metric should be 0 at game start
+    } else if (metrics.platter[metric] > 9) {
+      metrics.platter[metric] = 8 // no metric should be 10+ at game start
     }
-    for (let metric in metrics.platter) {
-      metrics.platter[metric] = 6
-    }
-  } else {
-    metrics.platter.sleepTime += 6
-    metrics.primaryMetrics.stress = 5 // this is TEMP; will need nuance
-    metrics.primaryMetrics.energy = 5
-    // TODO
-    // stress and energy may need to be manipulated
   }
-  console.log('starting score metrics', metrics);
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
-  console.log('starting score metrics after', metrics);
-  return metrics
+  console.log('starting score:', playerMetrics)
+  return
 }
 
 // called after every metric changing method (except calculateEnergy)
-  // interaction events
-  // startingScore
-  // self (recursive)
-  // timeScoreChanger
+  // interaction events // startingScore // self (recursive) // timeScoreChanger
 function calculateStress(metrics) {
   if (!gameOver) {
     console.log('calcStress fired')
@@ -63,6 +56,7 @@ function calculateStress(metrics) {
         console.log('STRESS UP')
         console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
         setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
+        return // don't up stress PER metric, but only once (otherwise game is too hard)
       }
     }
     updateStressBar(metrics.primaryMetrics.stress)
