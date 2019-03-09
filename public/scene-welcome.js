@@ -54,24 +54,16 @@ function loadWelcome(scene, duration) {
 
 loadWelcome('welcome', 0);
 
-/* check whether the user exists in the DB already. If yes, grab the data from DB; if not, use the default template to start */
+// if user in DB, replace playerMetrics with saved
 function checkUser(username) {
-    axios.get('/data', {
-            gameData: {
-             name: username
-         }
-    })
+    axios.get('/data', { gameData: { name: username } })
     .then(function (response) {
         let db = response.data
         for (let user in db) {
             if (db[user].gameData.name === username) {
-                db[user].gameData.primaryMetrics.stress = 0 /* have to reset for now otherwise the game will be over right away on the second day because the stress level was too high the day before */
-                console.log('this is existing user data', db[user].gameData) /* some data for the existing user still has issues. ie. days_plays not render properly after the first day also how to reset some of the value*/
-                startingScore(db[user].gameData)
-                }
-            if (db[user].gameData.name !== username) {
-                playerMetrics.name = username
-                startingScore(playerMetrics)
+                console.log('User Found!', db[user].gameData)
+                playerMetrics = db[user].gameData
+                return
             }
         }
     })
