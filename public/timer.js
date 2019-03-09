@@ -6,12 +6,19 @@ function timer() {
   setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
 
+  const worldTimes = worldEventsTimes()
+  const scoreChangeTimes = [150, 120, 90, 60, 30]
+  const eatPromptTimes = [145, 95, 45]
+  const napPromptTime = [85]
+
   function tickTock() {
     if (!gameOver) {
       if (!pause && gameTime > 0) {
         gameTime = gameTime - 1
-        const scoreChangeTimes = [150, 120, 90, 60, 30]
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
+        eatPromptTimes.includes(gameTime) ? promptEat() : ''
+        napPromptTime.includes(gameTime) ? promptNap() : ''
+        worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
@@ -21,6 +28,12 @@ function timer() {
       }
     }
   }
+}
+
+// returns 2 times randomly from array
+function worldEventsTimes(){
+  const worldEvents = [160, 130, 100, 70, 40, 10]
+  return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
 
 document.onkeydown = function (e) { // TODO disable player
