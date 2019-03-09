@@ -7,8 +7,7 @@ function timer() {
   setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
 
-  // const worldTimes = worldEventsTimes()
-  const worldTimes = [170]
+  const worldTimes = worldEventsTimes()
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
   const napPromptTime = [85]

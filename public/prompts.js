@@ -36,6 +36,8 @@ function promptNap(){
   makePopUp(napOptionsObj)
 }
 
+let event = 0 // this ensures the same event is not called twice per game
+// TODO - add more events, randomize which are called; add more options to existing events, randomize which are available, etc.
 function promptWorldEvent(){
   const friendEventObj = [{
     obj: {
@@ -64,5 +66,6 @@ function promptWorldEvent(){
     }
   }]
   const worldEventsArr = [friendEventObj, outsideEventObj]
-  makePopUp(outsideEventObj)
+  makePopUp(worldEventsArr[event])
+  event++
 }
