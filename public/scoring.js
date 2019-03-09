@@ -1,7 +1,10 @@
 // universal variable that persists throughout gameplay until browser is refreshed
 let playerMetrics = {
   name: '',
-  daysPlayed: 0, // increment up at end of day
+  previousDays: {
+    daysPlayed: 0, // increment up at end of day
+    panic: false
+  },
   primaryMetrics: {
     stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
     energy: 5, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
@@ -124,5 +127,3 @@ function disableInteractions (metrics) {
 }
 
 // body check
-// don't let anything go above 10
-// don't let anything go below 0
