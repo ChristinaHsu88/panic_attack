@@ -5,9 +5,7 @@ Crafty.scene('endgame', function() {
   Crafty.e('2D, DOM, Canvas, Text, Mouse')
   .attr({ x: 20, y: 70 })
   .text(function() {
-    console.log('Hello')
-    console.log(playerMetrics.primaryMetrics.stress)
-    if (playerMetrics.primaryMetrics.stress > 14) {
+    if (playerMetrics.primaryMetrics.stress > 10) {
       return 'You gotta learn how to chill.'
     } else {
       return 'Time for some good sleep'
@@ -20,6 +18,13 @@ Crafty.scene('endgame', function() {
       Crafty.enterScene('nightCats')
     }
   })
+
+   /* Press enter to proceed to the final page (Cats page) */
+  Crafty.e('2D, DOM, Canvas, Text, Mouse')
+  .attr({ x: 160, y: 270 })
+  .text('Press enter to continue')
+  .textFont({ size: '30px', weight: 'bold', type: 'italic'})
+  .textColor('white')
 })
 
 function loadEndgame(scene, duration) {
