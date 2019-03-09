@@ -15,5 +15,5 @@ Crafty.scene('nightCats', function() {
             gameTime = 180
             startingScore(playerMetrics)
         }
-    })
+      })
 })
