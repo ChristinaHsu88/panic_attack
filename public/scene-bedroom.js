@@ -7,4 +7,6 @@ Crafty.scene('bedroom', function() {
     makePlayer()
     generateRoomItems()
     createStressBar()
+    // likely have to Crafty.enterScene('endGame') here, but wrap in a function so that it's triggered by endGame()
+    // it seems like .enterScene needs to be called within the scene that is active, therefore all scenes will need endGame
 })

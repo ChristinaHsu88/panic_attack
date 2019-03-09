@@ -3,7 +3,7 @@ let gameOver = false
 
 function timer() {
   let gameTime = 180
-  setInterval(tickTock, 1000)
+  setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
 
   function tickTock() {
@@ -23,7 +23,7 @@ function timer() {
   }
 }
 
-document.onkeydown = function (e) {
+document.onkeydown = function (e) { // TODO disable player
   if (e.code === 'Space') {
     pause ? pause = false : pause = true
     if (pause) {
@@ -36,7 +36,6 @@ document.onkeydown = function (e) {
 
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
-  console.log('endGame fired -- nothing should be fired after this point');
   gameOver = true
   metrics.daysPlayed += 1
   console.log('Game is over?', gameOver)
@@ -44,11 +43,10 @@ function endGame(metrics, panic) {
   let endingReason
   panic ? endingReason = 'had a panic attack' : endingReason = 'ran out of time'
   console.log(`Your game ended because you ${endingReason}`)
-  axios.post('/data', { gameData: metrics })
-    .then(res => console.log('Game data saved to DB'))
-    .catch(err => console.log(err))
-  console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE');
+  saveUserData(metrics)
+  console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
+  // call a function that starts the endGame scene
 }
 
 function showChart(){
@@ -57,5 +55,13 @@ function showChart(){
   chart.style.display = 'block'
 }
 
+function saveUserData (metrics) {
+  axios.post('/data', { gameData: metrics })
+    .then(res => console.log('data saved'))
+    .catch(err => console.log(err))
+}
 // if game ends from panic attack, that should effect next day's game play
   // perhaps user will get a notice to do body checks to determine which platter metric needs attention
+
+// bio cues
+// world cues

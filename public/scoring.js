@@ -1,7 +1,7 @@
 // universal variable that persists throughout gameplay until browser is refreshed
-const playerMetrics = {
+let playerMetrics = {
   name: '',
-  daysPlayed : 0, // increment up at end of day
+  daysPlayed: 0, // increment up at end of day
   primaryMetrics: {
     stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
     energy: 0, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
@@ -27,12 +27,17 @@ function startingScore(metrics){
       metrics.platter[metric] = 6
     }
   } else {
+    console.log('YESSSKJSDFKJF');
     metrics.platter.sleepTime += 6
+    metrics.primaryMetrics.stress = 5 // this is TEMP; will need nuance
+    metrics.primaryMetrics.energy = 5
     // TODO
     // stress and energy may need to be manipulated
   }
+  console.log('starting score metrics', metrics);
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
+  console.log('starting score metrics after', metrics);
   return metrics
 }
 
@@ -62,7 +67,7 @@ function calculateStress(metrics) {
       }
     }
     updateStressBar(metrics.primaryMetrics.stress)
-    return metrics
+    return
   }
   return console.log('calcStress says: GAME IS OVER')
 }
@@ -127,4 +132,3 @@ function disableInteractions (metrics) {
 // body check
 // don't let anything go above 10
 // don't let anything go below 0
-// pass param to endGame to determine HOW game ended (time out or panic attack)
