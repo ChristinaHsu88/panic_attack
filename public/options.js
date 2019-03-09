@@ -88,6 +88,7 @@ function makePopUp (hitItem) {
                     for (effect in scoreEffect.primaryMetrics) {
                         playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
                     }
+                    loseTime()
                     calculateStress(playerMetrics)
                 }
                 Crafty('player').unfreeze()

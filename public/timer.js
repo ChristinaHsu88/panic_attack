@@ -1,8 +1,9 @@
 let pause = false
 let gameOver = false
+let gameTime = 180
 
+// called at start of game
 function timer() {
-  let gameTime = 180
   setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
 
@@ -28,6 +29,11 @@ function timer() {
       }
     }
   }
+}
+
+// called by user interaction
+function loseTime(){
+  gameTime -= 10
 }
 
 // returns 2 times randomly from array
