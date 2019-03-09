@@ -46,6 +46,7 @@ function endGame(metrics, panic) {
   saveUserData(metrics)
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
+  // call a function that starts the endGame scene
 }
 
 function showChart(){
@@ -61,3 +62,6 @@ function saveUserData (metrics) {
 }
 // if game ends from panic attack, that should effect next day's game play
   // perhaps user will get a notice to do body checks to determine which platter metric needs attention
+
+// bio cues
+// world cues
