@@ -9,4 +9,11 @@ Crafty.scene('nightCats', function() {
     .text('Press enter to start another game')
     .textFont({ size: '30px', weight: 'bold', type: 'italic'})
     .textColor('white')
+    .bind('KeyDown', function(e) {
+        if (e.key == Crafty.keys.ENTER) {
+          Crafty.enterScene('bedroom')
+          //console.log(playerMetrics)
+          startingScore(playerMetrics)
+        }
+      })
 })
