@@ -1,3 +1,4 @@
+// game prompts are called in timer and handled in options
 function promptEat(){
   const eatOptionsObj = [{
     obj: {
