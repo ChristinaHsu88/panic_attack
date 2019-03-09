@@ -35,6 +35,10 @@ Crafty.c('Option', {
     },
     changeScore: function(scoreEffect) {
         this.scoreEffect = scoreEffect
+        return this
+    },
+    pauseGame: function() {
+        pause = true
     }
 })
 
@@ -80,8 +84,8 @@ function makePopUp (hitItem) {
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
-                const optionID = this.selectOption.optionObj['0']
-                const scoreEffect = Crafty(optionID).scoreEffect
+                const selectedOption = Crafty(this.selectOption.optionObj['0'])
+                const scoreEffect = selectedOption.scoreEffect
                 if (scoreEffect) { // i.e., if player selects anything other than 'GO BACK'
                     for (effect in scoreEffect.platter) {
                         playerMetrics.platter[effect] += scoreEffect.platter[effect]
