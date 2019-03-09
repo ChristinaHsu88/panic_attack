@@ -1,13 +1,9 @@
-// scene1 - outside of house                                    |* check!
-    // TODO - user types in player name and presses enter       |* check!
-        // query the DB according to name                       |* check!
-            // if new name, create entry in DB                  |* check!
-            // if name exists, pull entry from DB               |* check!
+// scene1 - outside of house
+    // TODO
         // if game has rolled over from previous round, user should not have to type in player name but simply hit enter to start next day
+        // this should query DB to pull saved data
 
-const alphabet =
-{A:'A',B:'B',C:'C',D:'D',E:'E',F:'F',G:'G',H:'H',I:'I',J:'J',K:'K',L:'L',M:'M',
-N:'N',O:'O',P:'P',Q:'Q',R:'R',S:'S',T:'T',U:'U',V:'V',W:'W',X:'X',Y:'Y',Z:'Z'}
+const alphabet = {A:'A',B:'B',C:'C',D:'D',E:'E',F:'F',G:'G',H:'H',I:'I',J:'J',K:'K',L:'L',M:'M',N:'N',O:'O',P:'P',Q:'Q',R:'R',S:'S',T:'T',U:'U',V:'V',W:'W',X:'X',Y:'Y',Z:'Z'}
 
 Crafty.scene('welcome', function() {
     Crafty.background('white url(assets/loading.png) no-repeat center center')
@@ -27,9 +23,12 @@ Crafty.scene('welcome', function() {
         if (e.key == Crafty.keys.ENTER) {
             Crafty.enterScene('bedroom')
             timer()
-            checkUser(username);                  /* checking user in DB */
+            checkUser(username)
         }
-        for (let letter in alphabet) {            /* loop through alphabet to find letter that user enters and store in username */
+        // TODO
+            // let user backspace or clear name before enter
+            // tell user how to log in (i.e., press enter)
+        for (let letter in alphabet) {
             if (e.key == Crafty.keys[letter]) {
                 this.text(alphabet[letter])
                 username += this.text(alphabet[letter])._text
