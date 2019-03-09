@@ -30,7 +30,6 @@ Crafty.scene('welcome', function() {
             Crafty.enterScene('bedroom')            /* scene will only load when the user has entered a name */
             timer()
             checkUser(username) // checks DB for existing user; sets playerMetrics to saved DB
-            startingScore(playerMetrics)
             }
         }
         // TODO /* all done */
@@ -41,7 +40,7 @@ Crafty.scene('welcome', function() {
             if (e.key == Crafty.keys[letter]) {
                 username += this.text(alphabet[letter])._text
                 this.text(username)
-            } 
+            }
         }
         if (e.key == Crafty.keys.BACKSPACE) {       /* allow user to edit their name */
             username = username.slice(0, - 1)

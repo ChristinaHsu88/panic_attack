@@ -27,7 +27,6 @@ function startingScore(metrics){
       metrics.platter[metric] = 6
     }
   } else {
-    console.log('YESSSKJSDFKJF');
     metrics.platter.sleepTime += 6
     metrics.primaryMetrics.stress = 5 // this is TEMP; will need nuance
     metrics.primaryMetrics.energy = 5
@@ -51,7 +50,7 @@ function calculateStress(metrics) {
     console.log('calcStress fired')
     calculateEnergy(metrics)
     if (isPlatterImbalanced(metrics)) {
-      metrics.primaryMetrics.stress += 2
+      metrics.primaryMetrics.stress += 1
       console.log('imbalanced platter has increased stress')
     }
     if (areYouPanicking(metrics.primaryMetrics.stress)) {
