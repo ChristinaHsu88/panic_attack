@@ -1,5 +1,6 @@
 // universal variable that persists throughout gameplay until browser is refreshed
 const playerMetrics = {
+  name: '',
   daysPlayed : 0, // increment up at end of day
   primaryMetrics: {
     stress: 0, // affected directly actions (+ and -, sometimes with same action); indirectly by all
@@ -36,6 +37,10 @@ function startingScore(metrics){
 }
 
 // called after every metric changing method (except calculateEnergy)
+  // interaction events
+  // startingScore
+  // self (recursive)
+  // timeScoreChanger
 function calculateStress(metrics) {
   if (!gameOver) {
     console.log('calcStress fired')
@@ -45,7 +50,7 @@ function calculateStress(metrics) {
       console.log('imbalanced platter has increased stress')
     }
     if (areYouPanicking(metrics.primaryMetrics.stress)) {
-      endGame(metrics)
+      endGame(metrics, true)
       return
     }
     for (let metric in metrics.platter) {
@@ -73,7 +78,7 @@ function areYouPanicking(stressLevel) {
   return panicking
 }
 
-// called by calculateStress
+// called by calcStress
 function isPlatterImbalanced(metrics) {
   console.log('isPlatterImbalanced fired');
   let bigGap
@@ -111,6 +116,7 @@ function timeScoreChanger(metrics) {
   return metrics
 }
 
+// TODO
 // not being called anywhere yet
 function disableInteractions (metrics) {
   if (metrics.platter.physicalTime > 9) {
@@ -120,3 +126,5 @@ function disableInteractions (metrics) {
 
 // body check
 // don't let anything go above 10
+// don't let anything go below 0
+// pass param to endGame to determine HOW game ended (time out or panic attack)

@@ -1,10 +1,4 @@
-/* h1 {
-  color: black;
-  font-size: 55px;
-  font-family: 'VT323', monospace;
-} */
-
-#game-style {
+#game-flex {
   display: flex;
   flex-direction: column;
   padding-left: 25em;
@@ -13,6 +7,7 @@
 #game {
   border: 2px black solid;
 }
+
 h1 {
   font-family: 'VT323', monospace;
   font-size: 6rem;
