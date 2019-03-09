@@ -36,14 +36,20 @@ MongoClient.connect(uri, (err, client) => {
         })
     })
 
-    /* save user data in MongoDB */
     app.post('/data', (req, res) => {
         console.log(req.body)
-        db.collection('data').insertOne(req.body, (err, result) => {
-            if (err) return console.log(err)
-            console.log(`Game has been saved to DB, with the unique: ${result.ops[0]._id}`)
-            res.json({ player: result.ops[0]._id })
-        })
+        db.collection('data').replaceOne(
+            { 'gameData.name': req.body.gameData.name },
+            { 'gameData': req.body.gameData },
+            { upsert: true },
+            (err, doc) => {
+                if (err) {
+                    console.log('update/add failed')
+                } else {
+                    console.log('update/add worked')
+                }
+            }
+        )
     })
 
     app.listen(PORT, () => {
