@@ -23,11 +23,14 @@ Crafty.scene('welcome', function() {
         if (e.key == Crafty.keys.ENTER) {
             Crafty.enterScene('bedroom')
             timer()
-            checkUser(username)
+            playerMetrics.name = username
+            checkUser(username) // checks DB for existing user; sets playerMetrics to saved DB
+            startingScore(playerMetrics)
         }
         // TODO
             // let user backspace or clear name before enter
             // tell user how to log in (i.e., press enter)
+            // do not allow empty username
         for (let letter in alphabet) {
             if (e.key == Crafty.keys[letter]) {
                 this.text(alphabet[letter])
@@ -66,6 +69,9 @@ function checkUser(username) {
                 return
             }
         }
+    })
+    .then(() => {
+        startingScore(playerMetrics)
     })
     .catch(function (error) {
         console.log(error)
