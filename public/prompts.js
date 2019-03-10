@@ -86,7 +86,6 @@ function promptTherapistCall() {
             gainNewSkill: function(){
               Crafty('Player').bind('KeyDown', function(e) {
                 if (e.key == Crafty.keys.B) {
-                  // Crafty.e('Message').bodyCheck()
                   bodyCheck()
                 }
               })
@@ -103,14 +102,23 @@ function promptTherapistCall() {
 }
 
 function bodyCheck() {
+  const lowMetricsMessages = {
+    timeIn: 'You need to check in with your body. Have you found your meditation pillow yet?',
+    downTime: 'You need some down time. Have a seat and enjoy the scenery.',
+    focusTime: 'You need to engage your brain. Try drawing or tidying up.',
+    playTime: 'You need to play!',
+    connectingTime: 'You need to connect. Is there anyone you can speak to?',
+    sleepTime: 'You need to sleep.',
+    physicalTime: 'You need to move your body.'
+  }
+  const lowMetrics = []
   for (let metric in playerMetrics.platter) {
     if (playerMetrics.platter[metric] < 2) {
-      console.log('low metric:', playerMetrics.platter[metric])
-    } else {
-      console.log('All metrics are good')
+      lowMetrics.push(metric)
     }
   }
-  // write messages to correspond
+  for (let lowMetric of lowMetrics) {
+    console.log(lowMetricsMessages[lowMetric])
+  }
   // display messages on screen
 }
-
