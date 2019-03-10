@@ -3,7 +3,7 @@ let playerMetrics = {
   name: '',
   previousDays: {
     daysPlayed: 0, // increment up at end of day
-    panic: false
+    panic: false // this will likely be OBSOLETE
   },
   primaryMetrics: {
     stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
