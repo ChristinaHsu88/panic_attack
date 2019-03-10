@@ -5,7 +5,7 @@ Crafty.scene('endgame', function() {
   Crafty.e('2D, DOM, Canvas, Text, Mouse')
   .attr({ x: 20, y: 70 })
   .text(function() {
-    if (playerMetrics.primaryMetrics.stress > 10) {
+    if (playerMetrics.primaryMetrics.stress >= 10) {
       return 'You gotta learn how to chill.'
     } else {
       return 'Time for some good sleep'
