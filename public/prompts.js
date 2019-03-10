@@ -85,7 +85,7 @@ function promptTherapistCall() {
           newSkill: {
             description: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // display in pop up, and in a note under the game
             gainNewSkill: function(){
-              playerMetrics.daysPlayed.newSkill = true
+              playerMetrics.previousDays.newSkill = true
               // display 'BODY CHECK - SHIFT' in DOM under game
             }
           }
