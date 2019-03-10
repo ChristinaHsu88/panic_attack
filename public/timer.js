@@ -20,9 +20,9 @@ function timer() {
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
-        /* eatPromptTimes.includes(gameTime) ? promptEat() : ''
+        eatPromptTimes.includes(gameTime) ? promptEat() : ''
         napPromptTime.includes(gameTime) ? promptNap() : ''
-        worldTimes.includes(gameTime) ? promptWorldEvent() : '' */
+        worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }

@@ -74,6 +74,7 @@ function promptWorldEvent(){
   event++
 }
 
+// called in scoring
 function promptTherapistCall() {
   Crafty('Player').freeze()
   const therapistCall = [{
@@ -82,13 +83,10 @@ function promptTherapistCall() {
         option1: {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
-            description: 'Want to avoid another panic attack? Check in with your body at any time to learn what you are needing in this moment. Hit "B" to do a body check.',
+            description: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // display in pop up, and in a note under the game
             gainNewSkill: function(){
-              Crafty('Player').bind('KeyDown', function(e) {
-                if (e.key == Crafty.keys.B) {
-                  bodyCheck()
-                }
-              })
+              playerMetrics.daysPlayed.newSkill = true
+              // display 'BODY CHECK - SHIFT' in DOM under game
             }
           }
         },
@@ -101,7 +99,7 @@ function promptTherapistCall() {
   makePopUp(therapistCall)
 }
 
-function bodyCheck() {
+function bodyCheck(platter) {
   const lowMetricsMessages = {
     timeIn: 'You need to check in with your body. Have you found your meditation pillow yet?',
     downTime: 'You need some down time. Have a seat and enjoy the scenery.',
@@ -112,13 +110,13 @@ function bodyCheck() {
     physicalTime: 'You need to move your body.'
   }
   const lowMetrics = []
-  for (let metric in playerMetrics.platter) {
-    if (playerMetrics.platter[metric] < 2) {
+  for (let metric in platter) {
+    if (platter[metric] < 2) {
       lowMetrics.push(metric)
     }
   }
   for (let lowMetric of lowMetrics) {
-    console.log(lowMetricsMessages[lowMetric])
+    console.log(lowMetricsMessages[lowMetric]) // display in game popup
   }
   // TODO display messages on screen
 }

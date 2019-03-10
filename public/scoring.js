@@ -3,7 +3,8 @@ let playerMetrics = {
   name: '',
   previousDays: {
     daysPlayed: 0, // increment up at end of day
-    panic: false // this will likely be OBSOLETE
+    panic: false, // this will likely be OBSOLETE
+    newSkill: false // false triggers therapist call on daysPlayed > 0; answering call toggles to true
   },
   primaryMetrics: {
     stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
@@ -36,7 +37,7 @@ function startingScore(metrics){
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
   console.log('starting score:', playerMetrics)
-  if (metrics.previousDays.panic) {
+  if (metrics.previousDays.daysPlayed && newSkill) {
     setTimeout(promptTherapistCall, 2000)
   }
   return
