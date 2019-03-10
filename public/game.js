@@ -9,3 +9,4 @@ Crafty.init(715, 325, document.getElementById('game'));
   // scene-bedroom
   // items
   // options
+  // prompts
