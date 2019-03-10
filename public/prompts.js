@@ -70,3 +70,5 @@ function promptWorldEvent(){
   makePopUp(worldEventsArr[event])
   event++
 }
+
+function promptTherapistCall() {}

@@ -36,6 +36,9 @@ function startingScore(metrics){
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
   console.log('starting score:', playerMetrics)
+  if (metrics.previousDays.panic) {
+    promptTherapistCall()
+  }
   return
 }
 
