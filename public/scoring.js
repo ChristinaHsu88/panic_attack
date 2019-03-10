@@ -45,7 +45,7 @@ function startingScore(metrics){
 // called after every metric changing method (except calculateEnergy)
   // interaction events // startingScore // self (recursive) // timeScoreChanger
 function calculateStress(metrics) {
-  if (!gameOver) {
+  if (!gameOver && !pause) {
     // console.log('calcStress fired')
     calculateEnergy(metrics)
     if (isPlatterImbalanced(metrics)) {
