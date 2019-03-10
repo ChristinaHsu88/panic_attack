@@ -4,7 +4,12 @@ Crafty.scene('bedroom', function() {
     // TODO - change cat sprite for player
     Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] })
     // generate all entities in this scene
-    makePlayer()
+    console.log('how much game time left', gameTime)
+    if (gameTime > 178) {
+        makePlayer(340, 50)
+    } else {
+        makePlayer(400, 250)
+    }
     generateRoomItems()
     createStressBar()    
     // likely have to Crafty.enterScene('endGame') here, but wrap in a function so that it's triggered by endGame()
