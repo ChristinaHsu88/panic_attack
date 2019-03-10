@@ -105,6 +105,7 @@ function generateRoomItems() {
     })
 }
 
+/* items for living room only */
 function generateLivingRoomItems () {
     Crafty.e('Item')
     .place(400, 300)
@@ -112,6 +113,25 @@ function generateLivingRoomItems () {
     .attr({
         type: 'door',
         location: 'outside'
+    })
+
+    Crafty.e('Item')
+    .place(100, 75)
+    .color('yellow')
+    .attr({
+        type: 'door',
+        location: 'bedroom'
+    })
+}
+
+/* a door for user to go back inside */
+function generateOutsideItems() {
+    Crafty.e('Item')
+    .place(400, 300)
+    .color('yellow')
+    .attr({
+        type: 'door',
+        location: 'livingroom'
     })
 }
 

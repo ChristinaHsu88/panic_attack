@@ -32,7 +32,9 @@ function renderNewScene(hitItem) {
   console.log(location) //living room
   if (location === "livingroom") {
     Crafty.enterScene('livingroom')
-  } else if (location === "outside") {
+  } else if (location === 'outside') {
     Crafty.enterScene('outside')
+  } else if (location === "bedroom") {
+    Crafty.enterScene('bedroom') 
   }
 }
