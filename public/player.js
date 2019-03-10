@@ -10,9 +10,6 @@ function makePlayer (argument) {
       })
       .fourway(200)
       .checkHits('Item')
-      // .bind('HitOn', function(hitItem) {
-      //   itemPopUp(hitItem)
-      // })
       .bind('HitOn', function(hitItem) {
         if (hitItem['0'].obj.type !== 'door') {
           itemPopUp(hitItem)
@@ -28,16 +25,14 @@ function makePlayer (argument) {
           console.log('Player stats: \n', playerMetrics)
         }
       })
-      
 }
 
 function renderNewScene(hitItem) {
-  //console.log(hitItem)
   const location = hitItem['0'].obj.location
   console.log(location) //living room
   if (location === "livingroom") {
     Crafty.enterScene('livingroom')
+  } else if (location === "outside") {
+    Crafty.enterScene('outside')
   }
-  // const location = hitItem['0'].obj.location
-  // Crafty.enterscene(location)
 }

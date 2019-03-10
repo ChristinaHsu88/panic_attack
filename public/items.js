@@ -105,6 +105,16 @@ function generateRoomItems() {
     })
 }
 
+function generateLivingRoomItems () {
+    Crafty.e('Item')
+    .place(400, 300)
+    .color('yellow')
+    .attr({
+        type: 'door',
+        location: 'outside'
+    })
+}
+
 function itemPopUp(hitItem) {
     Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
         .color('grey')
