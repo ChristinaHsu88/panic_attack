@@ -13,8 +13,9 @@ Crafty.c('OptionsBox', {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
             let playerMove = optionsObj[option].playerMove
+            let newSkill = optionsObj[option].newSkill
             iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove)
+            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
         }
     }
 })
@@ -40,6 +41,10 @@ Crafty.c('Option', {
     },
     movePlayer: function(playerMove) {
         this.playerMove = playerMove
+        return this
+    },
+    receiveCall: function(newSkill) {
+        this.newSkill = newSkill
         return this
     }
 })
@@ -106,6 +111,12 @@ function makePopUp (hitItem) {
                     // TODO - send player to selected scene
                     console.log(`Player moved ${playerMove}! (You just can't tell yet.)`)
                     loseTime()
+                }
+                // find new skill
+                const newSkill = selectedOption.newSkill
+                if (newSkill) {
+                    document.getElementById('new-skill').innerText = newSkill.description
+                    newSkill.gainNewSkill()
                 }
                 Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()

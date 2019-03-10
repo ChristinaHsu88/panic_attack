@@ -79,11 +79,13 @@ function promptTherapistCall() {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             description: 'Want to avoid another panic attack? Check in with your body at any time to learn what you are needing in this moment. Hit "Q" to do a body check.',
-            gainNewSkill: Crafty('Player').bind('KeyDown', function(e) {
-              if (e.key == Crafty.keys.Q) {
-                Crafty.e('Message').renderMessage()
-              }
-            })
+            gainNewSkill: function(){
+              Crafty('Player').bind('KeyDown', function(e) {
+                if (e.key == Crafty.keys.Q) {
+                  Crafty.e('Message').bodyCheck()
+                }
+              })
+            }
           }
         },
         option2: {
@@ -94,3 +96,10 @@ function promptTherapistCall() {
   }]
   makePopUp(therapistCall)
 }
+
+function bodyCheck() {
+  // identify low metrics
+  // write messages to correspond
+  // display messages on screen
+}
+
