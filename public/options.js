@@ -40,6 +40,7 @@ Crafty.c('Option', {
     },
     movePlayer: function(playerMove) {
         this.playerMove = playerMove
+        return this
     }
 })
 

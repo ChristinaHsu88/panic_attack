@@ -37,7 +37,7 @@ function startingScore(metrics){
   updateStressBar(metrics.primaryMetrics.stress)
   console.log('starting score:', playerMetrics)
   if (metrics.previousDays.panic) {
-    promptTherapistCall()
+    setTimeout(promptTherapistCall, 2000)
   }
   return
 }

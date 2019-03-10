@@ -71,4 +71,26 @@ function promptWorldEvent(){
   event++
 }
 
-function promptTherapistCall() {}
+function promptTherapistCall() {
+  const therapistCall = [{
+    obj: {
+      optionsList: {
+        option1: {
+          title: 'YOUR THERAPIST IS CALLING. ANSWER?',
+          newSkill: {
+            description: 'Want to avoid another panic attack? Check in with your body at any time to learn what you are needing in this moment. Hit "Q" to do a body check.',
+            gainNewSkill: Crafty('Player').bind('KeyDown', function(e) {
+              if (e.key == Crafty.keys.Q) {
+                Crafty.e('Message').renderMessage()
+              }
+            })
+          }
+        },
+        option2: {
+          title: 'DO NOT ANSWER'
+        }
+      }
+    }
+  }]
+  makePopUp(therapistCall)
+}
