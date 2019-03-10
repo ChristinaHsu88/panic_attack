@@ -120,5 +120,5 @@ function bodyCheck() {
   for (let lowMetric of lowMetrics) {
     console.log(lowMetricsMessages[lowMetric])
   }
-  // display messages on screen
+  // TODO display messages on screen
 }
