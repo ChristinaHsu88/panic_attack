@@ -106,7 +106,7 @@ function generateRoomItems() {
 }
 
 /* items for living room only */
-function generateLivingRoomItems () {
+function generateLivingRoomItems() {
     Crafty.e('Item')
     .place(400, 300)
     .color('yellow')
@@ -122,6 +122,66 @@ function generateLivingRoomItems () {
         type: 'door',
         location: 'bedroom'
     })
+
+    Crafty.e('Item')
+    .place(530, 200)
+    .color('red')
+    .attr({
+        type: 'couch',
+        optionsList: {
+            option1: {
+                title: 'CHAT WITH FRIEND',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option2: {
+                title: 'WATCH TV'
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
+    })
+
+    Crafty.e('Item')
+    .place(230, 180)
+    .color('gray')
+    .attr({
+        type: 'dog',
+        optionsList: {
+            option1: {
+                title: 'PLAY WITH DOG',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
+    })
+
+    Crafty.e('Item')
+    .place(530, 40)
+    .color('black')
+    .attr({
+        type: 'treadmill',
+        optionsList: {
+            option1: {
+                title: 'RUNNING',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option3: {
+                title: 'GO BACK',
+                scoreEffect: {
+                   
+                }
+            }
+        }
+    })
 }
 
 /* a door for user to go back inside */
@@ -132,6 +192,46 @@ function generateOutsideItems() {
     .attr({
         type: 'door',
         location: 'livingroom'
+    })
+    Crafty.e('Item')
+    .place(530, 200)
+    .color('red')
+    .attr({
+        type: 'bench',
+        optionsList: {
+            option1: {
+                title: 'SIT',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option2: {
+                title: 'DRSAW',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
+    })
+    Crafty.e('Item')
+    .place(330, 200)
+    .color('brown')
+    .attr({
+        type: 'tree',
+        optionsList: {
+            option1: {
+                title: 'WATCH TREES',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
     })
 }
 
