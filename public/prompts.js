@@ -74,7 +74,7 @@ function promptWorldEvent(){
   event++
 }
 
-// called in scoring
+// called in scoring, handled in options
 function promptTherapistCall() {
   Crafty('Player').freeze()
   const therapistCall = [{
@@ -83,10 +83,12 @@ function promptTherapistCall() {
         option1: {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
-            description: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // display in pop up, and in a note under the game
-            gainNewSkill: function(){
-              playerMetrics.previousDays.newSkill = true
-              // display 'BODY CHECK - SHIFT' in DOM under game
+            objectShapeKeeper: {
+              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
+              gainNewSkill: function(){
+                playerMetrics.previousDays.newSkill = true
+                document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
+              }
             }
           }
         },

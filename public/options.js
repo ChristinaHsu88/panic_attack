@@ -114,12 +114,26 @@ function makePopUp (hitItem) {
                 }
                 // find new skill
                 const newSkill = selectedOption.newSkill
+                // display call info
                 if (newSkill) {
-                    document.getElementById('new-skill').innerText = newSkill.description
-                    newSkill.gainNewSkill()
+                    setTimeout(takeCall, 200, newSkill)
                 }
                 Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
+}
+
+function takeCall(newSkill) {
+    Crafty.e('OptionsBox')
+        .color('grey')
+        .optionsListMaker(newSkill)
+
+    document.onkeydown = function (e) {
+        if (e.code === 'Enter') {
+            newSkill.objectShapeKeeper.gainNewSkill()
+            Crafty('player').unfreeze()
+            Crafty('Option, OptionsBox, Selector').destroy()
+        }
+    }
 }
