@@ -14,8 +14,10 @@ Crafty.c('OptionsBox', {
             let scoreEffect = optionsObj[option].scoreEffect
             let playerMove = optionsObj[option].playerMove
             let newSkill = optionsObj[option].newSkill
-            iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
+            if (optionTitle) {
+                iteration = iteration + 50
+                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
+            }
         }
     }
 })
@@ -128,10 +130,15 @@ function takeCall(newSkill) {
     Crafty.e('OptionsBox')
         .color('grey')
         .optionsListMaker(newSkill)
+    killBox(newSkill)
+}
 
+function killBox(newSkill) {
     document.onkeydown = function (e) {
         if (e.code === 'Enter') {
-            newSkill.objectShapeKeeper.gainNewSkill()
+            if (newSkill){
+                newSkill.objectShapeKeeper.gainNewSkill()
+            }
             Crafty('player').unfreeze()
             Crafty('Option, OptionsBox, Selector').destroy()
         }

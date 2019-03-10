@@ -102,6 +102,7 @@ function promptTherapistCall() {
 }
 
 function bodyCheck(platter) {
+  platter.timeIn += 1
   const lowMetricsMessages = {
     timeIn: 'You need to check in with your body. Have you found your meditation pillow yet?',
     downTime: 'You need some down time. Have a seat and enjoy the scenery.',
@@ -111,14 +112,38 @@ function bodyCheck(platter) {
     sleepTime: 'You need to sleep.',
     physicalTime: 'You need to move your body.'
   }
-  const lowMetrics = []
-  for (let metric in platter) {
-    if (platter[metric] < 2) {
-      lowMetrics.push(metric)
+  const lowMetrics = {
+    timeIn: {
+      title: ''
+    },
+    downTime: {
+      title: ''
+    },
+    focusTime: {
+      title: ''
+    },
+    playTime: {
+      title: ''
+    },
+    connectingTime: {
+      title: ''
+    },
+    sleepTime: {
+      title: ''
+    },
+    physicalTime: {
+      title: ''
     }
   }
-  for (let lowMetric of lowMetrics) {
-    console.log(lowMetricsMessages[lowMetric]) // display in game popup
+  for (let metric in platter) {
+    if (platter[metric] < 2) {
+      lowMetrics[metric].title = lowMetricsMessages[metric]
+    }
   }
-  // TODO display messages on screen
+  console.log(lowMetrics);
+  Crafty.e('OptionsBox')
+    .color('grey')
+    .optionsListMaker(lowMetrics)
+
+  killBox()
 }
