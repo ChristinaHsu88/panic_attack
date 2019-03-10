@@ -1,5 +1,6 @@
 // game prompts are called in timer and handled in options
 function promptEat(){
+  Crafty('Player').freeze()
   const eatOptionsObj = [{
     obj: {
       optionsList: {
@@ -19,6 +20,7 @@ function promptEat(){
 }
 
 function promptNap(){
+  Crafty('Player').freeze()
   const napOptionsObj = [{
     obj: {
       optionsList: {
@@ -40,6 +42,7 @@ function promptNap(){
 // TODO - add more events, randomize which are called; add more options to existing events, randomize which are available, etc.
 let event = 0 // this ensures the same event is not called twice per game
 function promptWorldEvent(){
+  Crafty('Player').freeze()
   const friendEventObj = [{
     obj: {
       optionsList: {
@@ -72,6 +75,7 @@ function promptWorldEvent(){
 }
 
 function promptTherapistCall() {
+  Crafty('Player').freeze()
   const therapistCall = [{
     obj: {
       optionsList: {
