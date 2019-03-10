@@ -1,7 +1,7 @@
 // define interactable items
 Crafty.c('Item', {
     init: function() {
-        this.addComponent('2D, DOM, phone')
+        this.addComponent('2D, DOM, phone, weed, laundry')
         this.w = 30
         this.h = 30
     },
@@ -15,7 +15,6 @@ Crafty.c('Item', {
 function generateRoomItems() {
     Crafty.e('Item, phone')
     .place(95, 197)
-    //.color('black')
     .attr({
         type: 'phone',
         optionsList: {
@@ -39,9 +38,8 @@ function generateRoomItems() {
     }
 })
 
-    Crafty.e('Item')
-    .place(250, 150)
-    .color('green')
+    Crafty.e('Item, weed')
+    .place(620, 2)
     .attr({
         type: 'weed',
         optionsList: {
@@ -70,9 +68,8 @@ function generateRoomItems() {
         }
     })
 
-    Crafty.e('Item')
-    .place(300, 300)
-    .color('orange')
+    Crafty.e('Item, laundry')
+    .place(500, 200)
     .attr({
         type: 'laundry',
         optionsList: {
@@ -98,7 +95,6 @@ function generateRoomItems() {
 
     Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'livingroom'
