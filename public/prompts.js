@@ -78,11 +78,12 @@ function promptTherapistCall() {
         option1: {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
-            description: 'Want to avoid another panic attack? Check in with your body at any time to learn what you are needing in this moment. Hit "Q" to do a body check.',
+            description: 'Want to avoid another panic attack? Check in with your body at any time to learn what you are needing in this moment. Hit "B" to do a body check.',
             gainNewSkill: function(){
               Crafty('Player').bind('KeyDown', function(e) {
-                if (e.key == Crafty.keys.Q) {
-                  Crafty.e('Message').bodyCheck()
+                if (e.key == Crafty.keys.B) {
+                  // Crafty.e('Message').bodyCheck()
+                  bodyCheck()
                 }
               })
             }
@@ -98,7 +99,13 @@ function promptTherapistCall() {
 }
 
 function bodyCheck() {
-  // identify low metrics
+  for (let metric in playerMetrics.platter) {
+    if (playerMetrics.platter[metric] < 2) {
+      console.log('low metric:', playerMetrics.platter[metric])
+    } else {
+      console.log('All metrics are good')
+    }
+  }
   // write messages to correspond
   // display messages on screen
 }
