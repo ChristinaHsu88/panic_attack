@@ -37,7 +37,7 @@ function generateRoomItems() {
                 title: 'GO BACK'
         }
     }
-    })
+})
 
     Crafty.e('Item')
     .place(250, 150)
@@ -94,6 +94,14 @@ function generateRoomItems() {
                 title: 'GO BACK'
             }
         }
+    })
+
+    Crafty.e('Item')
+    .place(400, 300)
+    .color('yellow')
+    .attr({
+        type: 'door',
+        location: 'livingroom'
     })
 }
 
