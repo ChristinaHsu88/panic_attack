@@ -3,6 +3,7 @@ Crafty.scene('bedroom', function() {
     Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
     // TODO - change cat sprite for player
     Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] })
+    Crafty.sprite(100, 'assets/phone_2.png', { phone: [0, 0] })
     // generate all entities in this scene
     console.log('how much game time left', gameTime)
     if (gameTime > 178) {

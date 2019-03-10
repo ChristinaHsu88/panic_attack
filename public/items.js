@@ -1,7 +1,7 @@
 // define interactable items
 Crafty.c('Item', {
     init: function() {
-        this.addComponent('2D, DOM, Color')
+        this.addComponent('2D, DOM, phone')
         this.w = 30
         this.h = 30
     },
@@ -13,9 +13,9 @@ Crafty.c('Item', {
 })
 
 function generateRoomItems() {
-    Crafty.e('Item')
-    .place(150, 100)
-    .color('black')
+    Crafty.e('Item, phone')
+    .place(95, 197)
+    //.color('black')
     .attr({
         type: 'phone',
         optionsList: {
