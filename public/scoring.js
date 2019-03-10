@@ -37,7 +37,7 @@ function startingScore(metrics){
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
   console.log('starting score:', playerMetrics)
-  if (metrics.previousDays.daysPlayed && newSkill) {
+  if (metrics.previousDays.daysPlayed && !metrics.previousDays.newSkill) {
     setTimeout(promptTherapistCall, 2000)
   }
   return
