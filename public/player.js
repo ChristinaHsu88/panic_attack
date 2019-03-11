@@ -44,12 +44,11 @@ function makePlayer (x, y) {
 /* new scene */
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location
-  console.log(hitItem)
   if (location === "livingroom") {
-    Crafty.enterScene('livingroom')
+    Crafty.enterScene(location)
   } else if (location === 'outside') {
-    Crafty.enterScene('outside')
+    Crafty.enterScene(location)
   } else if (location === "bedroom") {
-    Crafty.enterScene('bedroom')
+    Crafty.enterScene(location)
   }
 }

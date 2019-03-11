@@ -1,7 +1,7 @@
 // define interactable items
 Crafty.c('Item', {
     init: function() {
-        this.addComponent('2D, DOM, Color')
+        this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench')
         this.w = 30
         this.h = 30
     },
@@ -13,9 +13,8 @@ Crafty.c('Item', {
 })
 
 function generateRoomItems() {
-    Crafty.e('Item')
-    .place(150, 100)
-    .color('black')
+    Crafty.e('Item, phone')
+    .place(95, 197)
     .attr({
         type: 'phone',
         optionsList: {
@@ -39,9 +38,8 @@ function generateRoomItems() {
     }
 })
 
-    Crafty.e('Item')
-    .place(250, 150)
-    .color('green')
+    Crafty.e('Item, weed')
+    .place(620, 2)
     .attr({
         type: 'weed',
         optionsList: {
@@ -70,9 +68,8 @@ function generateRoomItems() {
         }
     })
 
-    Crafty.e('Item')
-    .place(300, 300)
-    .color('orange')
+    Crafty.e('Item, laundry')
+    .place(500, 200)
     .attr({
         type: 'laundry',
         optionsList: {
@@ -98,7 +95,6 @@ function generateRoomItems() {
 
     Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'livingroom'
@@ -109,7 +105,6 @@ function generateRoomItems() {
 function generateLivingRoomItems() {
     Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'outside'
@@ -117,17 +112,15 @@ function generateLivingRoomItems() {
 
     Crafty.e('Item')
     .place(100, 75)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'bedroom'
     })
 
-    Crafty.e('Item')
-    .place(530, 200)
-    .color('red')
+    Crafty.e('Item, roommate')
+    .place(530, 180)
     .attr({
-        type: 'couch',
+        type: 'roommate',
         optionsList: {
             option1: {
                 title: 'CHAT WITH FRIEND',
@@ -144,9 +137,8 @@ function generateLivingRoomItems() {
         }
     })
 
-    Crafty.e('Item')
-    .place(230, 180)
-    .color('gray')
+    Crafty.e('Item, dog')
+    .place(230, 130)
     .attr({
         type: 'dog',
         optionsList: {
@@ -162,9 +154,8 @@ function generateLivingRoomItems() {
         }
     })
 
-    Crafty.e('Item')
-    .place(530, 40)
-    .color('black')
+    Crafty.e('Item, treadmill')
+    .place(630, 80)
     .attr({
         type: 'treadmill',
         optionsList: {
@@ -188,14 +179,12 @@ function generateLivingRoomItems() {
 function generateOutsideItems() {
     Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'livingroom'
     })
-    Crafty.e('Item')
-    .place(530, 200)
-    .color('red')
+    Crafty.e('Item, bench')
+    .place(150, 200)
     .attr({
         type: 'bench',
         optionsList: {
@@ -206,7 +195,7 @@ function generateOutsideItems() {
                 }
             },
             option2: {
-                title: 'DRSAW',
+                title: 'DRAW',
                 scoreEffect: {
                     /* TBD */
                 }
@@ -217,8 +206,7 @@ function generateOutsideItems() {
         }
     })
     Crafty.e('Item')
-    .place(330, 200)
-    .color('brown')
+    .place(430, 200)
     .attr({
         type: 'tree',
         optionsList: {
