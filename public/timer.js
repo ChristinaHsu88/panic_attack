@@ -56,11 +56,13 @@ function pauseTimerAndScoring() {
   }
 }
 
-document.onkeydown = function (e) { // TODO disable player
+document.onkeydown = function (e) {
   if (e.code === 'Space') {
     Crafty.pause()
     pauseTimerAndScoring()
     // togglePause()
+  } else if (e.code === 'Enter') {
+    Crafty('BodyCheck, BodyCheckMessage').destroy()
   }
 }
 
