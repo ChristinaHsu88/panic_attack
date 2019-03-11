@@ -62,7 +62,11 @@ document.onkeydown = function (e) {
     pauseTimerAndScoring()
     // togglePause()
   } else if (e.code === 'Enter') {
-    Crafty('BodyCheck, BodyCheckMessage').destroy()
+    // if (Crafty('BodyCheck')) {
+      Crafty('BodyCheck, BodyCheckMessage').destroy()
+    // } else if (Crafty('TherapistCall')) {
+      Crafty('TherapistCall, TherapistMessage').destroy()
+    // }
   }
 }
 

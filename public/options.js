@@ -131,8 +131,11 @@ function makePopUp (hitItem) {
 
 function takeCall(newSkill) {
     Crafty.e('OptionsBox')
+        .addComponent('TherapistCall')
         .color('grey')
         .optionsListMaker(newSkill)
+
+    Crafty('Option').addComponent('TherapistMessage')
 }
 
 function killBox(newSkill) {
