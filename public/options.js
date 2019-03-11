@@ -112,6 +112,7 @@ function makePopUp (hitItem) {
                 if (playerMove) {
                     // TODO - send player to selected scene
                     console.log(`Player moved ${playerMove}! (You just can't tell yet.)`)
+                    Crafty.enterScene('livingroom')
                     loseTime()
                 }
                 // find new skill
