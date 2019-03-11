@@ -19,6 +19,7 @@ function makePlayer(x, y) {
     .place(x, y)
     .fourway(200)
     .checkHits('Item')
+    // animates Sprite
     .reel('PlayerTowards', 900, 3, 0, 3)
     .reel('PlayerLeft', 900, 3, 1, 3)
     .reel('PlayerRight', 900, 3, 2, 3)
@@ -27,6 +28,7 @@ function makePlayer(x, y) {
     .animate('PlayerLeft', -1)
     .animate('PlayerRight', -1)
     .animate('PlayerAway', -1)
+    // Creates conditions on which way sprite moves
     .bind('KeyDown', function(e) {
       if (e.key === Crafty.keys.DOWN_ARROW) {
         this.animate('PlayerTowards', -1);
@@ -52,6 +54,7 @@ function makePlayer(x, y) {
         console.log('Player stats: \n', playerMetrics);
       }
     })
+    // Creates boundaries of where Sprite can and can not go (aka creates walls)
     .bind('Move', function(evt) {
       var hitDatas, hitData;
       if ((hitDatas = this.hit('Solid'))) {
