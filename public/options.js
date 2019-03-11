@@ -109,7 +109,3 @@ function takeCall(newSkill) {
 
     Crafty('Option').addComponent('TherapistMessage')
 }
-
-function killBox(newSkill) {
-    console.log('killBox has been disabled');
-}
