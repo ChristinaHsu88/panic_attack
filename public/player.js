@@ -9,10 +9,10 @@ Crafty.c('Player', {
     this.y = y
     return this
   }
-})
+});
 // define and generate player
-  // player entity will be destroyed and regenerated in each scene
-function makePlayer (x, y) {
+// player entity will be destroyed and regenerated in each scene
+function makePlayer(x, y) {
   Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, player')
     .place(x, y)
     .fourway(200)
@@ -24,12 +24,26 @@ function makePlayer (x, y) {
     .bind('HitOff', function() {
       Crafty('ItemPopUp').destroy()
     })
-    .bind('KeyDown', function(e) { // to check score during development
+    .bind('KeyDown', function(e) {
+      // to check score during development
       if (e.key === Crafty.keys.SHIFT) {
         bodyCheck(playerMetrics.platter)
         console.log('Player stats: \n', playerMetrics)
       }
     })
+    .bind('Move', function(evt) {
+      var hitDatas, hitData
+      if ((hitDatas = this.hit('Solid'))) {
+        hitData = hitDatas[0]
+        if (hitData.type === 'SAT') {
+          this.x -= hitData.overlap * hitData.nx
+          this.y -= hitData.overlap * hitData.ny
+        } else {
+          this.x = evt._x
+          this.y = evt._y
+        }
+      }
+    });
 }
 
 // problems:
@@ -44,11 +58,7 @@ function makePlayer (x, y) {
 /* new scene */
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location
-  if (location === "livingroom") {
+  if (location) {
     Crafty.enterScene(location)
-  } else if (location === 'outside') {
-    Crafty.enterScene(location)
-  } else if (location === "bedroom") {
-    Crafty.enterScene(location)
-  }
+  } 
 }
