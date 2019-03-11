@@ -86,7 +86,7 @@ function promptTherapistCall() {
             objectShapeKeeper: {
               title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
               gainNewSkill: function(){
-                playerMetrics.previousDays.newSkill = true
+                playerMetrics.previousDays.newSkill = true // SLATED FOR REMOVAL - toggle elsewhere
                 document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
               }
             }
@@ -133,8 +133,8 @@ function bodyCheck(platter) {
       goodMessage: { title: 'Looking good! Feeling great!' }
     }
   }
-    Crafty.e('OptionsBox')
-      .color('grey')
-      .optionsListMaker(lowMetrics)
-    killBox()
+  Crafty.e('OptionsBox')
+    .color('grey')
+    .optionsListMaker(lowMetrics)
+  killBox()
 }

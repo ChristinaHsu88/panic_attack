@@ -59,7 +59,7 @@ function pauseTimerAndScoring() {
 document.onkeydown = function (e) { // TODO disable player
   if (e.code === 'Space') {
     Crafty.pause()
-    // pauseTimerAndScoring()
+    pauseTimerAndScoring()
     // togglePause()
   }
 }
