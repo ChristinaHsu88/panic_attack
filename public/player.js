@@ -1,8 +1,6 @@
 Crafty.c('Player', {
   init: function() {
-    this.addComponent(
-      '2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation, PlayerTowards'
-    );
+    this.addComponent('2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation');
     this.w = 40;
     this.h = 40;
   },
