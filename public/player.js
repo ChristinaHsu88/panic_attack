@@ -24,13 +24,13 @@ function makePlayer(x, y) {
     .bind('HitOff', function() {
       Crafty('ItemPopUp').destroy()
     })
-    .bind('KeyDown', function(e) {
-      if (e.key === Crafty.keys.SHIFT) {
-        Crafty('BodyCheck, BodyCheckMessage').destroy() // destroy existing message if nec -- stops app from crashing upon hitting shift without hitting enter (to close message)
-        bodyCheck(playerMetrics.platter) // to reveal bodyCheck messages
-        console.log('Player stats: \n', playerMetrics) // to check score during development
-      }
-    })
+    // .bind('KeyDown', function(e) {
+    //   if (e.key === Crafty.keys.SHIFT) {
+    //     // Crafty('BodyCheck, BodyCheckMessage').destroy() // destroy existing message if nec -- stops app from crashing upon hitting shift without hitting enter (to close message)
+    //     // bodyCheck(playerMetrics.platter) // to reveal bodyCheck messages
+    //     console.log('Player stats: \n', playerMetrics) // to check score during development
+    //   }
+    // })
     .bind('Move', function(evt) {
       var hitDatas, hitData
       if ((hitDatas = this.hit('Solid'))) {
