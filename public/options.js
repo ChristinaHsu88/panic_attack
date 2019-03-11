@@ -20,8 +20,7 @@ Crafty.c('OptionsBox', {
             }
         }
     }
-  }
-});
+})
 
 // define options in pop up
 Crafty.c('Option', {
