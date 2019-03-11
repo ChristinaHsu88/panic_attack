@@ -20,7 +20,8 @@ Crafty.c('OptionsBox', {
             }
         }
     }
-})
+  }
+});
 
 // define options in pop up
 Crafty.c('Option', {
@@ -50,20 +51,19 @@ Crafty.c('Option', {
         return this
     }
 })
-
 // define interactable items
 Crafty.c('Item', {
-    init: function() {
-        this.addComponent('2D, DOM, Color')
-        this.w = 30
-        this.h = 30
-    },
-    place: function(x, y) {
-        this.x = x
-        this.y = y
-        return this
-    }
-})
+  init: function() {
+    this.addComponent('2D, DOM, Color');
+    this.w = 30;
+    this.h = 30;
+  },
+  place: function(x, y) {
+    this.x = x;
+    this.y = y;
+    return this;
+  }
+});
 
 // hitItem param sets the options in popUp
 function makePopUp (hitItem) {
@@ -95,7 +95,7 @@ function makePopUp (hitItem) {
                 // find option
                 const selectedOption = Crafty(this.selectOption.optionObj['0'])
                 handleOption(selectedOption)
-                Crafty('player').unfreeze()
+                Crafty('PlayerTowards').unfreeze();
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
