@@ -47,6 +47,7 @@ function makePlayer(x, y) {
 
 /* new scene */
 function renderNewScene(hitItem) {
+<<<<<<< HEAD
   const location = hitItem['0'].obj.location;
   console.log(hitItem);
   if (location === 'livingroom') {
@@ -55,5 +56,14 @@ function renderNewScene(hitItem) {
     Crafty.enterScene('outside');
   } else if (location === 'bedroom') {
     Crafty.enterScene('bedroom');
+=======
+  const location = hitItem['0'].obj.location
+  if (location === "livingroom") {
+    Crafty.enterScene(location)
+  } else if (location === 'outside') {
+    Crafty.enterScene(location)
+  } else if (location === "bedroom") {
+    Crafty.enterScene(location)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
   }
 }

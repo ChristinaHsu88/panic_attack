@@ -1,5 +1,6 @@
 // define interactable items
 Crafty.c('Item', {
+<<<<<<< HEAD
   init: function() {
     this.addComponent('2D, DOM, Color');
     this.w = 30;
@@ -16,6 +17,23 @@ function generateRoomItems() {
   Crafty.e('Item')
     .place(150, 100)
     .color('black')
+=======
+    init: function() {
+        this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench')
+        this.w = 30
+        this.h = 30
+    },
+    place: function(x, y) {
+        this.x = x
+        this.y = y
+        return this
+    }
+})
+
+function generateRoomItems() {
+    Crafty.e('Item, phone')
+    .place(95, 197)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
     .attr({
       type: 'phone',
       optionsList: {
@@ -39,9 +57,14 @@ function generateRoomItems() {
       }
     });
 
+<<<<<<< HEAD
   Crafty.e('Item,')
     .place(250, 150)
     // .color('green')
+=======
+    Crafty.e('Item, weed')
+    .place(620, 2)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
     .attr({
       type: 'weed',
       optionsList: {
@@ -70,9 +93,14 @@ function generateRoomItems() {
       }
     });
 
+<<<<<<< HEAD
   Crafty.e('Item')
     .place(300, 300)
     .color('orange')
+=======
+    Crafty.e('Item, laundry')
+    .place(500, 200)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
     .attr({
       type: 'laundry',
       optionsList: {
@@ -98,7 +126,6 @@ function generateRoomItems() {
 
   Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
       type: 'door',
       location: 'livingroom'
@@ -109,7 +136,6 @@ function generateRoomItems() {
 function generateLivingRoomItems() {
   Crafty.e('Item,')
     .place(400, 300)
-    .color('yellow')
     .attr({
       type: 'door',
       location: 'outside'
@@ -117,12 +143,12 @@ function generateLivingRoomItems() {
 
   Crafty.e('Item')
     .place(100, 75)
-    .color('yellow')
     .attr({
       type: 'door',
       location: 'bedroom'
     });
 
+<<<<<<< HEAD
   Crafty.e('Item')
     .place(530, 200)
     .color('red')
@@ -140,13 +166,37 @@ function generateLivingRoomItems() {
         },
         option3: {
           title: 'GO BACK'
+=======
+    Crafty.e('Item, roommate')
+    .place(530, 180)
+    .attr({
+        type: 'roommate',
+        optionsList: {
+            option1: {
+                title: 'CHAT WITH FRIEND',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option2: {
+                title: 'WATCH TV'
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
         }
       }
     });
 
+<<<<<<< HEAD
   Crafty.e('Item')
     .place(230, 180)
     .color('gray')
+=======
+    Crafty.e('Item, dog')
+    .place(230, 130)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
     .attr({
       type: 'dog',
       optionsList: {
@@ -162,9 +212,14 @@ function generateLivingRoomItems() {
       }
     });
 
+<<<<<<< HEAD
   Crafty.e('Item')
     .place(530, 40)
     .color('black')
+=======
+    Crafty.e('Item, treadmill')
+    .place(630, 80)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
     .attr({
       type: 'treadmill',
       optionsList: {
@@ -186,8 +241,8 @@ function generateLivingRoomItems() {
 function generateOutsideItems() {
   Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
+<<<<<<< HEAD
       type: 'door',
       location: 'livingroom'
     });
@@ -217,6 +272,35 @@ function generateOutsideItems() {
   Crafty.e('Item')
     .place(330, 200)
     .color('brown')
+=======
+        type: 'door',
+        location: 'livingroom'
+    })
+    Crafty.e('Item, bench')
+    .place(150, 200)
+    .attr({
+        type: 'bench',
+        optionsList: {
+            option1: {
+                title: 'SIT',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option2: {
+                title: 'DRAW',
+                scoreEffect: {
+                    /* TBD */
+                }
+            },
+            option3: {
+                title: 'GO BACK'
+            }
+        }
+    })
+    Crafty.e('Item')
+    .place(430, 200)
+>>>>>>> c3002b2f50950c46df13c6a6276a097a351ef4d9
     .attr({
       type: 'tree',
       optionsList: {
