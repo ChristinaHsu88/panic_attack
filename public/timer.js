@@ -46,18 +46,28 @@ function worldEventsTimes(){
   return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
 
-function togglePause() {
+function pauseTimerAndScoring() {
   pause ? pause = false : pause = true
   if (pause) {
+    // display in game instead of in DOM
     document.getElementById("pause").innerHTML = 'GAME PAUSED'
   } else {
     document.getElementById("pause").innerHTML = ''
   }
 }
 
-document.onkeydown = function (e) { // TODO disable player
+document.onkeydown = function (e) {
   if (e.code === 'Space') {
-    togglePause()
+    // pause game and functionality
+    Crafty.pause()
+    pauseTimerAndScoring()
+  } else if (e.code === 'Enter') {
+    // close boxes
+    Crafty('BodyCheck, BodyCheckMessage').destroy()
+    Crafty('TherapistCall, TherapistMessage').destroy()
+  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
+    Crafty('BodyCheck, BodyCheckMessage').destroy()
+    bodyCheck(playerMetrics.platter)
   }
 }
 
