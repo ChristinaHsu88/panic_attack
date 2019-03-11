@@ -1,13 +1,13 @@
 Crafty.c('Player', {
   init: function() {
-    this.addComponent('2D, DOM, Fourway, Collision, Keyboard, player');
-    this.w = 40;
-    this.h = 40;
+    this.addComponent('2D, DOM, Fourway, Collision, Keyboard, player')
+    this.w = 40
+    this.h = 40
   },
   place: function(x, y) {
-    this.x = x;
-    this.y = y;
-    return this;
+    this.x = x
+    this.y = y
+    return this
   }
 });
 // define and generate player
@@ -18,28 +18,28 @@ function makePlayer(x, y) {
     .fourway(200)
     .checkHits('Item')
     .bind('HitOn', function(hitItem) {
-      itemPopUp(hitItem);
-      renderNewScene(hitItem);
+      itemPopUp(hitItem)
+      renderNewScene(hitItem)
     })
     .bind('HitOff', function() {
-      Crafty('ItemPopUp').destroy();
+      Crafty('ItemPopUp').destroy()
     })
     .bind('KeyDown', function(e) {
       // to check score during development
       if (e.key === Crafty.keys.SHIFT) {
-        console.log('Player stats: \n', playerMetrics);
+        console.log('Player stats: \n', playerMetrics)
       }
     })
     .bind('Move', function(evt) {
-      var hitDatas, hitData;
+      var hitDatas, hitData
       if ((hitDatas = this.hit('Solid'))) {
-        hitData = hitDatas[0];
+        hitData = hitDatas[0]
         if (hitData.type === 'SAT') {
-          this.x -= hitData.overlap * hitData.nx;
-          this.y -= hitData.overlap * hitData.ny;
+          this.x -= hitData.overlap * hitData.nx
+          this.y -= hitData.overlap * hitData.ny
         } else {
-          this.x = evt._x;
-          this.y = evt._y;
+          this.x = evt._x
+          this.y = evt._y
         }
       }
     });

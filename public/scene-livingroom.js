@@ -16,7 +16,7 @@ Crafty.scene('livingroom', function() {
       w: 5
     })
     .css({ visibility: 'hidden' })
-    .color('black');
+    .color('black')
     
     Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
     .attr({
@@ -34,7 +34,7 @@ Crafty.scene('livingroom', function() {
       h: 350,
       w: 5
     })
-    .color();
+    .color()
 
     Crafty.e('2D, DOM, Color, Solid, WallBottomRight, Collision')
     .attr({
@@ -43,7 +43,7 @@ Crafty.scene('livingroom', function() {
       h: 5,
       w: 320
     })
-    .color();
+    .color()
 
     Crafty.e('2D, DOM, Color, WallBottomLeft, Solid, Collision')
     .attr({
@@ -52,8 +52,7 @@ Crafty.scene('livingroom', function() {
       h: 5,
       w: 320
     })
-    .color();
-
+    .color()
     makePlayer(130, 50)
     generateLivingRoomItems()
     createStressBar()

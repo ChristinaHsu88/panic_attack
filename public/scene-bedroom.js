@@ -1,6 +1,6 @@
 // scene 2 - bedroom
 Crafty.scene('bedroom', function() {
-    Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
+    Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right')
     // TODO - change cat sprite for player
     Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] })
     Crafty.sprite(100, 'assets/phone_2.png', { phone: [0, 0] })
@@ -15,7 +15,7 @@ Crafty.scene('bedroom', function() {
       w: 5
     })
     .css({ visibility: 'hidden' })
-    .color();
+    .color()
     
     Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
     .attr({
@@ -33,7 +33,7 @@ Crafty.scene('bedroom', function() {
       h: 350,
       w: 5
     })
-    .color();
+    .color()
 
     Crafty.e('2D, DOM, Color, Solid, WallBottomRight, Collision')
     .attr({
@@ -42,7 +42,7 @@ Crafty.scene('bedroom', function() {
       h: 5,
       w: 300
     })
-    .color();
+    .color()
 
     Crafty.e('2D, DOM, Color, WallBottomLeft, Solid, Collision')
     .attr({
@@ -51,7 +51,7 @@ Crafty.scene('bedroom', function() {
       h: 5,
       w: 300
     })
-    .color();
+    .color()
 
     // generate all entities in this scene
     if (gameTime > 178) {
