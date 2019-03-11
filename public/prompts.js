@@ -48,7 +48,7 @@ function promptWorldEvent(){
       optionsList: {
         option1: {
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
-          playerMove: 'living room'
+          playerMove: 'livingroom'
         },
         option2: {
           title: 'GO BACK'
@@ -60,7 +60,7 @@ function promptWorldEvent(){
     obj: {
       optionsList: {
         option1: {
-          title: 'YOU HEAR AN ICE CREAM TRUCK. GO OUTSIDE?',
+          title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
           playerMove: 'outside'
         },
         option2: {
