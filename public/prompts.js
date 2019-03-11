@@ -138,31 +138,3 @@ function bodyCheck(platter) {
       .optionsListMaker(lowMetrics)
     killBox()
 }
-
-// FIX PAUSE
-  // player should not move when paused
-  // panic attack sequence & metrics calcs should not fire
-  // pause should maintain functionality after therapist call/newSkill
-
-
-// BUGS
-  // space/pause is killed after bodyCheck ... why?
-  // only one pop up should display at once
-  // browser default event stuff should be disabled
-
-// FEATURES
-  // world prompts should move player
-  // pause should show up on screen, not under game
-  // bodyCheck should pause game
-  // new game should remove chart
-  // end game should remove timer, pause message, etc.
-
-// CHECK
-  // is bodyCheck skipping game forward 10 s?
-
-// REVISE
-  // end messages
-
-// REFACTOR
-  // items
-  // file nesting - need a util dir
