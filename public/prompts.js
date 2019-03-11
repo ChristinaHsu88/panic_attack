@@ -146,10 +146,10 @@ function bodyCheck(platter) {
 
 // FEATURES
   // world prompts should move player                 /* check */
-  // pause should show up on screen, not under game
+  // pause should show up on screen, not under game   
   // bodyCheck should pause game
   // new game should remove chart                     /* check */
-  // end game should remove timer, pause message, etc.
+  // end game should remove timer, pause message, etc. /* remove timer */
 
 // CHECK
   // is bodyCheck skipping game forward 10 s?
