@@ -84,9 +84,9 @@ function makePopUp (hitItem) {
         })
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
-                this.selectOption.canSelect = false // remains false for a moment, before recognize new hit event and turning back to true; this boolean will be redundant once the selector's movement is limited, but should remain as a redundant feature
+                this.selectOption.canSelect = false // reset gatekeeper
                 this.y = this.y - 50
-                this.resetHitChecks() // without this method, the selector will not recognize it has hit a new option
+                this.resetHitChecks() // allow selector to register new option hit
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
                 this.selectOption.canSelect = false
                 this.y = this.y + 50
@@ -112,13 +112,4 @@ function takeCall(newSkill) {
 
 function killBox(newSkill) {
     console.log('killBox has been disabled');
-    // document.onkeydown = function (e) {
-    //     if (e.code === 'Enter') {
-    //         if (newSkill){
-    //             newSkill.objectShapeKeeper.gainNewSkill()
-    //         }
-    //         Crafty('player').unfreeze()
-    //         Crafty('Option, OptionsBox, Selector').destroy()
-    //     }
-    // }
 }
