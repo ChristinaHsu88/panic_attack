@@ -5,14 +5,46 @@ Crafty.scene('bedroom', function() {
   Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] });
   // generate all entities in this scene
   //WALLS:
-  Crafty.e('2D, DOM, Color, Solid, Collision')
+  Crafty.e('2D, DOM, Color, Solid, WallLeft, Collision,')
     .attr({
-      x: 350,
+      x: 87,
       y: 0,
       h: 350,
-      w: 20
+      w: 5
+    })
+    .css({ visibility: 'hidden' })
+    .color('clear');
+  Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
+    .attr({
+      x: 87,
+      y: 5
+  Crafty.e('2D, DOM, Color,  Solid, WallRight, Collision')
+    .attr({
+      x: 690,
+      y: 0,
+      h: 350,
+      w: 5
     })
     .color('blue');
+
+  Crafty.e('2D, DOM, Color, Solid, WallBottomRight, Collision')
+    .attr({
+      x: 70,
+      y: 250,
+      h: 5,
+      w: 300
+    })
+    .color('blue');
+
+  Crafty.e('2D, DOM, Color, WallBottomLeft, Solid, Collision')
+    .attr({
+      x: 450,
+      y: 250,
+      h: 5,
+      w: 300
+    })
+    .color('blue');
+
   //WALLS
   console.log('how much game time left', gameTime);
   if (gameTime > 178) {
@@ -20,6 +52,7 @@ Crafty.scene('bedroom', function() {
   } else {
     makePlayer(400, 250);
   }
+  createWalls();
   generateRoomItems();
   createStressBar();
   // likely have to Crafty.enterScene('endGame') here, but wrap in a function so that it's triggered by endGame()
