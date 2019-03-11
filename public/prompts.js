@@ -138,6 +138,7 @@ function bodyCheck(platter) {
       .optionsListMaker(lowMetrics)
     killBox()
 }
+
 // BUGS
   // space/pause is killed after bodyCheck ... why?
   // only one pop up should display at once
@@ -155,3 +156,7 @@ function bodyCheck(platter) {
 
 // REVISE
   // end messages
+
+// REFACTOR
+  // items
+  // file nesting - need a util dir
