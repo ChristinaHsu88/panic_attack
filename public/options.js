@@ -20,7 +20,8 @@ Crafty.c('OptionsBox', {
             }
         }
     }
-})
+  }
+});
 
 // define options in pop up
 Crafty.c('Option', {
@@ -50,20 +51,19 @@ Crafty.c('Option', {
         return this
     }
 })
-
 // define interactable items
 Crafty.c('Item', {
-    init: function() {
-        this.addComponent('2D, DOM, Color')
-        this.w = 30
-        this.h = 30
-    },
-    place: function(x, y) {
-        this.x = x
-        this.y = y
-        return this
-    }
-})
+  init: function() {
+    this.addComponent('2D, DOM, Color');
+    this.w = 30;
+    this.h = 30;
+  },
+  place: function(x, y) {
+    this.x = x;
+    this.y = y;
+    return this;
+  }
+});
 
 // hitItem param sets the options in popUp
 function makePopUp (hitItem) {
@@ -84,9 +84,9 @@ function makePopUp (hitItem) {
         })
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
-                this.selectOption.canSelect = false // remains false for a moment, before recognize new hit event and turning back to true; this boolean will be redundant once the selector's movement is limited, but should remain as a redundant feature
+                this.selectOption.canSelect = false // reset gatekeeper
                 this.y = this.y - 50
-                this.resetHitChecks() // without this method, the selector will not recognize it has hit a new option
+                this.resetHitChecks() // allow selector to register new option hit
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
                 this.selectOption.canSelect = false
                 this.y = this.y + 50
@@ -94,37 +94,8 @@ function makePopUp (hitItem) {
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
                 // find option
                 const selectedOption = Crafty(this.selectOption.optionObj['0'])
-                // find option's effects
-                const scoreEffect = selectedOption.scoreEffect
-                // update score based on option
-                if (scoreEffect) {
-                    for (effect in scoreEffect.platter) {
-                        playerMetrics.platter[effect] += scoreEffect.platter[effect]
-                    }
-                    for (effect in scoreEffect.primaryMetrics) {
-                        playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
-                    }
-                    loseTime()
-                    calculateStress(playerMetrics)
-                }
-                // find world event's effects
-                const playerMove = selectedOption.playerMove
-                if (playerMove) {
-                    // TODO - send player to selected scene
-                    console.log(`Player moved ${playerMove}! (You just can't tell yet.)`)
-                    Crafty.enterScene(playerMove)
-                    loseTime()
-                }
-                // find new skill
-                const newSkill = selectedOption.newSkill
-                // display call info
-                if (newSkill) {
-                    setTimeout(takeCall, 200, newSkill)
-                    // moved from gainNewSkill in prompts under therapist call
-                    playerMetrics.previousDays.newSkill = true
-                    document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
-                }
-                Crafty('player').unfreeze()
+                handleOption(selectedOption)
+                Crafty('PlayerTowards').unfreeze();
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
@@ -132,19 +103,9 @@ function makePopUp (hitItem) {
 
 function takeCall(newSkill) {
     Crafty.e('OptionsBox')
+        .addComponent('TherapistCall')
         .color('grey')
         .optionsListMaker(newSkill)
-}
 
-function killBox(newSkill) {
-    console.log('killBox has been disabled');
-    // document.onkeydown = function (e) {
-    //     if (e.code === 'Enter') {
-    //         if (newSkill){
-    //             newSkill.objectShapeKeeper.gainNewSkill()
-    //         }
-    //         Crafty('player').unfreeze()
-    //         Crafty('Option, OptionsBox, Selector').destroy()
-    //     }
-    // }
+    Crafty('Option').addComponent('TherapistMessage')
 }
