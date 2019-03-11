@@ -145,10 +145,10 @@ function bodyCheck(platter) {
   // browser default event stuff should be disabled
 
 // FEATURES
-  // world prompts should move player
+  // world prompts should move player                 /* check */
   // pause should show up on screen, not under game
   // bodyCheck should pause game
-  // new game should remove chart
+  // new game should remove chart                     /* check */
   // end game should remove timer, pause message, etc.
 
 // CHECK
