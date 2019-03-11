@@ -133,7 +133,6 @@ function takeCall(newSkill) {
     Crafty.e('OptionsBox')
         .color('grey')
         .optionsListMaker(newSkill)
-    killBox(newSkill)
 }
 
 function killBox(newSkill) {
