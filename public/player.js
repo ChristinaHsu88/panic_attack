@@ -16,7 +16,7 @@ Crafty.c('Player', {
 // player entity will be destroyed and regenerated in each scene
 function makePlayer(x, y) {
   Crafty.e(
-    'Player, 2D, DOM, Fourway, SpriteAnimation, Collision, Keyboard, PlayerTowards, '
+    'Player, 2D, DOM, Fourway, SpriteAnimation, Collision, Keyboard, PlayerTowards'
   )
     .place(x, y)
     .fourway(200)
