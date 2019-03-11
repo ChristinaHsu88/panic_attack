@@ -134,7 +134,9 @@ function bodyCheck(platter) {
     }
   }
   Crafty.e('OptionsBox')
+    .addComponent('BodyCheck')
     .color('grey')
     .optionsListMaker(lowMetrics)
-  killBox()
+
+  Crafty('Option').addComponent('BodyCheckMessage')
 }
