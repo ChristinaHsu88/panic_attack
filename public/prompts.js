@@ -48,7 +48,7 @@ function promptWorldEvent(){
       optionsList: {
         option1: {
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
-          playerMove: 'living room'
+          playerMove: 'livingroom'
         },
         option2: {
           title: 'GO BACK'
