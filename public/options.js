@@ -13,8 +13,11 @@ Crafty.c('OptionsBox', {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
             let playerMove = optionsObj[option].playerMove
-            iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove)
+            let newSkill = optionsObj[option].newSkill
+            if (optionTitle) {
+                iteration = iteration + 50
+                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
+            }
         }
     }
 })
@@ -40,6 +43,11 @@ Crafty.c('Option', {
     },
     movePlayer: function(playerMove) {
         this.playerMove = playerMove
+        return this
+    },
+    receiveCall: function(newSkill) {
+        this.newSkill = newSkill
+        return this
     }
 })
 
@@ -104,10 +112,39 @@ function makePopUp (hitItem) {
                 if (playerMove) {
                     // TODO - send player to selected scene
                     console.log(`Player moved ${playerMove}! (You just can't tell yet.)`)
+                    Crafty.enterScene(playerMove)
                     loseTime()
+                }
+                // find new skill
+                const newSkill = selectedOption.newSkill
+                // display call info
+                if (newSkill) {
+                    setTimeout(takeCall, 200, newSkill)
+                    // moved from gainNewSkill in prompts under therapist call
+                    playerMetrics.previousDays.newSkill = true
+                    document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
                 }
                 Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
+}
+
+function takeCall(newSkill) {
+    Crafty.e('OptionsBox')
+        .color('grey')
+        .optionsListMaker(newSkill)
+}
+
+function killBox(newSkill) {
+    console.log('killBox has been disabled');
+    // document.onkeydown = function (e) {
+    //     if (e.code === 'Enter') {
+    //         if (newSkill){
+    //             newSkill.objectShapeKeeper.gainNewSkill()
+    //         }
+    //         Crafty('player').unfreeze()
+    //         Crafty('Option, OptionsBox, Selector').destroy()
+    //     }
+    // }
 }

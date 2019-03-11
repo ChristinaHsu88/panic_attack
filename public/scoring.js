@@ -1,7 +1,11 @@
 // universal variable that persists throughout gameplay until browser is refreshed
 let playerMetrics = {
   name: '',
-  daysPlayed: 0, // increment up at end of day
+  previousDays: {
+    daysPlayed: 0, // increment up at end of day
+    panic: false, // this will likely be OBSOLETE
+    newSkill: false // false triggers therapist call on daysPlayed > 0; answering call toggles to true
+  },
   primaryMetrics: {
     stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
     energy: 5, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
@@ -33,13 +37,16 @@ function startingScore(metrics){
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
   console.log('starting score:', playerMetrics)
+  if (metrics.previousDays.daysPlayed && !metrics.previousDays.newSkill) {
+    setTimeout(promptTherapistCall, 2000)
+  }
   return
 }
 
 // called after every metric changing method (except calculateEnergy)
   // interaction events // startingScore // self (recursive) // timeScoreChanger
 function calculateStress(metrics) {
-  if (!gameOver) {
+  if (!gameOver && !pause) {
     // console.log('calcStress fired')
     calculateEnergy(metrics)
     if (isPlatterImbalanced(metrics)) {
@@ -124,5 +131,3 @@ function disableInteractions (metrics) {
 }
 
 // body check
-// don't let anything go above 10
-// don't let anything go below 0

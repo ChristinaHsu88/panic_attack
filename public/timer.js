@@ -20,9 +20,9 @@ function timer() {
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
-        /* eatPromptTimes.includes(gameTime) ? promptEat() : ''
+        eatPromptTimes.includes(gameTime) ? promptEat() : ''
         napPromptTime.includes(gameTime) ? promptNap() : ''
-        worldTimes.includes(gameTime) ? promptWorldEvent() : '' */
+        worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
@@ -46,29 +46,35 @@ function worldEventsTimes(){
   return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
 
-function togglePause() {
+function pauseTimerAndScoring() {
   pause ? pause = false : pause = true
   if (pause) {
+    // display in game instead of in DOM
     document.getElementById("pause").innerHTML = 'GAME PAUSED'
   } else {
     document.getElementById("pause").innerHTML = ''
   }
 }
 
-document.onkeydown = function (e) { // TODO disable player
+document.onkeydown = function (e) {
   if (e.code === 'Space') {
-    togglePause()
+    Crafty.pause()
+    pauseTimerAndScoring()
+    // togglePause()
+  } else if (e.code === 'Enter') {
+    Crafty('BodyCheck, BodyCheckMessage').destroy()
   }
 }
 
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
   gameOver = true
-  metrics.daysPlayed += 1
+  metrics.previousDays.daysPlayed += 1
   console.log('Game is over?', gameOver)
-  console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.daysPlayed)
+  console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.previousDays.daysPlayed)
   let endingReason
   panic ? endingReason = 'had a panic attack' : endingReason = 'ran out of time'
+  panic ? metrics.previousDays.panic = true : metrics.previousDays.panic = false
   console.log(`Your game ended because you ${endingReason}`)
   saveUserData(metrics)
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
