@@ -1,7 +1,7 @@
 // define interactable items
 Crafty.c('Item', {
     init: function() {
-        this.addComponent('2D, DOM, phone, weed, laundry')
+        this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench')
         this.w = 30
         this.h = 30
     },
@@ -105,7 +105,6 @@ function generateRoomItems() {
 function generateLivingRoomItems() {
     Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'outside'
@@ -113,17 +112,15 @@ function generateLivingRoomItems() {
 
     Crafty.e('Item')
     .place(100, 75)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'bedroom'
     })
 
-    Crafty.e('Item')
-    .place(530, 200)
-    .color('red')
+    Crafty.e('Item, roommate')
+    .place(530, 180)
     .attr({
-        type: 'couch',
+        type: 'roommate',
         optionsList: {
             option1: {
                 title: 'CHAT WITH FRIEND',
@@ -140,9 +137,8 @@ function generateLivingRoomItems() {
         }
     })
 
-    Crafty.e('Item')
-    .place(230, 180)
-    .color('gray')
+    Crafty.e('Item, dog')
+    .place(230, 130)
     .attr({
         type: 'dog',
         optionsList: {
@@ -158,9 +154,8 @@ function generateLivingRoomItems() {
         }
     })
 
-    Crafty.e('Item')
-    .place(530, 40)
-    .color('black')
+    Crafty.e('Item, treadmill')
+    .place(630, 80)
     .attr({
         type: 'treadmill',
         optionsList: {
@@ -184,14 +179,12 @@ function generateLivingRoomItems() {
 function generateOutsideItems() {
     Crafty.e('Item')
     .place(400, 300)
-    .color('yellow')
     .attr({
         type: 'door',
         location: 'livingroom'
     })
-    Crafty.e('Item')
-    .place(530, 200)
-    .color('red')
+    Crafty.e('Item, bench')
+    .place(150, 200)
     .attr({
         type: 'bench',
         optionsList: {
@@ -202,7 +195,7 @@ function generateOutsideItems() {
                 }
             },
             option2: {
-                title: 'DRSAW',
+                title: 'DRAW',
                 scoreEffect: {
                     /* TBD */
                 }
@@ -213,8 +206,7 @@ function generateOutsideItems() {
         }
     })
     Crafty.e('Item')
-    .place(330, 200)
-    .color('brown')
+    .place(430, 200)
     .attr({
         type: 'tree',
         optionsList: {
