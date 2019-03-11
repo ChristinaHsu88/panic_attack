@@ -25,10 +25,8 @@ function makePlayer(x, y) {
       Crafty('ItemPopUp').destroy()
     })
     .bind('KeyDown', function(e) {
-      // to check score during development
-      if (e.key === Crafty.keys.SHIFT) {
-        bodyCheck(playerMetrics.platter)
-        console.log('Player stats: \n', playerMetrics)
+      if (e.key === Crafty.keys.T) {
+        console.log('Player stats: \n', playerMetrics) // to check score during development
       }
     })
     .bind('Move', function(evt) {

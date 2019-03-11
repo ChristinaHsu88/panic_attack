@@ -58,11 +58,16 @@ function pauseTimerAndScoring() {
 
 document.onkeydown = function (e) {
   if (e.code === 'Space') {
+    // pause game and functionality
     Crafty.pause()
     pauseTimerAndScoring()
-    // togglePause()
   } else if (e.code === 'Enter') {
+    // close boxes
     Crafty('BodyCheck, BodyCheckMessage').destroy()
+    Crafty('TherapistCall, TherapistMessage').destroy()
+  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
+    Crafty('BodyCheck, BodyCheckMessage').destroy()
+    bodyCheck(playerMetrics.platter)
   }
 }
 
