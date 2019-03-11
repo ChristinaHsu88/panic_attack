@@ -1,6 +1,8 @@
 Crafty.c('Player', {
   init: function() {
-    this.addComponent('2D, DOM, Fourway, Collision, Keyboard, player');
+    this.addComponent(
+      '2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation, PlayerToward'
+    );
     this.w = 40;
     this.h = 40;
   },
@@ -13,10 +15,14 @@ Crafty.c('Player', {
 // define and generate player
 // player entity will be destroyed and regenerated in each scene
 function makePlayer(x, y) {
-  Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, PlayerToward')
+  Crafty.e(
+    'Player, 2D, DOM, Fourway, SpriteAnimation, Collision, Keyboard, PlayerToward, '
+  )
     .place(x, y)
     .fourway(200)
     .checkHits('Item')
+    .reel('toward', 1000, 3, 0, 3)
+    .animate('toward' - 1)
     .bind('HitOn', function(hitItem) {
       itemPopUp(hitItem);
       renderNewScene(hitItem);
@@ -43,6 +49,7 @@ function makePlayer(x, y) {
         }
       }
     });
+
   //CHARACTER ANIMATION
   //LEFT_ARROW: 37,
   // UP_ARROW: 38,

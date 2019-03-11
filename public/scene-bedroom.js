@@ -57,7 +57,8 @@ Crafty.scene('bedroom', function() {
   // it seems like .enterScene needs to be called within the scene that is active, therefore all scenes will need endGame
 });
 Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
-//     // TODO - change cat sprite for playe
+//     // TODO - change cat sprite for player
+// Crafty.sprite(32, 'assets/.png', { PlayerToward: [3, 0] });
 Crafty.sprite(100, 'assets/phone_2.png', { phone: [0, 0] });
 Crafty.sprite(100, 'assets/weed.png', { weed: [0, 0] });
 Crafty.sprite(100, 'assets/laundry.png', { laundry: [0] });
