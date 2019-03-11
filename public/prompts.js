@@ -60,7 +60,7 @@ function promptWorldEvent(){
     obj: {
       optionsList: {
         option1: {
-          title: 'YOU HEAR AN ICE CREAM TRUCK. GO OUTSIDE?',
+          title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
           playerMove: 'outside'
         },
         option2: {
