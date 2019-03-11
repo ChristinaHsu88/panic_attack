@@ -1,5 +1,5 @@
 /* living room scene */
-Crafty.scene('livingroom', function() {
+Crafty.scene('livingroom2', function() {
     Crafty.background('#57342E url(assets/livingroom.png) no-repeat center right');
     Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] })
     Crafty.sprite(32, 'assets/dog.png', { dog: [0, 0] })
@@ -52,7 +52,7 @@ Crafty.scene('livingroom', function() {
       w: 320
     })
     .color()
-    makePlayer(130, 50)
+    makePlayer(400, 220)
     generateLivingRoomItems()
     createStressBar()
 })
