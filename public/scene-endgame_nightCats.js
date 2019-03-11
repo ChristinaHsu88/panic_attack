@@ -13,7 +13,7 @@ Crafty.scene('nightCats', function() {
             gameOver = false
             gameTime = 181 // hack fix for timer issue on restart
             Crafty.enterScene('bedroom')
-            startingScore(playerMetrics)
+            checkUser(playerMetrics.name)
         }
       })
 })

@@ -49,9 +49,8 @@ function makePlayer(x, y) {
       Crafty('ItemPopUp').destroy();
     })
     .bind('KeyDown', function(e) {
-      // to check score during development
-      if (e.key === Crafty.keys.SHIFT) {
-        console.log('Player stats: \n', playerMetrics);
+      if (e.key === Crafty.keys.T) {
+        console.log('Player stats: \n', playerMetrics) // to check score during development
       }
     })
     // Creates boundaries of where Sprite can and can not go (aka creates walls)
@@ -74,6 +73,6 @@ function makePlayer(x, y) {
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location;
   if (location) {
-    Crafty.enterScene(location);
+    Crafty.enterScene(location)
   }
 }
