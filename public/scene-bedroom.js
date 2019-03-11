@@ -3,7 +3,7 @@ Crafty.scene('bedroom', function() {
   Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
   // TODO - change cat sprite for player
   Crafty.sprite(32, 'assets/dude.png', {
-    PlayerToward: [3, 0],
+    PlayerTowards: [3, 0],
     PlayerLeft: [3, 1],
     PlayerRight: [3, 2],
     PlayerAway: [3, 3]
@@ -50,7 +50,6 @@ Crafty.scene('bedroom', function() {
   } else {
     makePlayer(400, 250);
   }
-  createWalls();
   generateRoomItems();
   createStressBar();
   // likely have to Crafty.enterScene('endGame') here, but wrap in a function so that it's triggered by endGame()

@@ -1,7 +1,7 @@
 Crafty.c('Player', {
   init: function() {
     this.addComponent(
-      '2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation, PlayerToward'
+      '2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation, PlayerTowards'
     );
     this.w = 40;
     this.h = 40;
@@ -16,13 +16,31 @@ Crafty.c('Player', {
 // player entity will be destroyed and regenerated in each scene
 function makePlayer(x, y) {
   Crafty.e(
-    'Player, 2D, DOM, Fourway, SpriteAnimation, Collision, Keyboard, PlayerToward, '
+    'Player, 2D, DOM, Fourway, SpriteAnimation, Collision, Keyboard, PlayerTowards, '
   )
     .place(x, y)
     .fourway(200)
     .checkHits('Item')
-    .reel('toward', 1000, 3, 0, 3)
-    .animate('toward' - 1)
+    .reel('PlayerTowards', 900, 3, 0, 3)
+    .reel('PlayerLeft', 900, 3, 1, 3)
+    .reel('PlayerRight', 900, 3, 2, 3)
+    .reel('PlayerAway', 900, 3, 3, 3)
+    .animate('PlayerTowards', -1)
+    .animate('PlayerLeft', -1)
+    .animate('PlayerRight', -1)
+    .animate('PlayerAway', -1)
+    .bind('KeyDown', function(e) {
+      if (e.key === Crafty.keys.DOWN_ARROW) {
+        this.animate('PlayerTowards', -1);
+      } else if (e.key === Crafty.keys.UP_ARROW) {
+        this.animate('PlayerAway', -1);
+      } else if (e.key === Crafty.keys.LEFT_ARROW) {
+        this.animate('PlayerLeft', -1);
+      } else if (e.key === Crafty.keys.RIGHT_ARROW) {
+        this.animate('PlayerRight', -1);
+      } else this.pauseAnimation();
+    })
+    // .animate('WalkAway', -1)
     .bind('HitOn', function(hitItem) {
       itemPopUp(hitItem);
       renderNewScene(hitItem);
@@ -37,15 +55,15 @@ function makePlayer(x, y) {
       }
     })
     .bind('Move', function(evt) {
-      var hitDatas, hitData
+      var hitDatas, hitData;
       if ((hitDatas = this.hit('Solid'))) {
-        hitData = hitDatas[0]
+        hitData = hitDatas[0];
         if (hitData.type === 'SAT') {
-          this.x -= hitData.overlap * hitData.nx
-          this.y -= hitData.overlap * hitData.ny
+          this.x -= hitData.overlap * hitData.nx;
+          this.y -= hitData.overlap * hitData.ny;
         } else {
-          this.x = evt._x
-          this.y = evt._y
+          this.x = evt._x;
+          this.y = evt._y;
         }
       }
     });
@@ -53,8 +71,8 @@ function makePlayer(x, y) {
 
 // /* new scene */
 function renderNewScene(hitItem) {
-  const location = hitItem['0'].obj.location
+  const location = hitItem['0'].obj.location;
   if (location) {
-    Crafty.enterScene(location)
+    Crafty.enterScene(location);
   }
 }
