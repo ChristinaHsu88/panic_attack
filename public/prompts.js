@@ -86,7 +86,7 @@ function promptTherapistCall() {
             objectShapeKeeper: {
               title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
               gainNewSkill: function(){
-                playerMetrics.previousDays.newSkill = true
+                playerMetrics.previousDays.newSkill = true // SLATED FOR REMOVAL - toggle elsewhere
                 document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
               }
             }
@@ -133,30 +133,10 @@ function bodyCheck(platter) {
       goodMessage: { title: 'Looking good! Feeling great!' }
     }
   }
-    Crafty.e('OptionsBox')
-      .color('grey')
-      .optionsListMaker(lowMetrics)
-    killBox()
+  Crafty.e('OptionsBox')
+    .addComponent('BodyCheck')
+    .color('grey')
+    .optionsListMaker(lowMetrics)
+
+  Crafty('Option').addComponent('BodyCheckMessage')
 }
-
-// BUGS
-  // space/pause is killed after bodyCheck ... why?
-  // only one pop up should display at once
-  // browser default event stuff should be disabled
-
-// FEATURES
-  // world prompts should move player
-  // pause should show up on screen, not under game
-  // bodyCheck should pause game
-  // new game should remove chart
-  // end game should remove timer, pause message, etc.
-
-// CHECK
-  // is bodyCheck skipping game forward 10 s?
-
-// REVISE
-  // end messages
-
-// REFACTOR
-  // items
-  // file nesting - need a util dir

@@ -46,19 +46,10 @@ function makePlayer(x, y) {
     });
 }
 
-// problems:
-  // the newSkill will be destroyed after every scene change...
-  // the therapist prompt occurs more than once; should only occur once
-    // if player accepts call, then they get tip about the skill
-      // the skill is hard wired
-      // the therapist will call every day until the call is answered, then they won't call again; the skill tip will persist
-  // panic attack will still occur when game is paused
-  // player can still move when game is paused
-
 /* new scene */
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location
   if (location) {
     Crafty.enterScene(location)
-  } 
+  }
 }

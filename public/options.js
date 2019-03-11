@@ -120,6 +120,9 @@ function makePopUp (hitItem) {
                 // display call info
                 if (newSkill) {
                     setTimeout(takeCall, 200, newSkill)
+                    // moved from gainNewSkill in prompts under therapist call
+                    playerMetrics.previousDays.newSkill = true
+                    document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
                 }
                 Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
@@ -131,17 +134,17 @@ function takeCall(newSkill) {
     Crafty.e('OptionsBox')
         .color('grey')
         .optionsListMaker(newSkill)
-    killBox(newSkill)
 }
 
 function killBox(newSkill) {
-    document.onkeydown = function (e) {
-        if (e.code === 'Enter') {
-            if (newSkill){
-                newSkill.objectShapeKeeper.gainNewSkill()
-            }
-            Crafty('player').unfreeze()
-            Crafty('Option, OptionsBox, Selector').destroy()
-        }
-    }
+    console.log('killBox has been disabled');
+    // document.onkeydown = function (e) {
+    //     if (e.code === 'Enter') {
+    //         if (newSkill){
+    //             newSkill.objectShapeKeeper.gainNewSkill()
+    //         }
+    //         Crafty('player').unfreeze()
+    //         Crafty('Option, OptionsBox, Selector').destroy()
+    //     }
+    // }
 }
