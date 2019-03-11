@@ -21,7 +21,7 @@ Crafty.scene('livingroom', function() {
     Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
     .attr({
       x: 87,
-      y: 5,
+      y: 56,
       h: 5,
       w: 600
     })
