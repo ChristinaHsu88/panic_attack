@@ -139,6 +139,12 @@ function bodyCheck(platter) {
     killBox()
 }
 
+// FIX PAUSE
+  // player should not move when paused
+  // panic attack sequence & metrics calcs should not fire
+  // pause should maintain functionality after therapist call/newSkill
+
+
 // BUGS
   // space/pause is killed after bodyCheck ... why?
   // only one pop up should display at once
