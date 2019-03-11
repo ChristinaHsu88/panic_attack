@@ -16,7 +16,7 @@ Crafty.scene('livingroom', function() {
       w: 5
     })
     .css({ visibility: 'hidden' })
-    .color('black')
+    .color()
     
     Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
     .attr({
