@@ -1,7 +1,12 @@
-Crafty.init(500, 350, document.getElementById('game'));
+Crafty.init(715, 325, document.getElementById('game'));
 
 // LOAD ORDER
+  // timer
+  // stress-bar
+  // scoring
+  // game
+  // scene-welcome
+  // scene-bedroom
   // items
   // options
-  // player
-  // timer
+  // prompts

@@ -12,8 +12,12 @@ Crafty.c('OptionsBox', {
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
-            iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect)
+            let playerMove = optionsObj[option].playerMove
+            let newSkill = optionsObj[option].newSkill
+            if (optionTitle) {
+                iteration = iteration + 50
+                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
+            }
         }
     }
 })
@@ -33,13 +37,35 @@ Crafty.c('Option', {
         this.y = 23 + iteration
         return this // without this line, custom methods (e.g., changeScore) will not work
     },
-    changeScore: function(effectArr) {
-        this.scoreEffect = effectArr
+    changeScore: function(scoreEffect) {
+        this.scoreEffect = scoreEffect
+        return this
+    },
+    movePlayer: function(playerMove) {
+        this.playerMove = playerMove
+        return this
+    },
+    receiveCall: function(newSkill) {
+        this.newSkill = newSkill
+        return this
     }
 })
+// define interactable items
+Crafty.c('Item', {
+  init: function() {
+    this.addComponent('2D, DOM, Color');
+    this.w = 30;
+    this.h = 30;
+  },
+  place: function(x, y) {
+    this.x = x;
+    this.y = y;
+    return this;
+  }
+});
 
-function makePopUp (hitItem) { // hitItem is passed in order to set the options in popUp
-
+// hitItem param sets the options in popUp
+function makePopUp (hitItem) {
     const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
@@ -57,41 +83,28 @@ function makePopUp (hitItem) { // hitItem is passed in order to set the options 
         })
         .bind('KeyDown', function(e) {
             if (e.key == Crafty.keys.UP_ARROW) {
-                this.selectOption.canSelect = false // remains false for a moment, before recognize new hit event and turning back to true; this boolean will be redundant once the selector's movement is limited, but should remain as a redundant feature
+                this.selectOption.canSelect = false // reset gatekeeper
                 this.y = this.y - 50
-                this.resetHitChecks() // without this method, the selector will not recognize it has hit a new option
+                this.resetHitChecks() // allow selector to register new option hit
             } else if (e.key == Crafty.keys.DOWN_ARROW) {
                 this.selectOption.canSelect = false
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
-                const optionID = this.selectOption.optionObj['0']
-                const selectedOption = Crafty(optionID)
-                /* receive response object data from express server i.e. response.request.response*/
-                axios.get('/data')
-                .then(function (response) {
-                    console.log('here is the data from the DB', response.request.response)
-                    user_data = response.request.response
-                    console.log('here is the JSONFY data>>>', JSON.parse(user_data))
-                    console.log('I have saved data into user_data>>>>>>', user_data)
-                })
-                for (effect in selectedOption.scoreEffect) {
-                    Crafty('Player').metrics[effect] += selectedOption.scoreEffect[effect]
-                }
-                console.log(Crafty('Player').metrics)
-                /* Update data when users select an action note: days_play needs to be updated here */
-                axios.post('/data', {
-                    value: Crafty('Player').metrics
-                })
-                .then(function (response) {
-                    console.log(response)
-                })
-                .catch(function (error) {
-                    console.log(error)
-                })
-
-                Crafty('Player').unfreeze()
+                // find option
+                const selectedOption = Crafty(this.selectOption.optionObj['0'])
+                handleOption(selectedOption)
+                Crafty('PlayerTowards').unfreeze();
                 Crafty('Option, OptionsBox, Selector').destroy()
             }
         })
+}
+
+function takeCall(newSkill) {
+    Crafty.e('OptionsBox')
+        .addComponent('TherapistCall')
+        .color('grey')
+        .optionsListMaker(newSkill)
+
+    Crafty('Option').addComponent('TherapistMessage')
 }

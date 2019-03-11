@@ -1,69 +1,133 @@
-const playerMetrics = {
-    stress: 0,
-    energy: 0,
-    timeIn: 0,
-    downTime: 0,
-    focusTime: 0,
-    playTime: 0,
-    connectingTime: 0,
-    sleepTime: 0,
-    physicalTime: 0
-}
-
-function dayOneScore(metrics){
-  const baseScore = 6
-  for (let metric in metrics) {
-    metrics[metric] = baseScore
+// universal variable that persists throughout gameplay until browser is refreshed
+let playerMetrics = {
+  name: '',
+  previousDays: {
+    daysPlayed: 0, // increment up at end of day
+    panic: false, // this will likely be OBSOLETE
+    newSkill: false // false triggers therapist call on daysPlayed > 0; answering call toggles to true
+  },
+  primaryMetrics: {
+    stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
+    energy: 5, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
+  },
+  platter: { // affected by player actions; set by startingScore at start of game/round
+    timeIn: 6,
+    downTime: 6,
+    focusTime: 6,
+    playTime: 6,
+    connectingTime: 6,
+    sleepTime: 0, // set by startingScore
+    physicalTime: 6
   }
-  return metrics
-}
+} // save to DB at end of game
 
-function timeScoreChanger(metrics){
-  // should not run if game is paused
-  const timeScoreLoss = -1
-  for (let metric in metrics) {
-    if (metric !== 'stress' &&  metric !== 'downTime') {
-      metrics[metric] += timeScoreLoss
+// sets score for day 1 and day 1+ games
+function startingScore(metrics){
+  // console.log('startingScore fired')
+  metrics.platter.sleepTime += 6
+  metrics.primaryMetrics.stress = 5
+  metrics.primaryMetrics.energy = 5
+  for (let metric in metrics.platter) {
+    if (metrics.platter[metric] < 3) {
+      metrics.platter[metric] = 2 // no metric should be 0 at game start
+    } else if (metrics.platter[metric] > 9) {
+      metrics.platter[metric] = 8 // no metric should be 10+ at game start
     }
   }
-  console.log('Time Score Changer: \n', metrics)
-
-  if (document.getElementById("timer").innerHTML > 0) {
-    setTimeout(timeScoreChanger, 30000, metrics) // run every 30 while game in play
+  calculateStress(metrics)
+  updateStressBar(metrics.primaryMetrics.stress)
+  console.log('starting score:', playerMetrics)
+  if (metrics.previousDays.daysPlayed && !metrics.previousDays.newSkill) {
+    setTimeout(promptTherapistCall, 2000)
   }
+  return
+}
+
+// called after every metric changing method (except calculateEnergy)
+  // interaction events // startingScore // self (recursive) // timeScoreChanger
+function calculateStress(metrics) {
+  if (!gameOver && !pause) {
+    // console.log('calcStress fired')
+    calculateEnergy(metrics)
+    if (isPlatterImbalanced(metrics)) {
+      metrics.primaryMetrics.stress += 1
+      // console.log('imbalanced platter has increased stress')
+    }
+    if (areYouPanicking(metrics.primaryMetrics.stress)) {
+      endGame(metrics, true)
+      return
+    }
+    for (let metric in metrics.platter) {
+      if (metrics.platter[metric] < 1) {
+        metrics.primaryMetrics.stress += 1
+        // console.log('STRESS UP')
+        // console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
+        setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
+        return // don't up stress PER metric, but only once (otherwise game is too hard)
+      }
+    }
+    updateStressBar(metrics.primaryMetrics.stress)
+    return
+  }
+  return
+  // return console.log('calcStress says: GAME IS OVER')
+}
+
+function areYouPanicking(stressLevel) {
+  let panicking = false
+  if (stressLevel >= 10) {
+    updateStressBar(stressLevel)
+    console.log('YOU ARE HAVING A PANIC ATTACK')
+    // CALL IN THE CATS
+    panicking = true
+  }
+  return panicking
+}
+
+// called by calcStress
+function isPlatterImbalanced(metrics) {
+  // console.log('isPlatterImbalanced fired');
+  let bigGap
+  const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
+  const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
+  console.log('platter gap:', biggestGapBetweenMetrics)
+  biggestGapBetweenMetrics > 5 ? bigGap = true : bigGap = false
+  return bigGap
+}
+
+// called by calcStress
+function calculateEnergy(metrics) {
+  // console.log('calcEnergy fired')
+  if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
+    metrics.primaryMetrics.energy -= 1
+    // console.log('ENERGY DOWN')
+  }
+  if (metrics.platter.physicalTime > 9) {
+    metrics.primaryMetrics.energy -= 1
+  }
+}
+
+// reduces all metrics (except downTime and stress)
+// called by timer at 30s intervals
+function timeScoreChanger(metrics) {
+  // console.log('timeScoreChanger fired')
+  metrics.primaryMetrics.energy -= 1
+  for (let metric in metrics.platter) {
+    if (metric !== 'downTime') {
+      metrics.platter[metric] -= 1
+    }
+  }
+  // console.log('Time Score Changer: \n', metrics)
+  calculateStress(metrics)
   return metrics
 }
 
-console.log('Day One Score: \n', dayOneScore(playerMetrics))
-setTimeout(timeScoreChanger, 30000, (dayOneScore(playerMetrics)))
+// TODO
+// not being called anywhere yet
+function disableInteractions (metrics) {
+  if (metrics.platter.physicalTime > 9) {
+    // disable certain interactions
+  }
+}
 
-/* Metrics:
-    - primary:
-      - stress
-      - energy
-    - background:
-      - time in
-      - down time
-      - connecting time
-        focusTime: 0,
-        playTime: 0,
-        connectingTime: 1,
-        sleepTime: 0,
-        physicalTime: 0
-
-Day 1
-  - all metrics = 6
-
-- need little helper functions that affect the score dynamically throughout the game
-
-1. time
-2. actions
-3. inaction
-4. wildcard
-5. interrelationship bw metrics
-
-// what metric is being effected?
-
-TIME:
-unless the player is engaged in a thing, all metrics decrease (except stress, which goes up or down based on the status of the other metrics)
-*/
+// body check
