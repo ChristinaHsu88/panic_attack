@@ -39,7 +39,7 @@ function generateRoomItems() {
     });
 
     Crafty.e('Item, weed')
-    .place(620, 2)
+    .place(650, 190)
     .attr({
       type: 'weed',
       optionsList: {
