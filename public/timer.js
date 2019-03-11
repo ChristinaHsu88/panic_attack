@@ -46,9 +46,10 @@ function worldEventsTimes(){
   return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
 
-function togglePause() {
+function pauseTimerAndScoring() {
   pause ? pause = false : pause = true
   if (pause) {
+    // display in game instead of in DOM
     document.getElementById("pause").innerHTML = 'GAME PAUSED'
   } else {
     document.getElementById("pause").innerHTML = ''
@@ -57,6 +58,8 @@ function togglePause() {
 
 document.onkeydown = function (e) { // TODO disable player
   if (e.code === 'Space') {
+    Crafty.pause()
+    // pauseTimerAndScoring()
     // togglePause()
   }
 }
