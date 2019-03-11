@@ -1,17 +1,29 @@
 let pause = false
 let gameOver = false
+let gameTime = 180
 
+// called at start of game
 function timer() {
-  let gameTime = 180
   setInterval(tickTock, 500)
   document.getElementById("timer").innerHTML = gameTime
+
+  const worldTimes = worldEventsTimes()
+  const scoreChangeTimes = [150, 120, 90, 60, 30]
+  const eatPromptTimes = [145, 95, 45]
+  const napPromptTime = [85]
 
   function tickTock() {
     if (!gameOver) {
       if (!pause && gameTime > 0) {
+        // count down time
         gameTime = gameTime - 1
-        const scoreChangeTimes = [150, 120, 90, 60, 30]
+        // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
+        // trigger game prompts
+        /* eatPromptTimes.includes(gameTime) ? promptEat() : ''
+        napPromptTime.includes(gameTime) ? promptNap() : ''
+        worldTimes.includes(gameTime) ? promptWorldEvent() : '' */
+        // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
@@ -23,14 +35,29 @@ function timer() {
   }
 }
 
+// called by user interaction
+function loseTime(){
+  gameTime -= 10
+}
+
+// returns 2 times randomly from array
+function worldEventsTimes(){
+  const worldEvents = [160, 130, 100, 70, 40, 10]
+  return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
+}
+
+function togglePause() {
+  pause ? pause = false : pause = true
+  if (pause) {
+    document.getElementById("pause").innerHTML = 'GAME PAUSED'
+  } else {
+    document.getElementById("pause").innerHTML = ''
+  }
+}
+
 document.onkeydown = function (e) { // TODO disable player
   if (e.code === 'Space') {
-    pause ? pause = false : pause = true
-    if (pause) {
-      document.getElementById("pause").innerHTML = 'GAME PAUSED'
-    } else {
-      document.getElementById("pause").innerHTML = ''
-    }
+    togglePause()
   }
 }
 
@@ -46,7 +73,7 @@ function endGame(metrics, panic) {
   saveUserData(metrics)
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
-  // call a function that starts the endGame scene
+  loadEndgame('endgame', 0)// call a function that starts the endGame scene
 }
 
 function showChart(){
@@ -62,6 +89,3 @@ function saveUserData (metrics) {
 }
 // if game ends from panic attack, that should effect next day's game play
   // perhaps user will get a notice to do body checks to determine which platter metric needs attention
-
-// bio cues
-// world cues

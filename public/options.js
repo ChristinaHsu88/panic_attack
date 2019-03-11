@@ -12,8 +12,9 @@ Crafty.c('OptionsBox', {
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
+            let playerMove = optionsObj[option].playerMove
             iteration = iteration + 50
-            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect)
+            Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove)
         }
     }
 })
@@ -35,6 +36,10 @@ Crafty.c('Option', {
     },
     changeScore: function(scoreEffect) {
         this.scoreEffect = scoreEffect
+        return this
+    },
+    movePlayer: function(playerMove) {
+        this.playerMove = playerMove
     }
 })
 
@@ -44,7 +49,6 @@ Crafty.c('Item', {
         this.addComponent('2D, DOM, Color')
         this.w = 30
         this.h = 30
-        /* remove this.energy = 7 */
     },
     place: function(x, y) {
         this.x = x
@@ -80,16 +84,27 @@ function makePopUp (hitItem) {
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
-                const optionID = this.selectOption.optionObj['0']
-                const scoreEffect = Crafty(optionID).scoreEffect
-                if (scoreEffect) { // i.e., if player selects anything other than 'GO BACK'
+                // find option
+                const selectedOption = Crafty(this.selectOption.optionObj['0'])
+                // find option's effects
+                const scoreEffect = selectedOption.scoreEffect
+                // update score based on option
+                if (scoreEffect) {
                     for (effect in scoreEffect.platter) {
                         playerMetrics.platter[effect] += scoreEffect.platter[effect]
                     }
                     for (effect in scoreEffect.primaryMetrics) {
                         playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
                     }
+                    loseTime()
                     calculateStress(playerMetrics)
+                }
+                // find world event's effects
+                const playerMove = selectedOption.playerMove
+                if (playerMove) {
+                    // TODO - send player to selected scene
+                    console.log(`Player moved ${playerMove}! (You just can't tell yet.)`)
+                    loseTime()
                 }
                 Crafty('player').unfreeze()
                 Crafty('Option, OptionsBox, Selector').destroy()
