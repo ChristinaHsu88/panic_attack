@@ -49,7 +49,6 @@ function worldEventsTimes(){
 function togglePause() {
   pause ? pause = false : pause = true
   if (pause) {
-    // setTimeout(freezePlayer, 200) // HACK: freeze player while user is (hopefully) not pressing arrows; goal is to keep the player from moving automatically when user presses ENTER and unpauses the game/unfreezes the character
     document.getElementById("pause").innerHTML = 'GAME PAUSED'
   } else {
     document.getElementById("pause").innerHTML = ''
@@ -58,12 +57,8 @@ function togglePause() {
 
 document.onkeydown = function (e) { // TODO disable player
   if (e.code === 'Space') {
-    togglePause()
+    // togglePause()
   }
-}
-
-function freezePlayer() {
-  Crafty('Player').freeze()
 }
 
 // called when timer runs out or when player has a panic attack
