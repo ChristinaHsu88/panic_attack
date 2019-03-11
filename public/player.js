@@ -37,43 +37,24 @@ function makePlayer(x, y) {
       }
     })
     .bind('Move', function(evt) {
-      var hitDatas, hitData;
+      var hitDatas, hitData
       if ((hitDatas = this.hit('Solid'))) {
-        hitData = hitDatas[0];
+        hitData = hitDatas[0]
         if (hitData.type === 'SAT') {
-          this.x -= hitData.overlap * hitData.nx;
-          this.y -= hitData.overlap * hitData.ny;
+          this.x -= hitData.overlap * hitData.nx
+          this.y -= hitData.overlap * hitData.ny
         } else {
-          this.x = evt._x;
-          this.y = evt._y;
+          this.x = evt._x
+          this.y = evt._y
         }
       }
     });
-
-  //CHARACTER ANIMATION
-  //LEFT_ARROW: 37,
-  // UP_ARROW: 38,
-  // RIGHT_ARROW: 39,
-  // DOWN_ARROW: 40
 }
 
 // /* new scene */
 function renderNewScene(hitItem) {
-  const location = hitItem['0'].obj.location;
-  console.log(hitItem);
-  if (location === 'livingroom') {
-    Crafty.enterScene('livingroom');
-  } else if (location === 'outside') {
-    Crafty.enterScene('outside');
-  } else if (location === 'bedroom') {
-    Crafty.enterScene('bedroom');
-    const location = hitItem['0'].obj.location;
-    if (location === 'livingroom') {
-      Crafty.enterScene(location);
-    } else if (location === 'outside') {
-      Crafty.enterScene(location);
-    } else if (location === 'bedroom') {
-      Crafty.enterScene(location);
-    }
+  const location = hitItem['0'].obj.location
+  if (location) {
+    Crafty.enterScene(location)
   }
 }
