@@ -15,8 +15,7 @@ function handleOption(selectedOption) {
     // find world event's effects
     const playerMove = selectedOption.playerMove
     if (playerMove) {
-        // TODO - send player to selected scene
-        console.log(`Player moved ${playerMove}! (You just can't tell yet.)`)
+        Crafty.enterScene(playerMove)
         loseTime()
     }
     // find new skill
