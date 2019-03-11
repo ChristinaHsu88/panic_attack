@@ -65,7 +65,7 @@ document.onkeydown = function (e) {
     // close boxes
     Crafty('BodyCheck, BodyCheckMessage').destroy()
     Crafty('TherapistCall, TherapistMessage').destroy()
-  } else if (e.code === 'ShiftRight' || e.code === 'ShiftLeft') {
+  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
     Crafty('BodyCheck, BodyCheckMessage').destroy()
     bodyCheck(playerMetrics.platter)
   }
