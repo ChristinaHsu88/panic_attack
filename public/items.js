@@ -177,7 +177,7 @@ function generateLivingRoomItems() {
             option3: {
                 title: 'GO BACK',
                 scoreEffect: {
-                   
+
                 }
             }
         }

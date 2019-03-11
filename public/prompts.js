@@ -112,38 +112,46 @@ function bodyCheck(platter) {
     sleepTime: 'You need to sleep.',
     physicalTime: 'You need to move your body.'
   }
-  const lowMetrics = {
-    timeIn: {
-      title: ''
-    },
-    downTime: {
-      title: ''
-    },
-    focusTime: {
-      title: ''
-    },
-    playTime: {
-      title: ''
-    },
-    connectingTime: {
-      title: ''
-    },
-    sleepTime: {
-      title: ''
-    },
-    physicalTime: {
-      title: ''
-    }
+  let lowMetrics = {
+    timeIn: { title: '' },
+    downTime: { title: '' },
+    focusTime: { title: '' },
+    playTime: { title: '' },
+    connectingTime: { title: '' },
+    sleepTime: { title: '' },
+    physicalTime: { title: '' }
   }
+  let playerLow = false
   for (let metric in platter) {
-    if (platter[metric] < 2) {
+    if (platter[metric] < 3) {
+      playerLow = true
       lowMetrics[metric].title = lowMetricsMessages[metric]
     }
   }
-  console.log(lowMetrics);
-  Crafty.e('OptionsBox')
-    .color('grey')
-    .optionsListMaker(lowMetrics)
-
-  killBox()
+  if (!playerLow) {
+    lowMetrics = {
+      goodMessage: { title: 'Looking good! Feeling great!' }
+    }
+  }
+    Crafty.e('OptionsBox')
+      .color('grey')
+      .optionsListMaker(lowMetrics)
+    killBox()
 }
+// BUGS
+  // space/pause is killed after bodyCheck ... why?
+  // only one pop up should display at once
+  // browser default event stuff should be disabled
+
+// FEATURES
+  // world prompts should move player
+  // pause should show up on screen, not under game
+  // bodyCheck should pause game
+  // new game should remove chart
+  // end game should remove timer, pause message, etc.
+
+// CHECK
+  // is bodyCheck skipping game forward 10 s?
+
+// REVISE
+  // end messages
