@@ -28,6 +28,8 @@ Crafty.scene('endgame', function() {
 })
 
 function loadEndgame(scene, duration) {
+  const timer = document.getElementById('timer')
+  timer.style.display = 'none'
   Crafty.e('2D, DOM, Tween, Color')
   .attr({ alpha: 0.0, x: 0, y: 0, w: 800, h: 600 })
   .color('#000000')

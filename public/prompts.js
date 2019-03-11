@@ -133,6 +133,5 @@ function bodyCheck(platter) {
     .addComponent('BodyCheck')
     .color('grey')
     .optionsListMaker(lowMetrics)
-
   Crafty('Option').addComponent('BodyCheckMessage')
 }

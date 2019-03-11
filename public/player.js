@@ -1,3 +1,5 @@
+let wasInBedroom = true /* testing */
+
 Crafty.c('Player', {
   init: function() {
     this.addComponent('2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation');
@@ -71,8 +73,19 @@ function makePlayer(x, y) {
 
 // /* new scene */
 function renderNewScene(hitItem) {
-  const location = hitItem['0'].obj.location;
-  if (location) {
+  const location = hitItem['0'].obj.location  
+  if (location == 'livingroom' && wasInBedroom === true) {
     Crafty.enterScene(location)
+  } 
+  if (location == 'outside') {
+    Crafty.enterScene(location)
+    wasInBedroom = false
+  }
+  if (location == 'livingroom' && wasInBedroom === false) {
+    Crafty.enterScene('livingroom2')
+  }
+  if (location == 'bedroom') {
+    Crafty.enterScene('bedroom')
+    wasInBedroom = true
   }
 }

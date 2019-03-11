@@ -52,22 +52,22 @@ Crafty.scene('welcome', function() {
       if (e.key == Crafty.keys.ENTER) {
         playerMetrics.name = username;
         if (username === '') {
-          alert('you have to enter a name!');
+          alert('you have to enter a name!')
         } else {
-          Crafty.enterScene('bedroom'); // destroys this scene
+          Crafty.enterScene('bedroom') // destroys this scene
           timer();
-          checkUser(username); // checks DB for exising user; startingScore called within
+          checkUser(username) // checks DB for exising user; startingScore called within
         }
       }
       for (let letter in alphabet) {
         if (e.key == Crafty.keys[letter]) {
           username += this.text(alphabet[letter])._text;
-          this.text(username);
+          this.text(username)
         }
       }
       if (e.key == Crafty.keys.BACKSPACE) {
-        username = username.slice(0, -1);
-        this.text(username);
+        username = username.slice(0, -1)
+        this.text(username)
       }
     });
 });
@@ -82,8 +82,8 @@ function loadWelcome(scene, duration) {
       Crafty.e('2D, DOM, Tween, Color')
         .attr({ alpha: 1.0, x: 0, y: 0, w: 800, h: 600 })
         .color('#000000')
-        .tween({ alpha: 0.0 }, duration);
-    });
+        .tween({ alpha: 0.0 }, duration)
+    })
 }
 
 loadWelcome('welcome', 0);
@@ -98,8 +98,8 @@ function checkUser(username) {
       for (let user in db) {
         if (db[user].gameData.name === username) {
           // console.log('User Found!', db[user].gameData)
-          playerMetrics = db[user].gameData;
-          return;
+          playerMetrics = db[user].gameData
+          return
         }
       }
     })
@@ -107,6 +107,6 @@ function checkUser(username) {
       startingScore(playerMetrics);
     })
     .catch(function(error) {
-      console.log(error);
-    });
+      console.log(error)
+    })
 }
