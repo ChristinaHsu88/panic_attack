@@ -12,7 +12,6 @@ Crafty.c('Player', {
 });
 // define and generate player
 // player entity will be destroyed and regenerated in each scene
-let bodyCheckDisplayed = false
 function makePlayer(x, y) {
   Crafty.e('Player, 2D, DOM, Fourway, Collision, Keyboard, player')
     .place(x, y)
@@ -27,10 +26,8 @@ function makePlayer(x, y) {
     })
     .bind('KeyDown', function(e) {
       if (e.key === Crafty.keys.SHIFT) {
-        bodyCheckDisplayed ? bodyCheckDisplayed = false : bodyCheckDisplayed = true
-        if (!bodyCheckDisplayed) {
-          bodyCheck(playerMetrics.platter) // to reveal bodyCheck messages
-        }
+        Crafty('BodyCheck, BodyCheckMessage').destroy() // destroy existing message if nec -- stops app from crashing upon hitting shift without hitting enter (to close message)
+        bodyCheck(playerMetrics.platter) // to reveal bodyCheck messages
         console.log('Player stats: \n', playerMetrics) // to check score during development
       }
     })
