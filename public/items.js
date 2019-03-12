@@ -205,12 +205,12 @@ function generateOutsideItems() {
       },
       option2: {
         type: 'interactable',
-          title: 'DRAW',
-          scoreEffect: {}
+        title: 'DRAW',
+        scoreEffect: {}
       },
       option3: {
         type: 'interactable',
-          title: 'GO BACK'
+        title: 'GO BACK'
       }
     }
   })
