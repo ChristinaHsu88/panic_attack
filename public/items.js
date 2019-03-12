@@ -19,6 +19,7 @@ function generateBedroomItems() {
       type: 'phone',
       optionsList: {
         option1: {
+          type: 'interactable',
           title: 'CALL A GOOD FRIEND',
           scoreEffect: {
             primaryMetrics: { stress: -1 },
@@ -26,6 +27,7 @@ function generateBedroomItems() {
           }
         },
         option2: {
+          type: 'interactable',
           title: 'BROWSE TWITTER',
           scoreEffect: {
             primaryMetrics: { stress: +1 },
@@ -33,6 +35,7 @@ function generateBedroomItems() {
           }
         },
         option3: {
+          type: 'interactable',
           title: 'GO BACK'
         }
       }
@@ -44,6 +47,7 @@ function generateBedroomItems() {
       type: 'weed',
       optionsList: {
         option1: {
+          type: 'interactable',
           title: 'SMOKE WEED',
           scoreEffect: {
             primaryMetrics: { stress: -1, energy: -1 },
@@ -51,15 +55,18 @@ function generateBedroomItems() {
           }
         },
         option2: {
+          type: 'interactable',
           title: 'GO BACK'
         },
         option3: {
+          type: 'interactable',
           title: 'INSTANT PANIC',
           scoreEffect: {
             primaryMetrics: { stress: 10 }
           }
         },
         option4: {
+          type: 'interactable',
           title: 'REDUCE METRIC',
           scoreEffect: {
             platter: { downTime: -6 }
@@ -74,6 +81,7 @@ function generateBedroomItems() {
       type: 'laundry',
       optionsList: {
         option1: {
+          type: 'interactable',
           title: 'TIDY ROOM',
           scoreEffect: {
             primaryMetrics: { stress: -1 },
@@ -81,6 +89,7 @@ function generateBedroomItems() {
           }
         },
         option2: {
+          type: 'interactable',
           title: 'SIT ON LAUNDRY AND NAP',
           scoreEffect: {
             primaryMetrics: { stress: -1 },
@@ -88,6 +97,7 @@ function generateBedroomItems() {
           }
         },
         option3: {
+          type: 'interactable',
           title: 'GO BACK'
         }
       }
@@ -123,13 +133,16 @@ function generateLivingRoomItems() {
       type: 'roommate',
       optionsList: {
         option1: {
+          type: 'interactable',
           title: 'CHAT WITH FRIEND',
           scoreEffect: {}
         },
         option2: {
+          type: 'interactable',
           title: 'WATCH TV'
         },
         option3: {
+          type: 'interactable',
           title: 'GO BACK'
         }
       }
@@ -141,10 +154,12 @@ function generateLivingRoomItems() {
     type: 'dog',
     optionsList: {
       option1: {
+        type: 'interactable',
         title: 'PLAY WITH DOG',
         scoreEffect: {}
       },
       option3: {
+        type: 'interactable',
         title: 'GO BACK'
       }
     }
@@ -156,10 +171,12 @@ function generateLivingRoomItems() {
     type: 'treadmill',
     optionsList: {
       option1: {
+        type: 'interactable',
         title: 'RUNNING',
         scoreEffect: {}
       },
       option3: {
+        type: 'interactable',
         title: 'GO BACK',
         scoreEffect: {}
       }
@@ -182,14 +199,17 @@ function generateOutsideItems() {
     type: 'bench',
     optionsList: {
       option1: {
+        type: 'interactable',
         title: 'SIT',
         scoreEffect: {}
       },
       option2: {
+        type: 'interactable',
           title: 'DRAW',
           scoreEffect: {}
       },
       option3: {
+        type: 'interactable',
           title: 'GO BACK'
       }
     }
@@ -200,10 +220,12 @@ function generateOutsideItems() {
     type: 'tree',
     optionsList: {
       option1: {
+        type: 'interactable',
         title: 'WATCH TREES',
         scoreEffect: {}
       },
       option2: {
+        type: 'interactable',
         title: 'GO BACK'
       }
     }
