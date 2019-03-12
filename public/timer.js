@@ -75,7 +75,7 @@ document.onkeydown = function (e) {
   } else if (e.code === 'Enter') { // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()
-  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) { // TODO - add conditional to stop this from firing when an option box is displayed - bug fix strategy
+  } else if (Crafty('OptionsBox').length === 0 && playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) { // TODO - add conditional to stop this from firing when an option box is displayed - bug fix strategy
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     bodyCheck(playerMetrics.platter) // handled in prompts
   }
