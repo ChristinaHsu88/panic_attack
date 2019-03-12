@@ -21,6 +21,7 @@ function handleOption(selectedOption) {
     }
     // display call info
     if (newSkill) {
+        // pass newSkill object (described in prompts.js) to new OptionsBox (in options.js)
         setTimeout(takeCall, 200, newSkill) // timeout prevents Crafty confusion - may be fixed in refactor
         playerMetrics.previousDays.newSkill = true // enable newSkill
         document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
