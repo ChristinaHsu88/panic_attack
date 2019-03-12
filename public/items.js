@@ -1,19 +1,19 @@
 // define interactable items
 Crafty.c('Item', {
-    init: function() {
-        this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench, tree')
-        this.w = 30
-        this.h = 30
-    },
-    place: function(x, y) {
-        this.x = x
-        this.y = y
-        return this
-    }
+  init: function() {
+    this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench, tree')
+    this.w = 30
+    this.h = 30
+  },
+  place: function(x, y) {
+    this.x = x
+    this.y = y
+    return this
+  }
 })
 
 function generateBedroomItems() {
-    Crafty.e('Item, phone')
+  Crafty.e('Item, phone')
     .place(95, 197)
     .attr({
       type: 'phone',
@@ -38,7 +38,7 @@ function generateBedroomItems() {
       }
     });
 
-    Crafty.e('Item, weed')
+  Crafty.e('Item, weed')
     .place(650, 190)
     .attr({
       type: 'weed',
@@ -68,7 +68,7 @@ function generateBedroomItems() {
       }
     });
 
-    Crafty.e('Item, laundry')
+  Crafty.e('Item, laundry')
     .place(500, 200)
     .attr({
       type: 'laundry',
@@ -117,60 +117,54 @@ function generateLivingRoomItems() {
       location: 'bedroom'
     });
 
-    Crafty.e('Item, roommate')
-    .place(530, 180)
-    .attr({
-        type: 'roommate',
-        optionsList: {
-            option1: {
-                title: 'CHAT WITH FRIEND',
-                scoreEffect: {
-                    /* TBD */
-                }
-            },
-            option2: {
-                title: 'WATCH TV'
-            },
-            option3: {
-                title: 'GO BACK'
-            }
-        }
-    });
-
-    Crafty.e('Item, dog')
-    .place(230, 130)
-    .attr({
-      type: 'dog',
+  Crafty.e('Item, roommate')
+  .place(530, 180)
+  .attr({
+      type: 'roommate',
       optionsList: {
         option1: {
-          title: 'PLAY WITH DOG',
-          scoreEffect: {
-            /* TBD */
-          }
+          title: 'CHAT WITH FRIEND',
+          scoreEffect: {}
+        },
+        option2: {
+          title: 'WATCH TV'
         },
         option3: {
           title: 'GO BACK'
         }
       }
-    });
+  });
 
-    Crafty.e('Item, treadmill')
-    .place(630, 80)
-    .attr({
-      type: 'treadmill',
-      optionsList: {
-        option1: {
-          title: 'RUNNING',
-          scoreEffect: {
-            /* TBD */
-          }
-        },
-        option3: {
-          title: 'GO BACK',
-          scoreEffect: {}
-        }
+  Crafty.e('Item, dog')
+  .place(230, 130)
+  .attr({
+    type: 'dog',
+    optionsList: {
+      option1: {
+        title: 'PLAY WITH DOG',
+        scoreEffect: {}
+      },
+      option3: {
+        title: 'GO BACK'
       }
-    });
+    }
+  });
+
+  Crafty.e('Item, treadmill')
+  .place(630, 80)
+  .attr({
+    type: 'treadmill',
+    optionsList: {
+      option1: {
+        title: 'RUNNING',
+        scoreEffect: {}
+      },
+      option3: {
+        title: 'GO BACK',
+        scoreEffect: {}
+      }
+    }
+  });
 }
 
 /* a door for user to go back inside */
@@ -178,48 +172,42 @@ function generateOutsideItems() {
   Crafty.e('Item')
     .place(400, 3)
     .attr({
-        type: 'door',
-        location: 'livingroom'
+      type: 'door',
+      location: 'livingroom'
     })
 
-    Crafty.e('Item, bench')
-    .place(150, 200)
-    .attr({
-        type: 'bench',
-        optionsList: {
-            option1: {
-                title: 'SIT',
-                scoreEffect: {
-                    /* TBD */
-                }
-            },
-            option2: {
-                title: 'DRAW',
-                scoreEffect: {
-                    /* TBD */
-                }
-            },
-            option3: {
-                title: 'GO BACK'
-            }
-        }
-    })
-    Crafty.e('Item, tree')
-    .place(430, 200)
-    .attr({
-      type: 'tree',
-      optionsList: {
-        option1: {
-          title: 'WATCH TREES',
-          scoreEffect: {
-            /* TBD */
-          }
-        },
-        option2: {
+  Crafty.e('Item, bench')
+  .place(150, 200)
+  .attr({
+    type: 'bench',
+    optionsList: {
+      option1: {
+        title: 'SIT',
+        scoreEffect: {}
+      },
+      option2: {
+          title: 'DRAW',
+          scoreEffect: {}
+      },
+      option3: {
           title: 'GO BACK'
-        }
       }
-    });
+    }
+  })
+  Crafty.e('Item, tree')
+  .place(430, 200)
+  .attr({
+    type: 'tree',
+    optionsList: {
+      option1: {
+        title: 'WATCH TREES',
+        scoreEffect: {}
+      },
+      option2: {
+        title: 'GO BACK'
+      }
+    }
+  });
 }
 
 function itemPopUp(hitItem) {
