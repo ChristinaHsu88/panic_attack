@@ -14,9 +14,10 @@ Crafty.c('OptionsBox', {
             let scoreEffect = optionsObj[option].scoreEffect
             let playerMove = optionsObj[option].playerMove
             let newSkill = optionsObj[option].newSkill
+            let type = optionsObj[option].type
             if (optionTitle) {
                 iteration = iteration + 50
-                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
+                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill).optionType(type)
             }
         }
     }
