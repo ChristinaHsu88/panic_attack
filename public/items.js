@@ -185,7 +185,7 @@ function generateLivingRoomItems() {
         title: 'GET A WORK OUT',
         scoreEffect: {
           primaryMetrics: { stress: -1 },
-          platter: { physical: +1 },
+          platter: { physicalTime: +1 },
         }
       },
       option3: {
