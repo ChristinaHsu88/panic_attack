@@ -48,6 +48,9 @@ Crafty.c('Option', {
     receiveCall: function(newSkill) {
         this.newSkill = newSkill
         return this
+    },
+    optionType: function(type) {
+        this.addComponent = type // string
     }
 })
 // define interactable items
