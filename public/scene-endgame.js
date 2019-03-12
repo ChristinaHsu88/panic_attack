@@ -6,9 +6,9 @@ Crafty.scene('endgame', function() {
   .attr({ x: 20, y: 70 })
   .text(function() {
     if (playerMetrics.primaryMetrics.stress >= 10) {
-      return 'You gotta learn how to chill.'
+      return 'Oh dear...you panicked...'
     } else {
-      return 'Time for some good sleep'
+      return 'You made it through the day!'
     }
   })
   .textColor('white')
@@ -33,10 +33,10 @@ function loadEndgame(scene, duration) {
   .color('#000000')
   .tween({ alpha: 1.0 }, duration)
   .bind('TweenEnd', function() {
-      Crafty.scene(scene);
-      Crafty.e('2D, DOM, Tween, Color')
-      .attr({ alpha: 1.0, x: 0, y: 0, w: 800, h: 600 })
-      .color('#000000')
-      .tween({ alpha: 0.0 }, duration);
+    Crafty.scene(scene);
+    Crafty.e('2D, DOM, Tween, Color')
+    .attr({ alpha: 1.0, x: 0, y: 0, w: 800, h: 600 })
+    .color('#000000')
+    .tween({ alpha: 0.0 }, duration);
   });
 }

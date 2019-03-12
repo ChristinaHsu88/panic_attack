@@ -127,7 +127,7 @@ function timeScoreChanger(metrics) {
   return metrics
 }
 
-// TODO
+// TODO - future feature
 // not being called anywhere yet
 function disableInteractions (metrics) {
   if (metrics.platter.physicalTime > 9) {

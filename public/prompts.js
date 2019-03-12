@@ -103,9 +103,9 @@ function promptTherapistCall() {
         option1: {
           type: 'therapistMessage',
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
-          newSkill: {
+          newSkill: { // nested object bc new box pops up from previous box
             objectShapeKeeper: {
-              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
+              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.',
               type: 'newSkillMessage'
             }
           }
@@ -120,6 +120,7 @@ function promptTherapistCall() {
   makePopUp(therapistCall, 'therapistPrompt')
 }
 
+// checks for low metrics, passes appropriate message to be rendered
 function bodyCheck(platter) {
   platter.timeIn += 1
   const lowMetricsMessages = {
