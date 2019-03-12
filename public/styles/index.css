@@ -1,23 +1,36 @@
 body {
   background-color: #87ceeb;
 }
+
 #game-flex {
   display: flex;
   flex-direction: column;
   padding-left: 23em;
+  align-content: center;
 }
-
+#timer {
+  font-family: 'VT323', monospace;
+  font-size: 20;
+}
+#pause {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+}
+#new-skill {
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+}
 #navbar-flex {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 2px black solid;
+  border: 5px black solid;
   width: 100%;
-  height: 50em;
+  height: 5em;
+  margin-bottom: 4em;
   font-family: 'VT323', monospace;
   background-color: #f3fafd;
 }
-
 /* Title Animation */
 h1 {
   font-family: 'VT323', monospace;
@@ -42,5 +55,11 @@ h1 {
 }
 
 #game {
-  border: 2px black solid;
+  border: 5px black solid;
+}
+
+#intro {
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  width: 20em;
 }
