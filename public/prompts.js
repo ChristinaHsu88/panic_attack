@@ -21,7 +21,7 @@ function promptEat(){
 /* comment out for testing only. the code has been included in the following function*/
 // function promptNap(){
 //   Crafty('Player').freeze()
-//   const napOptionsObj = [{
+//   const napEventObj = [{
 //     obj: {
 //       optionsList: {
 //         option1: {
@@ -36,7 +36,7 @@ function promptEat(){
 //       }
 //     }
 //   }]
-//   makePopUp(napOptionsObj)
+//   makePopUp(napEventObj)
 // }
 /* comment out for testing only */
 
@@ -73,7 +73,7 @@ function promptWorldEvent(){
     }
   }]
 
-  const napOptionsObj = [{
+  const napEventObj = [{
     obj: {
       optionsList: {
         option1: {
@@ -91,20 +91,18 @@ function promptWorldEvent(){
     }
   }]
 
-  const worldEventsArr = [friendEventObj, outsideEventObj, napOptionsObj]
+  const worldEventsArr = [friendEventObj, outsideEventObj, napEventObj]
+  let randomNum
   if (currentLocation === 'bedroom') {
-    let randomNum = Math.floor(Math.random() * 3)                /* pick one of the three questions */
+    randomNum = Math.floor(Math.random() * 3) // all 3 prompts
     makePopUp(worldEventsArr[randomNum])
   } else if (currentLocation === 'livingroom') {
-    let randomNum2 = Math.floor(Math.random() * 2 + 1)           /* only nap or bird question will be asked */
-    makePopUp(worldEventsArr[randomNum2])
-  } else if (currentLocation === 'outside') {                    /* only first two items will be picked to prompt */
-    let randomNum3 = Math.floor(Math.random() * 2)
-    makePopUp(worldEventsArr[randomNum3])
+    randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
+    makePopUp(worldEventsArr[randomNum])
+  } else if (currentLocation === 'outside') {
+    randomNum = Math.floor(Math.random() * 2) // nap & friends
+    makePopUp(worldEventsArr[randomNum])
   }
-
-  // makePopUp(worldEventsArr[event])
-  // event++
 }
 
 // called in scoring, handled in options
