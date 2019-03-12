@@ -10,7 +10,7 @@ function timer() {
   const worldTimes = worldEventsTimes()
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
-  const napPromptTime = [85]
+  const napPromptTime = [85] // DUE FOR REFACTOR TODO
 
   function tickTock() {
     if (!gameOver) {
