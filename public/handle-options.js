@@ -26,5 +26,5 @@ function handleOption(selectedOption) {
         playerMetrics.previousDays.newSkill = true // enable newSkill
         document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
     }
-    // loseTime() /* comment out for now as it causes the time to drop 10 secs as soon as there's a pop up */
+    loseTime() 
 }
