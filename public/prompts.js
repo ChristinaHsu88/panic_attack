@@ -18,29 +18,30 @@ function promptEat(){
   }]
   makePopUp(eatOptionsObj)
 }
-
-function promptNap(){
-  Crafty('Player').freeze()
-  const napOptionsObj = [{
-    obj: {
-      optionsList: {
-        option1: {
-          title: 'YOU\'RE SLEEPY. NAP?',
-          scoreEffect: {
-            primaryMetrics: { sleepTime: +2 }
-          }
-        },
-        option2: {
-          title: 'GO BACK'
-        }
-      }
-    }
-  }]
-  makePopUp(napOptionsObj)
-}
+/* comment out for testing only. the code has been included in the following function*/
+// function promptNap(){
+//   Crafty('Player').freeze()
+//   const napOptionsObj = [{
+//     obj: {
+//       optionsList: {
+//         option1: {
+//           title: 'YOU\'RE SLEEPY. NAP?',
+//           scoreEffect: {
+//             primaryMetrics: { sleepTime: +2 }
+//           }
+//         },
+//         option2: {
+//           title: 'GO BACK'
+//         }
+//       }
+//     }
+//   }]
+//   makePopUp(napOptionsObj)
+// }
+/* comment out for testing only */
 
 // TODO - add more events, randomize which are called; add more options to existing events, randomize which are available, etc.
-let event = 0 // this ensures the same event is not called twice per game
+// let event = 0 // this ensures the same event is not called twice per game
 function promptWorldEvent(){
   Crafty('Player').freeze()
   const friendEventObj = [{
@@ -69,9 +70,37 @@ function promptWorldEvent(){
       }
     }
   }]
-  const worldEventsArr = [friendEventObj, outsideEventObj]
-  makePopUp(worldEventsArr[event])
-  event++
+  
+  const napOptionsObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          title: 'YOU\'RE SLEEPY. NAP?',
+          scoreEffect: {
+            primaryMetrics: { sleepTime: +2 }
+          }
+        },
+        option2: {
+          title: 'GO BACK'
+        }
+      }
+    }
+  }]
+  const worldEventsArr = [friendEventObj, outsideEventObj, napOptionsObj]
+  if (currentLocation === 'bedroom') {
+    let randomNum = Math.floor(Math.random() * 3)               /* pick one of the three questions */
+    makePopUp(worldEventsArr[randomNum])
+  } else if (currentLocation === 'livingroom') {
+    let randomNum2 = Math.floor(Math.random() * (2 - 1 + 1) + 1) /* only nap or bird question will be asked */
+    makePopUp(worldEventsArr[randomNum2])
+  } else if (currentLocation === 'outside') {                   /* only first two items will be picked to prompt */
+    let randomNum3 = Math.floor(Math.random() * 2)
+    makePopUp(worldEventsArr[randomNum3])
+  }
+  
+  
+  // makePopUp(worldEventsArr[event])
+  // event++
 }
 
 // called in scoring, handled in options
