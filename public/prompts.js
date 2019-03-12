@@ -12,7 +12,8 @@ function promptEat(){
           }
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt'
         }
       }
     }
@@ -142,7 +143,7 @@ function bodyCheck(platter) {
   }
   if (!playerLow) {
     lowMetricsObj = {
-      goodMessage: { title: 'Looking good! Feeling great!' }
+      goodMessage: { title: 'Looking good! Feeling great!', type: 'bodyCheckMessage' }
     }
   }
   Crafty.e('OptionsBox')
