@@ -16,7 +16,7 @@ function generateBedroomItems() {
   Crafty.e('Item, phone')
     .place(95, 197)
     .attr({
-      type: 'phone',
+      itemType: 'phone',
       optionsList: {
         option1: {
           type: 'interactable',
@@ -44,7 +44,7 @@ function generateBedroomItems() {
   Crafty.e('Item, weed')
     .place(650, 190)
     .attr({
-      type: 'weed',
+      itemType: 'weed',
       optionsList: {
         option1: {
           type: 'interactable',
@@ -78,7 +78,7 @@ function generateBedroomItems() {
   Crafty.e('Item, laundry')
     .place(500, 200)
     .attr({
-      type: 'laundry',
+      itemType: 'laundry',
       optionsList: {
         option1: {
           type: 'interactable',
@@ -106,7 +106,7 @@ function generateBedroomItems() {
   Crafty.e('Item')
     .place(400, 300)
     .attr({
-      type: 'door',
+      itemType: 'door',
       location: 'livingroom'
     });
 }
@@ -116,21 +116,21 @@ function generateLivingRoomItems() {
   Crafty.e('Item,')
     .place(400, 300)
     .attr({
-      type: 'door',
+      itemType: 'door',
       location: 'outside'
     });
 
   Crafty.e('Item')
     .place(100, 75)
     .attr({
-      type: 'door',
+      itemType: 'door',
       location: 'bedroom'
     });
 
   Crafty.e('Item, roommate')
   .place(530, 180)
   .attr({
-    type: 'roommate',
+    itemType: 'roommate',
     optionsList: {
       option1: {
         type: 'interactable',
@@ -151,7 +151,7 @@ function generateLivingRoomItems() {
   Crafty.e('Item, dog')
   .place(230, 130)
   .attr({
-    type: 'dog',
+    itemType: 'dog',
     optionsList: {
       option1: {
         type: 'interactable',
@@ -168,7 +168,7 @@ function generateLivingRoomItems() {
   Crafty.e('Item, treadmill')
   .place(630, 80)
   .attr({
-    type: 'treadmill',
+    itemType: 'treadmill',
     optionsList: {
       option1: {
         type: 'interactable',
@@ -189,14 +189,14 @@ function generateOutsideItems() {
   Crafty.e('Item')
     .place(400, 3)
     .attr({
-      type: 'door',
+      itemType: 'door',
       location: 'livingroom'
     })
 
   Crafty.e('Item, bench')
     .place(150, 200)
     .attr({
-      type: 'bench',
+      itemType: 'bench',
       optionsList: {
         option1: {
           type: 'interactable',
@@ -217,7 +217,7 @@ function generateOutsideItems() {
   Crafty.e('Item, tree')
     .place(430, 200)
     .attr({
-      type: 'tree',
+      itemType: 'tree',
       optionsList: {
         option1: {
           type: 'interactable',
@@ -241,7 +241,7 @@ function itemPopUp(hitItem) {
       w: 100,
       h: 30
     })
-    .text(`HIT ENTER TO SELECT THIS ${hitItem[0].obj.type}`)
+    .text(`HIT ENTER TO SELECT THIS ${hitItem[0].obj.itemType}`)
     .bind('KeyDown', function(e) {
       if (e.key == Crafty.keys.ENTER) {
         makePopUp(hitItem);
