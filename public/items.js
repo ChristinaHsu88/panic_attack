@@ -130,22 +130,22 @@ function generateLivingRoomItems() {
   Crafty.e('Item, roommate')
   .place(530, 180)
   .attr({
-      type: 'roommate',
-      optionsList: {
-        option1: {
-          type: 'interactable',
-          title: 'CHAT WITH FRIEND',
-          scoreEffect: {}
-        },
-        option2: {
-          type: 'interactable',
-          title: 'WATCH TV'
-        },
-        option3: {
-          type: 'interactable',
-          title: 'GO BACK'
-        }
+    type: 'roommate',
+    optionsList: {
+      option1: {
+        type: 'interactable',
+        title: 'CHAT WITH FRIEND',
+        scoreEffect: {}
+      },
+      option2: {
+        type: 'interactable',
+        title: 'WATCH TV'
+      },
+      option3: {
+        type: 'interactable',
+        title: 'GO BACK'
       }
+    }
   });
 
   Crafty.e('Item, dog')
@@ -194,42 +194,42 @@ function generateOutsideItems() {
     })
 
   Crafty.e('Item, bench')
-  .place(150, 200)
-  .attr({
-    type: 'bench',
-    optionsList: {
-      option1: {
-        type: 'interactable',
-        title: 'SIT',
-        scoreEffect: {}
-      },
-      option2: {
-        type: 'interactable',
-        title: 'DRAW',
-        scoreEffect: {}
-      },
-      option3: {
-        type: 'interactable',
-        title: 'GO BACK'
+    .place(150, 200)
+    .attr({
+      type: 'bench',
+      optionsList: {
+        option1: {
+          type: 'interactable',
+          title: 'SIT',
+          scoreEffect: {}
+        },
+        option2: {
+          type: 'interactable',
+          title: 'DRAW',
+          scoreEffect: {}
+        },
+        option3: {
+          type: 'interactable',
+          title: 'GO BACK'
+        }
       }
-    }
-  })
+    })
   Crafty.e('Item, tree')
-  .place(430, 200)
-  .attr({
-    type: 'tree',
-    optionsList: {
-      option1: {
-        type: 'interactable',
-        title: 'WATCH TREES',
-        scoreEffect: {}
-      },
-      option2: {
-        type: 'interactable',
-        title: 'GO BACK'
+    .place(430, 200)
+    .attr({
+      type: 'tree',
+      optionsList: {
+        option1: {
+          type: 'interactable',
+          title: 'WATCH TREES',
+          scoreEffect: {}
+        },
+        option2: {
+          type: 'interactable',
+          title: 'GO BACK'
+        }
       }
-    }
-  });
+    });
 }
 
 function itemPopUp(hitItem) {
