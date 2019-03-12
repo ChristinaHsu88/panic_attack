@@ -28,7 +28,6 @@ function timer() {
         document.getElementById("timer").innerHTML = gameTime
       }
       if (gameTime === 0) {
-        console.log('GAME TIME IS 0')
         endGame(playerMetrics, false)
         timeScoreChanger(playerMetrics)
       }
@@ -89,16 +88,10 @@ function endGame(metrics, panic) {
 
   let timer = document.getElementById("timer")
   timer.style.display = 'none'
-  timer.innerHTML = gameTime
+  timer.innerHTML = gameTime // is this nec?
   metrics.previousDays.daysPlayed += 1
-  console.log('Game is over?', gameOver)
-  console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.previousDays.daysPlayed)
-  let endingReason
-  panic ? endingReason = 'had a panic attack' : endingReason = 'ran out of time'
   panic ? metrics.previousDays.panic = true : metrics.previousDays.panic = false
-  console.log(`Your game ended because you ${endingReason}`)
   saveUserData(metrics)
-  console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
   loadEndgame('endgame', 0)
 }

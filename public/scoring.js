@@ -35,7 +35,6 @@ function startingScore(metrics){
   }
   calculateStress(metrics)
   updateStressBar(metrics.primaryMetrics.stress)
-  console.log('starting score:', playerMetrics)
   if (metrics.previousDays.daysPlayed && !metrics.previousDays.newSkill) {
     setTimeout(promptTherapistCall, 2000)
   }
@@ -71,8 +70,6 @@ function areYouPanicking(stressLevel) {
   let panicking = false
   if (stressLevel >= 10) {
     updateStressBar(stressLevel)
-    console.log('YOU ARE HAVING A PANIC ATTACK')
-    // CALL IN THE CATS
     panicking = true
   }
   return panicking
@@ -84,7 +81,6 @@ function isPlatterImbalanced(metrics) {
   let bigGap
   const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
   const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
-  console.log('platter gap:', biggestGapBetweenMetrics)
   biggestGapBetweenMetrics > 5 ? bigGap = true : bigGap = false
   return bigGap
 }
