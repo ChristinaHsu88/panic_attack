@@ -244,7 +244,7 @@ function itemPopUp(hitItem) {
     .text(`HIT ENTER TO SELECT THIS ${hitItem[0].obj.itemType}`)
     .bind('KeyDown', function(e) {
       if (e.key == Crafty.keys.ENTER) {
-        makePopUp(hitItem);
+        makePopUp(hitItem, 'selectedItem');
         Crafty('Player').freeze();
         this.destroy();
       }
