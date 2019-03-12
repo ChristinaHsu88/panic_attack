@@ -50,7 +50,7 @@ function worldEventsTimes(){
 function pauseTimerAndScoring() {
   pause ? pause = false : pause = true
   if (pause) {
-    // display in game instead of in DOM
+    // TODO display in game instead of in DOM
     document.getElementById("pause").innerHTML = 'GAME PAUSED'
   } else {
     document.getElementById("pause").innerHTML = ''
@@ -75,7 +75,7 @@ document.onkeydown = function (e) {
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
   gameOver = true
-  gameTime = 180 /* reset time here so there won't be any deply when re-rendering the page */
+  gameTime = 180 // reset time // TODO - BUG - not working properly
   metrics.previousDays.daysPlayed += 1
   console.log('Game is over?', gameOver)
   console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.previousDays.daysPlayed)
