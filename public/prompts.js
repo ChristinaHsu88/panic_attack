@@ -78,14 +78,12 @@ function promptWorldEvent(){
   let randomNum
   if (currentLocation === 'bedroom') {
     randomNum = Math.floor(Math.random() * 3) // all 3 prompts
-    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   } else if (currentLocation === 'livingroom') {
     randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
-    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   } else if (currentLocation === 'outside') {
     randomNum = Math.floor(Math.random() * 2) // nap & friends
-    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   }
+  makePopUp(worldEventsArr[randomNum], 'gamePrompt')
 }
 
 // called in scoring, handled in options
