@@ -95,7 +95,7 @@ function promptTherapistCall() {
     obj: {
       optionsList: {
         option1: {
-          type: 'therapistCallMessage',
+          type: 'therapistMessage',
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             objectShapeKeeper: {
@@ -106,12 +106,12 @@ function promptTherapistCall() {
         },
         option2: {
           title: 'DO NOT ANSWER',
-          type: 'therapistCallMessage'
+          type: 'therapistMessage'
         }
       }
     }
   }]
-  makePopUp(therapistCall, 'therapistCall')
+  makePopUp(therapistCall, 'therapistPrompt')
 }
 
 function bodyCheck(platter) {
