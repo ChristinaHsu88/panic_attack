@@ -85,6 +85,7 @@ function renderNewScene(hitItem) {
   }
   if (location === 'outside') {
     Crafty.enterScene(location)
+    wasInBedroom = false
   }
   if (location === 'livingroom' && !wasInBedroom) {
     Crafty.enterScene('livingroom2')
