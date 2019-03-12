@@ -1,9 +1,9 @@
 // scene 2 - bedroom
 Crafty.scene('bedroom', function() {
-Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
-Crafty.sprite(30, 'assets/phone_2.png', { phone: [0, 0] });
-Crafty.sprite(30, 'assets/weed.png', { weed: [0, 0] });
-Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
+  Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
+  Crafty.sprite(30, 'assets/phone_2.png', { phone: [0, 0] });
+  Crafty.sprite(30, 'assets/weed.png', { weed: [0, 0] });
+  Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
   // TODO - change cat sprite for player
   Crafty.sprite(32, 'assets/dude.png', {
     PlayerTowards: [3, 0],
@@ -62,10 +62,9 @@ Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
     w: 5
   })
 
-  //WALLS
   console.log('how much game time left', gameTime);
   if (gameTime > 178) {
-    makePlayer(340, 50);
+    makePlayer(340, 50); // in bed at start of game
   } else {
     makePlayer(400, 250);
   }
