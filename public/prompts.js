@@ -94,18 +94,18 @@ function promptTherapistCall() {
     obj: {
       optionsList: {
         option1: {
-          type: 'therapistCall',
+          type: 'therapistCallMessage',
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             objectShapeKeeper: {
               title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
-              type: 'therapistMessage'
+              type: 'newSkillMessage'
             }
           }
         },
         option2: {
           title: 'DO NOT ANSWER',
-          type: 'therapistCall'
+          type: 'therapistCallMessage'
         }
       }
     }
