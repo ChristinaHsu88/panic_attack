@@ -10,12 +10,12 @@ Crafty.scene('nightCats', function() {
     .textColor('white')
     .bind('KeyDown', function(e) {
         if (e.key == Crafty.keys.ENTER) {
-            gameOver = false
             const timer = document.getElementById('timer')  /* redisplay the timer */
             timer.style.display = 'block'
+            gameOver = false
             const chart = document.getElementById('myChart')
             chart.style.display = 'none'
-            gameTime = 181 // hack fix for timer issue on restart
+            gameTime = 181 // hack fix for timer issue on restart - this code still needs to exist even though gameTime was reset 180 on different page. 
             Crafty.enterScene('bedroom')
             checkUser(playerMetrics.name)
         }

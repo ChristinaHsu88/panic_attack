@@ -74,6 +74,7 @@ document.onkeydown = function (e) {
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
   gameOver = true
+  gameTime = 180 /* reset time here so there won't be any deply when re-rendering the page */
   metrics.previousDays.daysPlayed += 1
   console.log('Game is over?', gameOver)
   console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.previousDays.daysPlayed)

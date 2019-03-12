@@ -71,8 +71,6 @@ Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
   }
   generateRoomItems();
   createStressBar();
-  const timer = document.getElementById('timer')
-  timer.style.display = 'block'
   // likely have to Crafty.enterScene('endGame') here, but wrap in a function so that it's triggered by endGame()
   // it seems like .enterScene needs to be called within the scene that is active, therefore all scenes will need endGame
 });
