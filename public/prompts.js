@@ -28,11 +28,11 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt'
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
-          playerMove: 'livingroom',
-          type: 'prompt'
+          playerMove: 'livingroom'
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt'
         }
       }
     }
@@ -43,11 +43,11 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt'
           title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
-          playerMove: 'outside',
-          type: 'prompt'
+          playerMove: 'outside'
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt'
         }
       }
     }
@@ -66,7 +66,8 @@ function promptWorldEvent(){
           type: 'prompt'
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt'
         }
       }
     }
@@ -102,7 +103,8 @@ function promptTherapistCall() {
           }
         },
         option2: {
-          title: 'DO NOT ANSWER'
+          title: 'DO NOT ANSWER',
+          type: 'therapistCall'
         }
       }
     }
