@@ -1,4 +1,5 @@
 let wasInBedroom = true /* testing */
+let currentLocation = ''
 
 Crafty.c('Player', {
   init: function() {
@@ -22,18 +23,19 @@ function makePlayer(x, y) {
     .fourway(200)
     .checkHits('Item')
     // animates Sprite
-    .reel('PlayerTowards', 900, 3, 0, 3)
-    .reel('PlayerLeft', 900, 3, 1, 3)
-    .reel('PlayerRight', 900, 3, 2, 3)
-    .reel('PlayerAway', 900, 3, 3, 3)
-    .animate('PlayerTowards', -1)
-    .animate('PlayerLeft', -1)
-    .animate('PlayerRight', -1)
-    .animate('PlayerAway', -1)
+    .pauseAnimation()
     // Creates conditions on which way sprite moves
     .bind('KeyDown', function(e) {
+      this.reel('PlayerTowards', 700, 3, 0, 2)
+      this.reel('PlayerLeft', 700, 3, 1, 2)
+      this.reel('PlayerRight', 700, 3, 2, 2)
+      this.reel('PlayerAway', 700, 3, 3, 2) 
+      this.animate('PlayerLeft', -1)
+      this.animate('PlayerRight', -1)
+      this.animate('PlayerAway', -1)
+      this.animate('PlayerTowards', -1)
       if (e.key === Crafty.keys.DOWN_ARROW) {
-        this.animate('PlayerTowards', -1);
+        this.animate('PlayerTowards', -1)
       } else if (e.key === Crafty.keys.UP_ARROW) {
         this.animate('PlayerAway', -1);
       } else if (e.key === Crafty.keys.LEFT_ARROW) {
@@ -74,17 +76,18 @@ function makePlayer(x, y) {
 // /* new scene */
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location  
-  if (location == 'livingroom' && wasInBedroom === true) {
+  console.log(hitItem['0'].obj.location)
+  currentLocation = location /* testing to track location */
+  if (location === 'livingroom' && wasInBedroom) {
     Crafty.enterScene(location)
   } 
-  if (location == 'outside') {
+  if (location === 'outside') {
     Crafty.enterScene(location)
-    wasInBedroom = false
   }
-  if (location == 'livingroom' && wasInBedroom === false) {
+  if (location === 'livingroom' && !wasInBedroom) {
     Crafty.enterScene('livingroom2')
   }
-  if (location == 'bedroom') {
+  if (location === 'bedroom') {
     Crafty.enterScene('bedroom')
     wasInBedroom = true
   }

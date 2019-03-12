@@ -1,7 +1,7 @@
 // define interactable items
 Crafty.c('Item', {
     init: function() {
-        this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench')
+        this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench, tree')
         this.w = 30
         this.h = 30
     },
@@ -181,6 +181,7 @@ function generateOutsideItems() {
         type: 'door',
         location: 'livingroom'
     })
+    
     Crafty.e('Item, bench')
     .place(150, 200)
     .attr({
@@ -203,7 +204,7 @@ function generateOutsideItems() {
             }
         }
     })
-    Crafty.e('Item')
+    Crafty.e('Item, tree')
     .place(430, 200)
     .attr({
       type: 'tree',
@@ -214,7 +215,7 @@ function generateOutsideItems() {
             /* TBD */
           }
         },
-        option3: {
+        option2: {
           title: 'GO BACK'
         }
       }

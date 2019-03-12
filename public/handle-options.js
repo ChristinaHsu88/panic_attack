@@ -16,6 +16,8 @@ function handleOption(selectedOption) {
     const playerMove = selectedOption.playerMove
     if (playerMove) {
         Crafty.enterScene(playerMove)
+        currentLocation = playerMove /* testing location */
+        console.log('current location is based on player move', currentLocation, playerMove)
         loseTime()
     }
     // find new skill
