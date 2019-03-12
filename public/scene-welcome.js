@@ -33,7 +33,7 @@ const alphabet = {
 };
 
 Crafty.scene('welcome', function() {
-  Crafty.background('white url(assets/loading.png) no-repeat center center');
+  Crafty.background('white url(assets/loading.png) no-repeat center center'); 
   /* greetings */
   Crafty.e('2D, DOM, Canvas, Text, Mouse')
     .attr({ x: 130, y: 200 })
