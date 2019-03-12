@@ -9,7 +9,7 @@ Crafty.scene('nightCats', function() {
     .textFont({ size: '30px', weight: 'bold', type: 'italic'})
     .textColor('white')
     .bind('KeyDown', function(e) {
-        if (e.key == Crafty.keys.ENTER) {
+        if (e.key == Crafty.keys.ENTER) { // TODO - refactor
             const timer = document.getElementById('timer')  /* redisplay the timer */
             timer.style.display = 'block'
             gameOver = false
@@ -17,7 +17,6 @@ Crafty.scene('nightCats', function() {
             chart.style.display = 'none'
             Crafty.enterScene('bedroom')
             currentLocation = 'bedroom'
-            console.log('this is the first scene after th first day is over ', currentLocation)
             checkUser(playerMetrics.name)
         }
       })

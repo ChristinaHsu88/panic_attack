@@ -1,5 +1,5 @@
 let wasInBedroom = true /* testing */
-let currentLocation = ''
+let currentLocation = '' // must be global
 
 Crafty.c('Player', {
   init: function() {
@@ -44,7 +44,7 @@ function makePlayer(x, y) {
         this.animate('PlayerRight', -1);
       } else this.pauseAnimation();
     })
-    // .animate('WalkAway', -1)
+    // .animate('WalkAway', -1) TODO - remove this comment?
     .bind('HitOn', function(hitItem) {
       itemPopUp(hitItem);
       renderNewScene(hitItem);
@@ -73,13 +73,14 @@ function makePlayer(x, y) {
     });
 }
 
-// /* new scene */
+// TODO - refactor
+// render new scenes when player moves through doors; sets player location accordingly
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location
   if (location) {
     console.log(hitItem['0'].obj.location)
   }
-  currentLocation = location /* testing to track location */
+  currentLocation = location
   if (location === 'livingroom' && wasInBedroom) {
     Crafty.enterScene(location)
   }
