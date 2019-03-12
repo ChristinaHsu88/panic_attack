@@ -1,5 +1,5 @@
 // living room from outside
-Crafty.scene('livingroom', function() {
+Crafty.scene('livingroom2', function() {
   Crafty.background('#57342E url(assets/livingroom.png) no-repeat center right');
   Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] })
   Crafty.sprite(32, 'assets/dog.png', { dog: [0, 0] })
