@@ -20,9 +20,10 @@ function timer() {
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
-        eatPromptTimes.includes(gameTime) ? promptEat() : ''
-        // napPromptTime.includes(gameTime) ? promptNap() : ''
-        worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        if (!Crafty('OptionsBox')) { // disable prompt if options box is already there
+          eatPromptTimes.includes(gameTime) ? promptEat() : ''
+          worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        }
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
@@ -63,10 +64,10 @@ document.onkeydown = function (e) {
     pauseTimerAndScoring()
   } else if (e.code === 'Enter') {
     // close boxes
-    Crafty('BodyCheck, BodyCheckMessage').destroy()
-    Crafty('TherapistCall, TherapistMessage').destroy()
+    Crafty('BodyCheck, bodyCheckMessage').destroy()
+    Crafty('TherapistCall, newSkillMessage').destroy()
   } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
-    Crafty('BodyCheck, BodyCheckMessage').destroy()
+    Crafty('BodyCheck, bodyCheckMessage').destroy()
     bodyCheck(playerMetrics.platter)
   }
 }
