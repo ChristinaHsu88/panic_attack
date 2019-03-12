@@ -11,6 +11,8 @@ Crafty.scene('nightCats', function() {
     .bind('KeyDown', function(e) {
         if (e.key == Crafty.keys.ENTER) {
             gameOver = false
+            const timer = document.getElementById('timer')  /* redisplay the timer */
+            timer.style.display = 'block'
             const chart = document.getElementById('myChart')
             chart.style.display = 'none'
             gameTime = 181 // hack fix for timer issue on restart
