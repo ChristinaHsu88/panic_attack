@@ -80,10 +80,12 @@ Crafty.c('Item', {
 });
 
 // hitItem param sets the options in popUp
-function makePopUp (hitItem) {
+function makePopUp (hitItem, boxType) {
     const popUp = Crafty.e('OptionsBox')
         .color('grey')
+        .boxType(boxType)
         .optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
+
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
@@ -119,7 +121,7 @@ function makePopUp (hitItem) {
 
 function takeCall(newSkill) {
     Crafty.e('OptionsBox')
-        .addComponent('TherapistCall')
         .color('grey')
+        .boxType('TherapistCall')
         .optionsListMaker(newSkill)
 }

@@ -18,7 +18,7 @@ function promptEat(){
       }
     }
   }]
-  makePopUp(eatOptionsObj)
+  makePopUp(eatOptionsObj, 'gamePrompt')
 }
 
 function promptWorldEvent(){
@@ -78,13 +78,13 @@ function promptWorldEvent(){
   let randomNum
   if (currentLocation === 'bedroom') {
     randomNum = Math.floor(Math.random() * 3) // all 3 prompts
-    makePopUp(worldEventsArr[randomNum])
+    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   } else if (currentLocation === 'livingroom') {
     randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
-    makePopUp(worldEventsArr[randomNum])
+    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   } else if (currentLocation === 'outside') {
     randomNum = Math.floor(Math.random() * 2) // nap & friends
-    makePopUp(worldEventsArr[randomNum])
+    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   }
 }
 
@@ -111,7 +111,7 @@ function promptTherapistCall() {
       }
     }
   }]
-  makePopUp(therapistCall)
+  makePopUp(therapistCall, 'therapistCall')
 }
 
 function bodyCheck(platter) {
@@ -147,7 +147,7 @@ function bodyCheck(platter) {
     }
   }
   Crafty.e('OptionsBox')
-    .addComponent('BodyCheck')
     .color('grey')
+    .boxType('BodyCheck')
     .optionsListMaker(lowMetricsObj)
 }
