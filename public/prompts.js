@@ -86,18 +86,18 @@ function promptWorldEvent(){
       }
     }
   }]
+
   const worldEventsArr = [friendEventObj, outsideEventObj, napOptionsObj]
   if (currentLocation === 'bedroom') {
-    let randomNum = Math.floor(Math.random() * 3)               /* pick one of the three questions */
+    let randomNum = Math.floor(Math.random() * 3)                /* pick one of the three questions */
     makePopUp(worldEventsArr[randomNum])
   } else if (currentLocation === 'livingroom') {
-    let randomNum2 = Math.floor(Math.random() * (2 - 1 + 1) + 1) /* only nap or bird question will be asked */
+    let randomNum2 = Math.floor(Math.random() * 2 + 1)           /* only nap or bird question will be asked */
     makePopUp(worldEventsArr[randomNum2])
-  } else if (currentLocation === 'outside') {                   /* only first two items will be picked to prompt */
+  } else if (currentLocation === 'outside') {                    /* only first two items will be picked to prompt */
     let randomNum3 = Math.floor(Math.random() * 2)
     makePopUp(worldEventsArr[randomNum3])
   }
-  
   
   // makePopUp(worldEventsArr[event])
   // event++
