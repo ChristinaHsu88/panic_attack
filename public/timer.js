@@ -58,17 +58,15 @@ function pauseTimerAndScoring() {
 }
 
 document.onkeydown = function (e) {
-  if (e.code === 'Space') {
-    // pause game and functionality
+  if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
     pauseTimerAndScoring()
-  } else if (e.code === 'Enter') {
-    // close boxes
+  } else if (e.code === 'Enter') { // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()
   } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) { // TODO - add conditional to stop this from firing when an option box is displayed - bug fix strategy
     Crafty('BodyCheck, bodyCheckMessage').destroy()
-    bodyCheck(playerMetrics.platter)
+    bodyCheck(playerMetrics.platter) // handled in prompts
   }
 }
 
@@ -90,7 +88,7 @@ function endGame(metrics, panic) {
   saveUserData(metrics)
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
-  loadEndgame('endgame', 0)// call a function that starts the endGame scene
+  loadEndgame('endgame', 0)
 }
 
 function showChart(){
@@ -104,5 +102,3 @@ function saveUserData (metrics) {
     .then(res => console.log('data saved'))
     .catch(err => console.log(err))
 }
-// if game ends from panic attack, that should effect next day's game play
-  // perhaps user will get a notice to do body checks to determine which platter metric needs attention
