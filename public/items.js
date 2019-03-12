@@ -176,7 +176,7 @@ function generateLivingRoomItems() {
 /* a door for user to go back inside */
 function generateOutsideItems() {
   Crafty.e('Item')
-    .place(400, 300)
+    .place(400, 3)
     .attr({
         type: 'door',
         location: 'livingroom'

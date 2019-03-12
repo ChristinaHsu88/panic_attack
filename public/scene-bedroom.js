@@ -10,7 +10,7 @@ Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
     PlayerLeft: [3, 1],
     PlayerRight: [3, 2],
     PlayerAway: [3, 3]
-  });
+  })
   // generate all entities in this scene
   //WALLS:
   Crafty.e('2D, DOM, Color, Solid, WallLeft, Collision,').attr({
@@ -18,33 +18,49 @@ Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
     y: 0,
     h: 350,
     w: 5
-  });
-  Crafty.e('2D, DOM, Solid, WallTop, Collision').attr({
+  })
+  
+  Crafty.e('2D, DOM, Solid, WallTop, Collision, Color').attr({
     x: 87,
-    y: 5,
+    y: 55,
     h: 5,
-    w: 350
-  });
+    w: 600
+  })
+  
   Crafty.e('2D, DOM, Solid, WallRight, Collision').attr({
     x: 690,
     y: 0,
     h: 350,
     w: 5
-  });
+  })
 
-  Crafty.e('2D, DOM, Solid, WallBottomRight, Collision').attr({
+  Crafty.e('2D, DOM, Solid, WallBottomLeft, Collision, Color').attr({
     x: 70,
     y: 250,
     h: 5,
     w: 300
-  });
+  })
 
-  Crafty.e('2D, DOM, WallBottomLeft, Solid, Collision').attr({
+  Crafty.e('2D, DOM, Solid, WallBottomLeftVertical, Collision').attr({
+    x: 370,
+    y: 250,
+    h: 80,
+    w: 5
+  })
+
+  Crafty.e('2D, DOM, WallBottomRight, Solid, Collision').attr({
     x: 450,
     y: 250,
     h: 5,
     w: 300
-  });
+  })
+
+  Crafty.e('2D, DOM, Solid, WallBottomRightVertical, Collision').attr({
+    x: 440,
+    y: 250,
+    h: 80,
+    w: 5
+  })
 
   //WALLS
   console.log('how much game time left', gameTime);
