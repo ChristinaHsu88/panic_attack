@@ -76,6 +76,7 @@ document.onkeydown = function (e) {
 function endGame(metrics, panic) {
   gameOver = true
   gameTime = 180 // reset time // TODO - BUG - not working properly
+  
   let timer = document.getElementById("timer")
   timer.style.display = 'none'
   timer.innerHTML = gameTime

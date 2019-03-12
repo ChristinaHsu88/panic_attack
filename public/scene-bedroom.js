@@ -63,7 +63,7 @@ Crafty.scene('bedroom', function() {
   })
 
   console.log('how much game time left', gameTime);
-  if (gameTime > 178) {
+  if (!currentLocation) {
     makePlayer(340, 50); // in bed at start of game
   } else {
     makePlayer(400, 250);
