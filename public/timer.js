@@ -20,7 +20,7 @@ function timer() {
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
-        if (!Crafty('OptionsBox')) { // disable prompt if options box is already there
+        if (!Crafty('OptionsBox')) { // TODO - this is disabling these prompts regardless of existence of options box
           eatPromptTimes.includes(gameTime) ? promptEat() : ''
           worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         }
@@ -73,17 +73,15 @@ function pauseScene(location) {
 }
 
 document.onkeydown = function (e) {
-  if (e.code === 'Space') {
-    // pause game and functionality
+  if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
     pauseTimerAndScoring()
-  } else if (e.code === 'Enter') {
-    // close boxes
+  } else if (e.code === 'Enter') { // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()
-  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
+  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) { // TODO - add conditional to stop this from firing when an option box is displayed - bug fix strategy
     Crafty('BodyCheck, bodyCheckMessage').destroy()
-    bodyCheck(playerMetrics.platter)
+    bodyCheck(playerMetrics.platter) // handled in prompts
   }
 }
 
@@ -91,7 +89,7 @@ document.onkeydown = function (e) {
 function endGame(metrics, panic) {
   gameOver = true
   gameTime = 180 // reset time // TODO - BUG - not working properly
-  
+
   let timer = document.getElementById("timer")
   timer.style.display = 'none'
   timer.innerHTML = gameTime
@@ -105,7 +103,7 @@ function endGame(metrics, panic) {
   saveUserData(metrics)
   console.log('END OF GAME -- NO MORE CONSOLE MESSAGES SHOULD FIRE')
   showChart()
-  loadEndgame('endgame', 0)// call a function that starts the endGame scene
+  loadEndgame('endgame', 0)
 }
 
 function showChart(){
@@ -119,5 +117,3 @@ function saveUserData (metrics) {
     .then(res => console.log('data saved'))
     .catch(err => console.log(err))
 }
-// if game ends from panic attack, that should effect next day's game play
-  // perhaps user will get a notice to do body checks to determine which platter metric needs attention
