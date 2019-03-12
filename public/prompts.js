@@ -93,7 +93,7 @@ function promptTherapistCall() {
     obj: {
       optionsList: {
         option1: {
-          type: ''
+          type: 'therapistCall'
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             objectShapeKeeper: {
@@ -121,30 +121,29 @@ function bodyCheck(platter) {
     sleepTime: 'You need to sleep.',
     physicalTime: 'You need to move your body.'
   }
-  let lowMetrics = {
-    timeIn: { title: '' },
-    downTime: { title: '' },
-    focusTime: { title: '' },
-    playTime: { title: '' },
-    connectingTime: { title: '' },
-    sleepTime: { title: '' },
-    physicalTime: { title: '' }
+  let lowMetricsObj = {
+    timeIn: { title: '', type: 'bodyCheckMessage' },
+    downTime: { title: '', type: 'bodyCheckMessage' },
+    focusTime: { title: '', type: 'bodyCheckMessage' },
+    playTime: { title: '', type: 'bodyCheckMessage' },
+    connectingTime: { title: '', type: 'bodyCheckMessage' },
+    sleepTime: { title: '', type: 'bodyCheckMessage' },
+    physicalTime: { title: '', type: 'bodyCheckMessage' }
   }
   let playerLow = false
   for (let metric in platter) {
     if (platter[metric] < 3) {
       playerLow = true
-      lowMetrics[metric].title = lowMetricsMessages[metric]
+      lowMetricsObj[metric].title = lowMetricsMessages[metric]
     }
   }
   if (!playerLow) {
-    lowMetrics = {
+    lowMetricsObj = {
       goodMessage: { title: 'Looking good! Feeling great!' }
     }
   }
   Crafty.e('OptionsBox')
     .addComponent('BodyCheck')
     .color('grey')
-    .optionsListMaker(lowMetrics)
-  Crafty('Option').addComponent('BodyCheckMessage')
+    .optionsListMaker(lowMetricsObj)
 }
