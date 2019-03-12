@@ -7,6 +7,10 @@ Crafty.c('OptionsBox', {
         this.w = 400
         this.h = 400
     },
+    boxType: function(type) { // TODO add boxType wherever OptionsBox is generated
+        this.addComponent(type)
+        return this
+    },
     optionsListMaker: function(optionsObj) {
         let iteration = 0
         for (const option in optionsObj) {
@@ -15,6 +19,7 @@ Crafty.c('OptionsBox', {
             let playerMove = optionsObj[option].playerMove
             let newSkill = optionsObj[option].newSkill
             let type = optionsObj[option].type
+            console.log(type);
             if (optionTitle) {
                 iteration = iteration + 50
                 Crafty.e('Option')
