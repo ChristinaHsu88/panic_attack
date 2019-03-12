@@ -1,3 +1,4 @@
+let optType;
 // defines pop up
 Crafty.c('OptionsBox', {
     init: function() {
@@ -7,18 +8,31 @@ Crafty.c('OptionsBox', {
         this.w = 400
         this.h = 400
     },
+    boxType: function(type) { // TODO add boxType wherever OptionsBox is generated
+        this.addComponent(type)
+        return this
+    },
     optionsListMaker: function(optionsObj) {
         let iteration = 0
+        let type
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
             let playerMove = optionsObj[option].playerMove
             let newSkill = optionsObj[option].newSkill
+            type = optionsObj[option].type
             if (optionTitle) {
                 iteration = iteration + 50
-                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill)
+                Crafty.e('Option')
+                    .text(optionTitle)
+                    .place(iteration)
+                    .changeScore(scoreEffect)
+                    .movePlayer(playerMove)
+                    .receiveCall(newSkill)
+                    .optionType(type)
             }
         }
+        optType = type // global variable needed to specify what to destroy
     }
 })
 
@@ -48,6 +62,9 @@ Crafty.c('Option', {
     receiveCall: function(newSkill) {
         this.newSkill = newSkill
         return this
+    },
+    optionType: function(type) {
+        this.addComponent(type) // string
     }
 })
 // define interactable items
@@ -65,8 +82,12 @@ Crafty.c('Item', {
 });
 
 // hitItem param sets the options in popUp
-function makePopUp (hitItem) {
-    const popUp = Crafty.e('OptionsBox').color('grey').optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
+function makePopUp (hitItem, boxType) {
+    const popUp = Crafty.e('OptionsBox')
+        .color('grey')
+        .boxType(boxType)
+        .optionsListMaker(hitItem[0].obj.optionsList) // generates the popup window and populates with the hitItem's titles
+
     const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
         .attr({
             w: 300,
@@ -91,20 +112,19 @@ function makePopUp (hitItem) {
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
-                // find option
                 const selectedOption = Crafty(this.selectOption.optionObj['0'])
                 handleOption(selectedOption)
                 Crafty('PlayerTowards').unfreeze();
-                Crafty('Option, OptionsBox, Selector').destroy()
+                Crafty(boxType).destroy() // boxTypes handled here: gamePrompt, therapistPrompt, selectedItem
+                Crafty(optType).destroy() // prompt, therapistMessage, interactable
+                Crafty('Selector').destroy() // TODO - refactor when confirmed that these variables work
             }
         })
 }
 
 function takeCall(newSkill) {
     Crafty.e('OptionsBox')
-        .addComponent('TherapistCall')
         .color('grey')
+        .boxType('TherapistCall')
         .optionsListMaker(newSkill)
-
-    Crafty('Option').addComponent('TherapistMessage')
 }
