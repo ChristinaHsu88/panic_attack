@@ -1,7 +1,10 @@
 function handleOption(selectedOption) {
-  // find option's effects
+    // identify option features
     const scoreEffect = selectedOption.scoreEffect
-    // update score based on option
+    const playerMove = selectedOption.playerMove
+    const newSkill = selectedOption.newSkill
+
+    // update score
     if (scoreEffect) {
         for (effect in scoreEffect.platter) {
             playerMetrics.platter[effect] += scoreEffect.platter[effect]
@@ -9,22 +12,19 @@ function handleOption(selectedOption) {
         for (effect in scoreEffect.primaryMetrics) {
             playerMetrics.primaryMetrics[effect] += scoreEffect.primaryMetrics[effect]
         }
-        loseTime()
         calculateStress(playerMetrics)
     }
-    // find world event's effects
-    const playerMove = selectedOption.playerMove
+    // move player
     if (playerMove) {
         Crafty.enterScene(playerMove)
-        loseTime()
+        currentLocation = playerMove // update player's location (req'd for world event prompts - prompts.js)
     }
-    // find new skill
-    const newSkill = selectedOption.newSkill
     // display call info
     if (newSkill) {
-        setTimeout(takeCall, 200, newSkill)
-        // moved from gainNewSkill in prompts under therapist call
-        playerMetrics.previousDays.newSkill = true
+        // pass newSkill object (described in prompts.js) to new OptionsBox (in options.js)
+        setTimeout(takeCall, 200, newSkill) // timeout prevents Crafty confusion - may be fixed in refactor
+        playerMetrics.previousDays.newSkill = true // enable newSkill
         document.getElementById('new-skill').innerText = '"SHIFT" - body check' // TODO - prettify
     }
+    loseTime()
 }

@@ -52,6 +52,22 @@ Crafty.scene('livingroom', function() {
       w: 320
     })
     .color()
+
+
+  Crafty.e('2D, DOM, Solid, WallBottomLeftVertical, Collision').attr({
+    x: 390,
+    y: 250,
+    h: 80,
+    w: 5
+  })
+
+
+  Crafty.e('2D, DOM, Solid, WallBottomRightVertical, Collision').attr({
+    x: 440,
+    y: 250,
+    h: 80,
+    w: 5
+  })
     makePlayer(130, 50)
     generateLivingRoomItems()
     createStressBar()

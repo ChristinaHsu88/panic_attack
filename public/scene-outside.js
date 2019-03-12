@@ -13,15 +13,34 @@ Crafty.scene('outside', function() {
     })
     .css({ visibility: 'hidden' })
     .color()
-    
-    Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
+   
+    Crafty.e('2D, DOM, Color, Solid, WallTopLeft, Collision')
     .attr({
       x: 87,
       y: 5,
       h: 5,
+      w: 290
+    })
+    .color('black')
+
+    Crafty.e('2D, DOM, Color, Solid, WallTopRight, Collision')
+    .attr({
+      x: 440,
+      y: 5,
+      h: 5,
+      w: 300
+    })
+    .color('black')
+
+    Crafty.e('2D, DOM, Color, Solid, WallBottom, Collision')
+    .attr({
+      x: 87,
+      y: 300,
+      h: 5,
       w: 600
     })
     .color()
+
 
     Crafty.e('2D, DOM, Color,  Solid, WallRight, Collision')
     .attr({
@@ -31,25 +50,7 @@ Crafty.scene('outside', function() {
       w: 5
     })
     .color()
-
-    Crafty.e('2D, DOM, Color, Solid, WallBottomRight, Collision')
-    .attr({
-      x: 70,
-      y: 300,
-      h: 5,
-      w: 300
-    })
-    .color('black')
-
-    Crafty.e('2D, DOM, Color, WallBottomLeft, Solid, Collision')
-    .attr({
-      x: 450,
-      y: 300,
-      h: 5,
-      w: 300
-    })
-    .color('black')
-    makePlayer(400, 220)
+    makePlayer(400, 80)
     generateOutsideItems()
     createStressBar()
 })

@@ -55,6 +55,8 @@ Crafty.scene('welcome', function() {
           alert('you have to enter a name!')
         } else {
           Crafty.enterScene('bedroom') // destroys this scene
+          currentLocation = 'bedroom'
+          console.log('tracking initial location ', currentLocation)
           timer();
           checkUser(username) // checks DB for exising user; startingScore called within
         }
