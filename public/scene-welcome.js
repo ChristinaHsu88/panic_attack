@@ -1,8 +1,5 @@
 // scene1 - outside of house
-// TODO
-// if game has rolled over from previous round, user should not have to type in player name but simply hit enter to start next day
-// this should query DB to pull saved data
-
+  // does not appear if player starts new game from end page (i.e., hitting enter at end game skips this page)
 const alphabet = {
   A: 'A',
   B: 'B',
@@ -33,7 +30,7 @@ const alphabet = {
 };
 
 Crafty.scene('welcome', function() {
-  Crafty.background('white url(assets/loading.png) no-repeat center center');
+  Crafty.background('white url(assets/loading.png) no-repeat center center'); 
   /* greetings */
   Crafty.e('2D, DOM, Canvas, Text, Mouse')
     .attr({ x: 45, y: 250 })
@@ -58,9 +55,14 @@ Crafty.scene('welcome', function() {
         if (username === '') {
           alert('you have to enter a name!');
         } else {
+<<<<<<< HEAD
           Crafty.enterScene('bedroom'); // destroys this scene
           currentLocation = 'bedroom';
           console.log('tracking initial location ', currentLocation);
+=======
+          Crafty.enterScene('bedroom') // destroys this scene
+          currentLocation = 'bedroom'
+>>>>>>> 95baeaa8d33295ed5701b8389ff9ba01457d01e4
           timer();
           checkUser(username); // checks DB for exising user; startingScore called within
         }
@@ -103,9 +105,14 @@ function checkUser(username) {
       let db = response.data;
       for (let user in db) {
         if (db[user].gameData.name === username) {
+<<<<<<< HEAD
           // console.log('User Found!', db[user].gameData)
           playerMetrics = db[user].gameData;
           return;
+=======
+          playerMetrics = db[user].gameData
+          return
+>>>>>>> 95baeaa8d33295ed5701b8389ff9ba01457d01e4
         }
       }
     })

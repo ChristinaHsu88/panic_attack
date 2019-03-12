@@ -29,7 +29,11 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt',
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
-          playerMove: 'livingroom'
+          playerMove: 'livingroom', // TODO can we move player TO the couch?
+          /*scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }*/ // commented out until above question answered
         },
         option2: {
           title: 'GO BACK',
@@ -44,7 +48,11 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt',
           title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
-          playerMove: 'outside'
+          playerMove: 'outside',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }
         },
         option2: {
           title: 'GO BACK',
@@ -60,10 +68,10 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt',
           title: 'YOU\'RE SLEEPY. NAP?',
+          playerMove: 'bedroom', // TODO - should move to bed in bedroom
           scoreEffect: {
-            primaryMetrics: { sleepTime: +2 }
+            platter: { sleepTime: +2 }
           },
-          playerMove: 'bedroom', // should move to bed in bedroom
           type: 'prompt',
         },
         option2: {
@@ -78,14 +86,12 @@ function promptWorldEvent(){
   let randomNum
   if (currentLocation === 'bedroom') {
     randomNum = Math.floor(Math.random() * 3) // all 3 prompts
-    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   } else if (currentLocation === 'livingroom') {
     randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
-    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   } else if (currentLocation === 'outside') {
     randomNum = Math.floor(Math.random() * 2) // nap & friends
-    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
   }
+  makePopUp(worldEventsArr[randomNum], 'gamePrompt')
 }
 
 // called in scoring, handled in options
@@ -97,9 +103,9 @@ function promptTherapistCall() {
         option1: {
           type: 'therapistMessage',
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
-          newSkill: {
+          newSkill: { // nested object bc new box pops up from previous box
             objectShapeKeeper: {
-              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
+              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.',
               type: 'newSkillMessage'
             }
           }
@@ -114,10 +120,11 @@ function promptTherapistCall() {
   makePopUp(therapistCall, 'therapistPrompt')
 }
 
+// checks for low metrics, passes appropriate message to be rendered
 function bodyCheck(platter) {
   platter.timeIn += 1
   const lowMetricsMessages = {
-    timeIn: 'You need to check in with your body. Have you found your meditation pillow yet?',
+    timeIn: 'You need to check in with your body more often.',
     downTime: 'You need some down time. Have a seat and enjoy the scenery.',
     focusTime: 'You need to engage your brain. Try drawing or tidying up.',
     playTime: 'You need to play!',
