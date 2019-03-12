@@ -98,7 +98,8 @@ function promptTherapistCall() {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             objectShapeKeeper: {
-              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.' // displayed in popup
+              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
+              type: 'therapistMessage'
             }
           }
         },
