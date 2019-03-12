@@ -5,53 +5,35 @@ function promptEat(){
     obj: {
       optionsList: {
         option1: {
+          type: 'prompt',
           title: 'YOU\'RE HUNGRY. EAT?',
           scoreEffect: {
             primaryMetrics: { energy: +1 }
           }
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt'
         }
       }
     }
   }]
-  makePopUp(eatOptionsObj)
+  makePopUp(eatOptionsObj, 'gamePrompt')
 }
 
-function promptNap(){
-  Crafty('Player').freeze()
-  const napOptionsObj = [{
-    obj: {
-      optionsList: {
-        option1: {
-          title: 'YOU\'RE SLEEPY. NAP?',
-          scoreEffect: {
-            primaryMetrics: { sleepTime: +2 }
-          }
-        },
-        option2: {
-          title: 'GO BACK'
-        }
-      }
-    }
-  }]
-  makePopUp(napOptionsObj)
-}
-
-// TODO - add more events, randomize which are called; add more options to existing events, randomize which are available, etc.
-let event = 0 // this ensures the same event is not called twice per game
 function promptWorldEvent(){
   Crafty('Player').freeze()
   const friendEventObj = [{
     obj: {
       optionsList: {
         option1: {
+          type: 'prompt',
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
           playerMove: 'livingroom'
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt',
         }
       }
     }
@@ -60,18 +42,50 @@ function promptWorldEvent(){
     obj: {
       optionsList: {
         option1: {
+          type: 'prompt',
           title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
           playerMove: 'outside'
         },
         option2: {
-          title: 'GO BACK'
+          title: 'GO BACK',
+          type: 'prompt',
         }
       }
     }
   }]
-  const worldEventsArr = [friendEventObj, outsideEventObj]
-  makePopUp(worldEventsArr[event])
-  event++
+
+  const napEventObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          type: 'prompt',
+          title: 'YOU\'RE SLEEPY. NAP?',
+          scoreEffect: {
+            primaryMetrics: { sleepTime: +2 }
+          },
+          playerMove: 'bedroom', // should move to bed in bedroom
+          type: 'prompt',
+        },
+        option2: {
+          title: 'GO BACK',
+          type: 'prompt',
+        }
+      }
+    }
+  }]
+
+  const worldEventsArr = [friendEventObj, outsideEventObj, napEventObj]
+  let randomNum
+  if (currentLocation === 'bedroom') {
+    randomNum = Math.floor(Math.random() * 3) // all 3 prompts
+    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
+  } else if (currentLocation === 'livingroom') {
+    randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
+    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
+  } else if (currentLocation === 'outside') {
+    randomNum = Math.floor(Math.random() * 2) // nap & friends
+    makePopUp(worldEventsArr[randomNum], 'gamePrompt')
+  }
 }
 
 // called in scoring, handled in options
@@ -81,20 +95,23 @@ function promptTherapistCall() {
     obj: {
       optionsList: {
         option1: {
+          type: 'therapistMessage',
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             objectShapeKeeper: {
-              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.' // displayed in popup
+              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.', // displayed in popup
+              type: 'newSkillMessage'
             }
           }
         },
         option2: {
-          title: 'DO NOT ANSWER'
+          title: 'DO NOT ANSWER',
+          type: 'therapistMessage'
         }
       }
     }
   }]
-  makePopUp(therapistCall)
+  makePopUp(therapistCall, 'therapistPrompt')
 }
 
 function bodyCheck(platter) {
@@ -108,30 +125,29 @@ function bodyCheck(platter) {
     sleepTime: 'You need to sleep.',
     physicalTime: 'You need to move your body.'
   }
-  let lowMetrics = {
-    timeIn: { title: '' },
-    downTime: { title: '' },
-    focusTime: { title: '' },
-    playTime: { title: '' },
-    connectingTime: { title: '' },
-    sleepTime: { title: '' },
-    physicalTime: { title: '' }
+  let lowMetricsObj = {
+    timeIn: { title: '', type: 'bodyCheckMessage' },
+    downTime: { title: '', type: 'bodyCheckMessage' },
+    focusTime: { title: '', type: 'bodyCheckMessage' },
+    playTime: { title: '', type: 'bodyCheckMessage' },
+    connectingTime: { title: '', type: 'bodyCheckMessage' },
+    sleepTime: { title: '', type: 'bodyCheckMessage' },
+    physicalTime: { title: '', type: 'bodyCheckMessage' }
   }
   let playerLow = false
   for (let metric in platter) {
     if (platter[metric] < 3) {
       playerLow = true
-      lowMetrics[metric].title = lowMetricsMessages[metric]
+      lowMetricsObj[metric].title = lowMetricsMessages[metric]
     }
   }
   if (!playerLow) {
-    lowMetrics = {
-      goodMessage: { title: 'Looking good! Feeling great!' }
+    lowMetricsObj = {
+      goodMessage: { title: 'Looking good! Feeling great!', type: 'bodyCheckMessage' }
     }
   }
   Crafty.e('OptionsBox')
-    .addComponent('BodyCheck')
     .color('grey')
-    .optionsListMaker(lowMetrics)
-  Crafty('Option').addComponent('BodyCheckMessage')
+    .boxType('BodyCheck')
+    .optionsListMaker(lowMetricsObj)
 }

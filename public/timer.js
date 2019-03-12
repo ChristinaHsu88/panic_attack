@@ -10,7 +10,7 @@ function timer() {
   const worldTimes = worldEventsTimes()
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
-  const napPromptTime = [85]
+  const napPromptTime = [85] // DUE FOR REFACTOR TODO
 
   function tickTock() {
     if (!gameOver) {
@@ -20,9 +20,10 @@ function timer() {
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
-        eatPromptTimes.includes(gameTime) ? promptEat() : ''
-        napPromptTime.includes(gameTime) ? promptNap() : ''
-        worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        if (!Crafty('OptionsBox')) { // disable prompt if options box is already there
+          eatPromptTimes.includes(gameTime) ? promptEat() : ''
+          worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        }
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
@@ -49,7 +50,7 @@ function worldEventsTimes(){
 function pauseTimerAndScoring() {
   pause ? pause = false : pause = true
   if (pause) {
-    // display in game instead of in DOM
+    // TODO display in game instead of in DOM
     document.getElementById("pause").innerHTML = 'GAME PAUSED'
   } else {
     document.getElementById("pause").innerHTML = ''
@@ -63,10 +64,10 @@ document.onkeydown = function (e) {
     pauseTimerAndScoring()
   } else if (e.code === 'Enter') {
     // close boxes
-    Crafty('BodyCheck, BodyCheckMessage').destroy()
-    Crafty('TherapistCall, TherapistMessage').destroy()
+    Crafty('BodyCheck, bodyCheckMessage').destroy()
+    Crafty('TherapistCall, newSkillMessage').destroy()
   } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
-    Crafty('BodyCheck, BodyCheckMessage').destroy()
+    Crafty('BodyCheck, bodyCheckMessage').destroy()
     bodyCheck(playerMetrics.platter)
   }
 }
@@ -74,6 +75,10 @@ document.onkeydown = function (e) {
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
   gameOver = true
+  gameTime = 180 // reset time // TODO - BUG - not working properly
+  let timer = document.getElementById("timer")
+  timer.style.display = 'none'
+  timer.innerHTML = gameTime
   metrics.previousDays.daysPlayed += 1
   console.log('Game is over?', gameOver)
   console.log('Your day is over. Your metrics are: \n', metrics.primaryMetrics, '\n', metrics.platter, '\n Days played:', metrics.previousDays.daysPlayed)
