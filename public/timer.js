@@ -21,7 +21,7 @@ function timer() {
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
         eatPromptTimes.includes(gameTime) ? promptEat() : ''
-        napPromptTime.includes(gameTime) ? promptNap() : ''
+        // napPromptTime.includes(gameTime) ? promptNap() : ''
         worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
