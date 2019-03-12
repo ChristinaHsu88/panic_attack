@@ -15,7 +15,6 @@ Crafty.scene('nightCats', function() {
             gameOver = false
             const chart = document.getElementById('myChart')
             chart.style.display = 'none'
-            gameTime = 181 // hack fix for timer issue on restart - this code still needs to exist even though gameTime was reset 180 on different page. // TODO - BUG - this isn't working properly
             Crafty.enterScene('bedroom')
             currentLocation = 'bedroom'
             console.log('this is the first scene after th first day is over ', currentLocation)
