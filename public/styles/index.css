@@ -6,7 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-left: 23em;
-  align-content: center;
+  align-content: space-around;
 }
 #timer {
   font-family: 'VT323', monospace;
@@ -62,5 +62,5 @@ h1 {
 #intro {
   font-family: 'VT323', monospace;
   font-size: 25px;
-  width: 20em;
+  width: 28em;
 }
