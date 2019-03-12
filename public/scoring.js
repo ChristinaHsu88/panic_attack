@@ -47,11 +47,9 @@ function startingScore(metrics){
   // interaction events // startingScore // self (recursive) // timeScoreChanger
 function calculateStress(metrics) {
   if (!gameOver && !pause) {
-    // console.log('calcStress fired')
     calculateEnergy(metrics)
     if (isPlatterImbalanced(metrics)) {
       metrics.primaryMetrics.stress += 1
-      // console.log('imbalanced platter has increased stress')
     }
     if (areYouPanicking(metrics.primaryMetrics.stress)) {
       endGame(metrics, true)
@@ -60,8 +58,6 @@ function calculateStress(metrics) {
     for (let metric in metrics.platter) {
       if (metrics.platter[metric] < 1) {
         metrics.primaryMetrics.stress += 1
-        // console.log('STRESS UP')
-        // console.log(`Current stress level is ${metrics.primaryMetrics.stress}`)
         setTimeout(calculateStress, 2000, playerMetrics) // so long as any metric is low, stress will increase rapidly
         return // don't up stress PER metric, but only once (otherwise game is too hard)
       }
@@ -70,7 +66,6 @@ function calculateStress(metrics) {
     return
   }
   return
-  // return console.log('calcStress says: GAME IS OVER')
 }
 
 function areYouPanicking(stressLevel) {
@@ -86,13 +81,28 @@ function areYouPanicking(stressLevel) {
 
 // called by calcStress
 function isPlatterImbalanced(metrics) {
-  // console.log('isPlatterImbalanced fired');
+  correctAboveTen(metrics)
   let bigGap
   const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
   const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
   console.log('platter gap:', biggestGapBetweenMetrics)
   biggestGapBetweenMetrics > 5 ? bigGap = true : bigGap = false
   return bigGap
+}
+
+// called by isPlatterImbalanced
+function correctAboveTen(metrics) {
+  for (let metric in metrics.platter) {
+    if (metrics.platter[metric] > 10) {
+      metrics.platter[metric] = 10
+    }
+  }
+  for (let metric in metrics.primaryMetrics) {
+    if (metrics.primaryMetrics[metric] > 10) {
+      metrics.primaryMetrics[metric] = 10
+    }
+  }
+  return metrics
 }
 
 // called by calcStress
@@ -130,4 +140,3 @@ function disableInteractions (metrics) {
   }
 }
 
-// body check
