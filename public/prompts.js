@@ -18,30 +18,7 @@ function promptEat(){
   }]
   makePopUp(eatOptionsObj)
 }
-/* comment out for testing only. the code has been included in the following function*/
-// function promptNap(){
-//   Crafty('Player').freeze()
-//   const napEventObj = [{
-//     obj: {
-//       optionsList: {
-//         option1: {
-//           title: 'YOU\'RE SLEEPY. NAP?',
-//           scoreEffect: {
-//             primaryMetrics: { sleepTime: +2 }
-//           }
-//         },
-//         option2: {
-//           title: 'GO BACK'
-//         }
-//       }
-//     }
-//   }]
-//   makePopUp(napEventObj)
-// }
-/* comment out for testing only */
 
-// TODO - add more events, randomize which are called; add more options to existing events, randomize which are available, etc.
-// let event = 0 // this ensures the same event is not called twice per game
 function promptWorldEvent(){
   Crafty('Player').freeze()
   const friendEventObj = [{
