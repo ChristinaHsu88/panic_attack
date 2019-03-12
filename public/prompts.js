@@ -49,7 +49,8 @@ function promptWorldEvent(){
       optionsList: {
         option1: {
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
-          playerMove: 'livingroom'
+          playerMove: 'livingroom',
+          type: 'prompt'
         },
         option2: {
           title: 'GO BACK'
@@ -62,7 +63,8 @@ function promptWorldEvent(){
       optionsList: {
         option1: {
           title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
-          playerMove: 'outside'
+          playerMove: 'outside',
+          type: 'prompt'
         },
         option2: {
           title: 'GO BACK'
@@ -70,7 +72,7 @@ function promptWorldEvent(){
       }
     }
   }]
-  
+
   const napOptionsObj = [{
     obj: {
       optionsList: {
@@ -78,7 +80,9 @@ function promptWorldEvent(){
           title: 'YOU\'RE SLEEPY. NAP?',
           scoreEffect: {
             primaryMetrics: { sleepTime: +2 }
-          }
+          },
+          playerMove: 'bedroom', // should move to bed in bedroom
+          type: 'prompt'
         },
         option2: {
           title: 'GO BACK'
@@ -98,7 +102,7 @@ function promptWorldEvent(){
     let randomNum3 = Math.floor(Math.random() * 2)
     makePopUp(worldEventsArr[randomNum3])
   }
-  
+
   // makePopUp(worldEventsArr[event])
   // event++
 }
