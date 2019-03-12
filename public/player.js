@@ -1,4 +1,5 @@
 let wasInBedroom = true /* testing */
+let currentLocation = ''
 
 Crafty.c('Player', {
   init: function() {
@@ -75,17 +76,18 @@ function makePlayer(x, y) {
 // /* new scene */
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location  
-  if (location == 'livingroom' && wasInBedroom === true) {
+  console.log(hitItem['0'].obj.location)
+  currentLocation = location /* testing to track location */
+  if (location === 'livingroom' && wasInBedroom) {
     Crafty.enterScene(location)
   } 
-  if (location == 'outside') {
+  if (location === 'outside') {
     Crafty.enterScene(location)
-    wasInBedroom = false
   }
-  if (location == 'livingroom' && wasInBedroom === false) {
+  if (location === 'livingroom' && !wasInBedroom) {
     Crafty.enterScene('livingroom2')
   }
-  if (location == 'bedroom') {
+  if (location === 'bedroom') {
     Crafty.enterScene('bedroom')
     wasInBedroom = true
   }
