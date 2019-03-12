@@ -51,9 +51,24 @@ function pauseTimerAndScoring() {
   pause ? pause = false : pause = true
   if (pause) {
     // TODO display in game instead of in DOM
-    document.getElementById("pause").innerHTML = 'GAME PAUSED'
+    /* comment out as now we have a pause scene document.getElementById("pause").innerHTML = 'GAME PAUSED' */
+    pauseScene(currentLocation)
   } else {
+    Crafty.enterScene(currentLocation) /* christina testing */
     document.getElementById("pause").innerHTML = ''
+  }
+}
+
+/* determine which pause view to use */
+function pauseScene(location) {
+  if (location === 'bedroom') {
+    Crafty.enterScene('bedroom_pause')
+  } else if (location === 'livingroom') {
+    Crafty.enterScene('livingroom_pause')
+  } else if (location === 'livingroom2') {
+    Crafty.enterScene('livingroom_pause')
+  } else if (location === 'outside') {
+    Crafty.enterScene('outside_pause')
   }
 }
 

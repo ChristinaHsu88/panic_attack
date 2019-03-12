@@ -24,8 +24,7 @@ Crafty.scene('outside', function() {
     Crafty.e('2D, DOM, Color,  Solid, WallRight, Collision')
     .attr({ x: 690, y: 0, h: 350, w: 5 })
     .color()
-
-    makePlayer(400, 80)
+    makePlayer(400, 40)
     generateOutsideItems()
     createStressBar()
 })

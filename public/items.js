@@ -202,6 +202,8 @@ function generateOutsideItems() {
     .attr({
       itemType: 'door',
       location: 'livingroom',
+      w: 3,
+      h: 3
     })
 
   Crafty.e('Item, bench')
