@@ -17,7 +17,13 @@ Crafty.c('OptionsBox', {
             let type = optionsObj[option].type
             if (optionTitle) {
                 iteration = iteration + 50
-                Crafty.e('Option').text(optionTitle).place(iteration).changeScore(scoreEffect).movePlayer(playerMove).receiveCall(newSkill).optionType(type)
+                Crafty.e('Option')
+                    .text(optionTitle)
+                    .place(iteration)
+                    .changeScore(scoreEffect)
+                    .movePlayer(playerMove)
+                    .receiveCall(newSkill)
+                    .optionType(type)
             }
         }
     }
@@ -51,7 +57,7 @@ Crafty.c('Option', {
         return this
     },
     optionType: function(type) {
-        this.addComponent = type // string
+        this.addComponent(type) // string
     }
 })
 // define interactable items

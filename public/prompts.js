@@ -5,7 +5,7 @@ function promptEat(){
     obj: {
       optionsList: {
         option1: {
-          type: 'prompt'
+          type: 'prompt',
           title: 'YOU\'RE HUNGRY. EAT?',
           scoreEffect: {
             primaryMetrics: { energy: +1 }
@@ -26,13 +26,13 @@ function promptWorldEvent(){
     obj: {
       optionsList: {
         option1: {
-          type: 'prompt'
+          type: 'prompt',
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
           playerMove: 'livingroom'
         },
         option2: {
           title: 'GO BACK',
-          type: 'prompt'
+          type: 'prompt',
         }
       }
     }
@@ -41,13 +41,13 @@ function promptWorldEvent(){
     obj: {
       optionsList: {
         option1: {
-          type: 'prompt'
+          type: 'prompt',
           title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
           playerMove: 'outside'
         },
         option2: {
           title: 'GO BACK',
-          type: 'prompt'
+          type: 'prompt',
         }
       }
     }
@@ -57,17 +57,17 @@ function promptWorldEvent(){
     obj: {
       optionsList: {
         option1: {
-          type: 'prompt'
+          type: 'prompt',
           title: 'YOU\'RE SLEEPY. NAP?',
           scoreEffect: {
             primaryMetrics: { sleepTime: +2 }
           },
           playerMove: 'bedroom', // should move to bed in bedroom
-          type: 'prompt'
+          type: 'prompt',
         },
         option2: {
           title: 'GO BACK',
-          type: 'prompt'
+          type: 'prompt',
         }
       }
     }
@@ -94,7 +94,7 @@ function promptTherapistCall() {
     obj: {
       optionsList: {
         option1: {
-          type: 'therapistCall'
+          type: 'therapistCall',
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: {
             objectShapeKeeper: {
