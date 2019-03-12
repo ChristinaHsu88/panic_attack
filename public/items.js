@@ -12,7 +12,7 @@ Crafty.c('Item', {
     }
 })
 
-function generateRoomItems() {
+function generateBedroomItems() {
     Crafty.e('Item, phone')
     .place(95, 197)
     .attr({
@@ -181,7 +181,7 @@ function generateOutsideItems() {
         type: 'door',
         location: 'livingroom'
     })
-    
+
     Crafty.e('Item, bench')
     .place(150, 200)
     .attr({

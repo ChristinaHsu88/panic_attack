@@ -19,14 +19,14 @@ Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
     h: 350,
     w: 5
   })
-  
+
   Crafty.e('2D, DOM, Solid, WallTop, Collision, Color').attr({
     x: 87,
     y: 55,
     h: 5,
     w: 600
   })
-  
+
   Crafty.e('2D, DOM, Solid, WallRight, Collision').attr({
     x: 690,
     y: 0,
@@ -69,7 +69,7 @@ Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
   } else {
     makePlayer(400, 250);
   }
-  generateRoomItems();
+  generateBedroomItems();
   createStressBar();
   // likely have to Crafty.enterScene('endGame') here, but wrap in a function so that it's triggered by endGame()
   // it seems like .enterScene needs to be called within the scene that is active, therefore all scenes will need endGame
