@@ -29,7 +29,7 @@ function makePlayer(x, y) {
       this.reel('PlayerTowards', 700, 3, 0, 2)
       this.reel('PlayerLeft', 700, 3, 1, 2)
       this.reel('PlayerRight', 700, 3, 2, 2)
-      this.reel('PlayerAway', 700, 3, 3, 2) 
+      this.reel('PlayerAway', 700, 3, 3, 2)
       this.animate('PlayerLeft', -1)
       this.animate('PlayerRight', -1)
       this.animate('PlayerAway', -1)
@@ -75,12 +75,14 @@ function makePlayer(x, y) {
 
 // /* new scene */
 function renderNewScene(hitItem) {
-  const location = hitItem['0'].obj.location  
-  console.log(hitItem['0'].obj.location)
+  const location = hitItem['0'].obj.location
+  if (location) {
+    console.log(hitItem['0'].obj.location)
+  }
   currentLocation = location /* testing to track location */
   if (location === 'livingroom' && wasInBedroom) {
     Crafty.enterScene(location)
-  } 
+  }
   if (location === 'outside') {
     Crafty.enterScene(location)
   }
