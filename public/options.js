@@ -115,6 +115,4 @@ function takeCall(newSkill) {
         .addComponent('TherapistCall')
         .color('grey')
         .optionsListMaker(newSkill)
-
-    Crafty('Option').addComponent('TherapistMessage')
 }
