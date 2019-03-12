@@ -50,7 +50,7 @@ Crafty.scene('outside', function() {
       w: 5
     })
     .color()
-    makePlayer(400, 220)
+    makePlayer(400, 80)
     generateOutsideItems()
     createStressBar()
 })
