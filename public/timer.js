@@ -66,7 +66,7 @@ document.onkeydown = function (e) {
     // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()
-  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) {
+  } else if (playerMetrics.previousDays.newSkill && (e.code === 'ShiftRight' || e.code === 'ShiftLeft')) { // TODO - add conditional to stop this from firing when an option box is displayed - bug fix strategy
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     bodyCheck(playerMetrics.platter)
   }
@@ -76,7 +76,7 @@ document.onkeydown = function (e) {
 function endGame(metrics, panic) {
   gameOver = true
   gameTime = 180 // reset time // TODO - BUG - not working properly
-  
+
   let timer = document.getElementById("timer")
   timer.style.display = 'none'
   timer.innerHTML = gameTime

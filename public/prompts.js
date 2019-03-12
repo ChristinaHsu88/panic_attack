@@ -29,7 +29,11 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt',
           title: 'YOU HEAR YOUR FRIENDS IN THE LIVING ROOM. VISIT?',
-          playerMove: 'livingroom'
+          playerMove: 'livingroom', // TODO can we move player TO the couch?
+          /*scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }*/ // commented out until above question answered
         },
         option2: {
           title: 'GO BACK',
@@ -44,7 +48,11 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt',
           title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
-          playerMove: 'outside'
+          playerMove: 'outside',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }
         },
         option2: {
           title: 'GO BACK',
@@ -60,10 +68,10 @@ function promptWorldEvent(){
         option1: {
           type: 'prompt',
           title: 'YOU\'RE SLEEPY. NAP?',
+          playerMove: 'bedroom', // TODO - should move to bed in bedroom
           scoreEffect: {
-            primaryMetrics: { sleepTime: +2 }
+            platter: { sleepTime: +2 }
           },
-          playerMove: 'bedroom', // should move to bed in bedroom
           type: 'prompt',
         },
         option2: {

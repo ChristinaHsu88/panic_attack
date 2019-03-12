@@ -60,14 +60,14 @@ function generateBedroomItems() {
         },
         option3: {
           type: 'interactable',
-          title: 'INSTANT PANIC',
+          title: 'INSTANT PANIC / DEV ONLY',
           scoreEffect: {
             primaryMetrics: { stress: 10 }
           }
         },
         option4: {
           type: 'interactable',
-          title: 'REDUCE METRIC',
+          title: 'REDUCE METRIC / DEV ONLY',
           scoreEffect: {
             platter: { downTime: -6 }
           }
@@ -135,11 +135,18 @@ function generateLivingRoomItems() {
       option1: {
         type: 'interactable',
         title: 'CHAT WITH FRIEND',
-        scoreEffect: {}
+        scoreEffect: {
+          primaryMetrics: { stress: -1 },
+          platter: { connectingTime: +1 },
+        }
       },
       option2: {
         type: 'interactable',
-        title: 'WATCH TV'
+        title: 'WATCH TV',
+        scoreEffect: {
+          primaryMetrics: { stress: -1 },
+          platter: { downTime: +1 },
+        }
       },
       option3: {
         type: 'interactable',
@@ -156,7 +163,10 @@ function generateLivingRoomItems() {
       option1: {
         type: 'interactable',
         title: 'PLAY WITH DOG',
-        scoreEffect: {}
+        scoreEffect: {
+          primaryMetrics: { stress: -1 },
+          platter: { playTime: +1 }
+        }
       },
       option3: {
         type: 'interactable',
@@ -172,25 +182,26 @@ function generateLivingRoomItems() {
     optionsList: {
       option1: {
         type: 'interactable',
-        title: 'RUNNING',
-        scoreEffect: {}
+        title: 'GET A WORK OUT',
+        scoreEffect: {
+          primaryMetrics: { stress: -1 },
+          platter: { physical: +1 },
+        }
       },
       option3: {
         type: 'interactable',
-        title: 'GO BACK',
-        scoreEffect: {}
+        title: 'GO BACK'
       }
     }
   });
 }
 
-/* a door for user to go back inside */
 function generateOutsideItems() {
   Crafty.e('Item')
     .place(400, 3)
     .attr({
       itemType: 'door',
-      location: 'livingroom'
+      location: 'livingroom',
     })
 
   Crafty.e('Item, bench')
@@ -200,13 +211,19 @@ function generateOutsideItems() {
       optionsList: {
         option1: {
           type: 'interactable',
-          title: 'SIT',
-          scoreEffect: {}
+          title: 'SIT BACK AND CHILL FOR A BIT',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { focusTime: +1 },
+          }
         },
         option2: {
           type: 'interactable',
-          title: 'DRAW',
-          scoreEffect: {}
+          title: 'DRAW THE SCENERY',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { focusTime: +1 }
+          }
         },
         option3: {
           type: 'interactable',
@@ -221,8 +238,11 @@ function generateOutsideItems() {
       optionsList: {
         option1: {
           type: 'interactable',
-          title: 'WATCH TREES',
-          scoreEffect: {}
+          title: 'ADMIRE THE BEAUTIFUL TREE',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }
         },
         option2: {
           type: 'interactable',
