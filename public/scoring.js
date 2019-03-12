@@ -23,7 +23,6 @@ let playerMetrics = {
 
 // sets score for day 1 and day 1+ games
 function startingScore(metrics){
-  // console.log('startingScore fired')
   metrics.platter.sleepTime += 6
   metrics.primaryMetrics.stress = 5
   metrics.primaryMetrics.energy = 5
@@ -31,7 +30,7 @@ function startingScore(metrics){
     if (metrics.platter[metric] < 3) {
       metrics.platter[metric] = 2 // no metric should be 0 at game start
     } else if (metrics.platter[metric] > 9) {
-      metrics.platter[metric] = 8 // no metric should be 10+ at game start
+      metrics.platter[metric] = 8 // no metric should be 10+ at game start // this may be redundant with correctAboveTen
     }
   }
   calculateStress(metrics)
@@ -107,10 +106,8 @@ function correctAboveTen(metrics) {
 
 // called by calcStress
 function calculateEnergy(metrics) {
-  // console.log('calcEnergy fired')
   if (metrics.platter.sleepTime > 8 || metrics.platter.sleepTime < 2) {
     metrics.primaryMetrics.energy -= 1
-    // console.log('ENERGY DOWN')
   }
   if (metrics.platter.physicalTime > 9) {
     metrics.primaryMetrics.energy -= 1
@@ -120,14 +117,12 @@ function calculateEnergy(metrics) {
 // reduces all metrics (except downTime and stress)
 // called by timer at 30s intervals
 function timeScoreChanger(metrics) {
-  // console.log('timeScoreChanger fired')
   metrics.primaryMetrics.energy -= 1
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
       metrics.platter[metric] -= 1
     }
   }
-  // console.log('Time Score Changer: \n', metrics)
   calculateStress(metrics)
   return metrics
 }
