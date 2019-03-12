@@ -1,3 +1,4 @@
+let optType;
 // defines pop up
 Crafty.c('OptionsBox', {
     init: function() {
@@ -13,13 +14,13 @@ Crafty.c('OptionsBox', {
     },
     optionsListMaker: function(optionsObj) {
         let iteration = 0
+        let type
         for (const option in optionsObj) {
             let optionTitle = optionsObj[option].title
             let scoreEffect = optionsObj[option].scoreEffect
             let playerMove = optionsObj[option].playerMove
             let newSkill = optionsObj[option].newSkill
-            let type = optionsObj[option].type
-            console.log(type);
+            type = optionsObj[option].type
             if (optionTitle) {
                 iteration = iteration + 50
                 Crafty.e('Option')
@@ -31,6 +32,7 @@ Crafty.c('OptionsBox', {
                     .optionType(type)
             }
         }
+        optType = type // global variable needed to specify what to destroy
     }
 })
 
@@ -110,11 +112,12 @@ function makePopUp (hitItem, boxType) {
                 this.y = this.y + 50
                 this.resetHitChecks()
             } else if (e.key == Crafty.keys.ENTER && this.selectOption.canSelect) {
-                // find option
                 const selectedOption = Crafty(this.selectOption.optionObj['0'])
                 handleOption(selectedOption)
                 Crafty('PlayerTowards').unfreeze();
-                Crafty('Option, OptionsBox, Selector').destroy()
+                Crafty(boxType).destroy() // boxTypes handled here: gamePrompt, therapistPrompt, selectedItem
+                Crafty(optType).destroy() // prompt, therapistMessage, interactable
+                Crafty('Selector').destroy() // TODO - refactor when confirmed that these variables work
             }
         })
 }
