@@ -20,7 +20,7 @@ function timer() {
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
-        if (!Crafty('OptionsBox')) { // TODO - this is disabling these prompts regardless of existence of options box
+        if (Crafty('OptionsBox').length === 0) {
           eatPromptTimes.includes(gameTime) ? promptEat() : ''
           worldTimes.includes(gameTime) ? promptWorldEvent() : ''
         }
