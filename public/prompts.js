@@ -125,9 +125,9 @@ function promptTherapistCall() {
 function bodyCheck(platter) {
   platter.timeIn += 1
   const lowMetricsMessages = {
-    timeIn: 'You need to check in with your body more often.',
-    downTime: 'You need some down time. Have a seat and enjoy the scenery.',
-    focusTime: 'You need to engage your brain. Try drawing or tidying up.',
+    timeIn: 'You feel out of touch with your body.',
+    downTime: 'You need to daydream. Find a place to sit.',
+    focusTime: 'You need to DO something! Try drawing or tidying up.',
     playTime: 'You need to play!',
     connectingTime: 'You need to connect. Is there anyone you can speak to?',
     sleepTime: 'You need to sleep.',
