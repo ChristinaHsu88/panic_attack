@@ -1,7 +1,6 @@
 let optType;
 // defines pop up
 Crafty.c('OptionsBox', {
-  // width: 525px; height: 250px; transform: translate3d(120px, 30px, 0px); border-radis: 5px;
   init: function() {
     this.addComponent('2D, DOM, Color');
     this.x = 120;
@@ -39,12 +38,12 @@ Crafty.c('OptionsBox', {
 });
 
 // define options in pop up
-  // width: 435px; height: 20px; font: 16px; transform: translate3d(165px, 65, 0px);
 Crafty.c('Option', {
   init: function() {
     this.addComponent('2D, DOM, Color, Text');
     this.w = 435;
     this.h = 20;
+    this.z = 1
     this.textFont({ size: '16px', weight: 'bold' })
     this.css({ 'font-family': 'VT323, monospace' })
   },
@@ -95,10 +94,10 @@ function makePopUp(hitItem, boxType) {
 
   const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
     .attr({
-      w: 300,
-      h: 20,
-      x: 30,
-      y: 70,
+      w: 470,
+      h: 25,
+      x: 150,
+      y: 60,
       selectOption: { canSelect: false, optionObj: undefined }
     })
     .color('rgba(255, 99, 71, 0.5)')
