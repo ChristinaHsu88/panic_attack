@@ -54,7 +54,8 @@ function makePlayer(x, y) {
     })
     .bind('KeyDown', function(e) {
       if (e.key === Crafty.keys.T) {
-        console.log('Player stats: \n', playerMetrics) // to check score during development
+        // console.log('Player stats: \n', playerMetrics) // to check score during development
+        console.log(currentLocation)
       }
     })
     // Creates boundaries of where Sprite can and can not go (aka creates walls)
@@ -75,7 +76,7 @@ function makePlayer(x, y) {
 
 // TODO - refactor
 // render new scenes when player moves through doors; sets player location accordingly
-function renderNewScene(hitItem) {
+function renderNewScene(hitItem) { // hitItem in a door for this method
   const location = hitItem['0'].obj.location
   currentLocation = location
   if (location === 'livingroom' && wasInBedroom) {
