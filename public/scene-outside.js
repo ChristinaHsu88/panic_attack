@@ -1,9 +1,9 @@
 /* outside scene */
 Crafty.scene('outside', function() {
-  currentLocation = 'outside'
+  currentLocation = 'outside';
 
-  Crafty.e('PauseMsg')
-  Crafty.e('PauseBox')
+  Crafty.e('PauseMsg');
+  Crafty.e('PauseBox');
 
   Crafty.background(
     '#57342E url(assets/outside_map.png) no-repeat center right'
@@ -18,11 +18,11 @@ Crafty.scene('outside', function() {
 
   Crafty.e('2D, DOM, Color, Solid, WallTopLeft, Collision')
     .attr({ x: 87, y: 5, h: 5, w: 290 })
-    .color('black');
+    .color();
 
   Crafty.e('2D, DOM, Color, Solid, WallTopRight, Collision')
     .attr({ x: 440, y: 5, h: 5, w: 300 })
-    .color('black');
+    .color();
 
   Crafty.e('2D, DOM, Color, Solid, WallBottom, Collision')
     .attr({ x: 87, y: 300, h: 5, w: 600 })
