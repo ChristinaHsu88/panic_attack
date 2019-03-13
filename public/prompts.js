@@ -116,7 +116,7 @@ function promptTherapistCall() {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: { // nested object bc new box pops up from previous box
             objectShapeKeeper: {
-              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.',
+              title: 'Want to avoid a panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.',
               type: 'newSkillMessage'
             }
           }
