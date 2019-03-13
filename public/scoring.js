@@ -7,8 +7,9 @@ let playerMetrics = {
     newSkill: false // false triggers therapist call on daysPlayed > 0; answering call toggles to true
   },
   primaryMetrics: {
-    stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
+    stress: 5, // affected directly and indirectly by (nearly) all actions
     energy: 5, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
+    satiation: 5 // eating
   },
   platter: { // affected by player actions; set by startingScore at start of game/round
     timeIn: 6,
