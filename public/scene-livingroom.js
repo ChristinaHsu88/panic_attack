@@ -9,14 +9,6 @@ Crafty.scene('livingroom', function() {
   Crafty.sprite(32, 'assets/dog.png', { dog: [0, 0] });
   Crafty.sprite(32, 'assets/treadmill.png', { treadmill: [0, 0] });
   Crafty.sprite(32, 'assets/roommate.png', { roommate: [0, 0] });
-  /* wall */
-  /* keep this wall here for now as a reference for the side door */
-  Crafty.e(
-    '2D, DOM, Color, Solid, WallLeft, Collision,'
-  )
-    .attr({ x: 120, y: 0, h: 350, w: 5 })
-    .css({ visibility: 'hidden' })
-    .color('black');
 
   Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
     .attr({ x: 87, y: 56, h: 5, w: 600 })
