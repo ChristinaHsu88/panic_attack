@@ -1,6 +1,6 @@
 // game prompts are called in timer and handled in options
 function promptEat(){
-  Crafty('Player').freeze()
+  // Crafty('PlayerTowards').freeze()
   const eatOptionsObj = [{
     obj: {
       optionsList: {
@@ -27,7 +27,7 @@ function promptEat(){
 }
 
 function promptWorldEvent(){
-  Crafty('Player').freeze()
+  // Crafty('PlayerTowards').freeze()
   const friendEventObj = [{
     obj: {
       optionsList: {
@@ -107,7 +107,7 @@ function promptWorldEvent(){
 
 // called in scoring, handled in options
 function promptTherapistCall() {
-  Crafty('Player').freeze()
+  // Crafty('PlayerTowards').freeze()
   const therapistCall = [{
     obj: {
       optionsList: {
