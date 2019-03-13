@@ -39,32 +39,16 @@ function loseTime(){
   gameTime -= 10
 }
 
-function pauseTimerAndScoring() {
+function pauseTimerAndScoringAndTogglePause() {
   pause ? pause = false : pause = true
-  if (pause) {
-    pauseScene(currentLocation)
-  } else {
-    Crafty.enterScene(currentLocation)
-  }
-}
-
-/* determine which pause view to use */
-function pauseScene(location) {
-  if (location === 'bedroom') {
-    Crafty.enterScene('bedroom_pause')
-  } else if (location === 'livingroom') {
-    Crafty.enterScene('livingroom_pause')
-  } else if (location === 'livingroom2') {
-    Crafty.enterScene('livingroom_pause')
-  } else if (location === 'outside') {
-    Crafty.enterScene('outside_pause')
-  }
+  const pauseBox = document.getElementsByClassName('PauseBox')[0]
+  pause ? pauseBox.style.display = 'block' : pauseBox.style.display = 'none'
 }
 
 document.onkeydown = function (e) {
   if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
-    pauseTimerAndScoring()
+    pauseTimerAndScoringAndTogglePause()
   } else if (e.code === 'Enter') { // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()

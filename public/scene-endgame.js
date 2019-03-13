@@ -2,7 +2,6 @@ Crafty.scene('endgame', function() {
   Crafty.background(
     'white url(assets/end.png) no-repeat center center'
   ); /* image for testing purpose */
-
   /* GAME OVER && message depending on the stress level */
   Crafty.e('2D, DOM, Canvas, Text, Mouse')
     .attr({ x: 20, y: 70 })

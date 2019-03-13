@@ -1,5 +1,7 @@
 // scene 2 - bedroom
 Crafty.scene('bedroom', function() {
+  Crafty.e('PauseBox')
+
   Crafty.background('#57342E url(assets/bedroom2.png) no-repeat center right');
   // generate all entities in this scene
   Crafty.sprite(30, 'assets/phone_2.png', { phone: [0, 0] });
@@ -12,6 +14,7 @@ Crafty.scene('bedroom', function() {
     PlayerRight: [3, 2],
     PlayerAway: [3, 3]
   })
+
   // WALLS:
   Crafty.e('2D, DOM, Color, Solid, WallLeft, Collision,').attr({ x: 87, y: 0,
     h: 350, w: 5 })
