@@ -218,7 +218,7 @@ function generateOutsideItems() {
           title: 'SIT BACK AND CHILL FOR A BIT',
           scoreEffect: {
             primaryMetrics: { stress: -1 },
-            platter: { focusTime: +1 }
+            platter: { downTime: +1 }
           }
         },
         option2: {
