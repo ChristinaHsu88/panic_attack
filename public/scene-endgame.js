@@ -8,9 +8,9 @@ Crafty.scene('endgame', function() {
     .attr({ x: 20, y: 70 })
     .text(function() {
       if (playerMetrics.primaryMetrics.stress >= 10) {
-        return 'Chill out! It is going alright.';
+        return 'Oh dear...take a breath and try again...';
       } else {
-        return 'Time for some good sleep';
+        return 'Yay! You made it through the day!';
       }
     })
     .textColor('white')
