@@ -119,6 +119,7 @@ function calculateEnergy(metrics) {
 // called by timer at 30s intervals
 function timeScoreChanger(metrics) {
   metrics.primaryMetrics.energy -= 1
+  metrics.primaryMetrics.satiation -= 1
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
       metrics.platter[metric] -= 1

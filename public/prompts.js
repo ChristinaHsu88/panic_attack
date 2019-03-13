@@ -8,7 +8,10 @@ function promptEat(){
           type: 'prompt',
           title: 'YOU\'RE HUNGRY. EAT?',
           scoreEffect: {
-            primaryMetrics: { energy: +1 }
+            primaryMetrics: {
+              energy: +1,
+              satiation: +1
+            }
           }
         },
         option2: {
@@ -18,7 +21,9 @@ function promptEat(){
       }
     }
   }]
-  makePopUp(eatOptionsObj, 'gamePrompt')
+  if (playerMetrics.primaryMetrics.satiation < 2) {
+    makePopUp(eatOptionsObj, 'gamePrompt')
+  }
 }
 
 function promptWorldEvent(){
@@ -97,7 +102,7 @@ function promptWorldEvent(){
       num = 0
     }
   }
-  makePopUp(worldEventsArr[randomNum], 'gamePrompt')
+  makePopUp(worldEventsArr[num], 'gamePrompt')
 }
 
 // called in scoring, handled in options
