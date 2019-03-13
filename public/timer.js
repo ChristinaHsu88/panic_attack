@@ -9,7 +9,7 @@ function timer() {
   document.getElementById("timer").innerHTML = gameTime
 
   // const worldTimes = [160, 130, 100, 70, 40, 15].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
-  // const scoreChangeTimes = [150, 120, 90, 60, 30]
+  const scoreChangeTimes = [150, 120, 90, 60, 30]
   // const eatPromptTimes = [145, 95, 45]
 
   function tickTock() {
