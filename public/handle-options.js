@@ -26,7 +26,7 @@ function handleOption(selectedOption) {
         // pass newSkill object (described in prompts.js) to new OptionsBox (in options.js)
         setTimeout(takeCall, 200, newSkill) // timeout prevents Crafty confusion - may be fixed in refactor // TODO - check if this can be called without timeout
         playerMetrics.previousDays.newSkill = true // enable newSkill
-        document.getElementById('new-skill').innerText = '"SHIFT" - body check'
+        document.getElementById('new-skill').innerText = 'Body Check • SHIFT'
         loseTime()
     }
 }
