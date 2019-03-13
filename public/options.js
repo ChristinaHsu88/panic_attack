@@ -24,7 +24,6 @@ Crafty.c('OptionsBox', {
       let newSkill = optionsObj[option].newSkill;
       type = optionsObj[option].type;
       if (optionTitle) {
-        iteration = iteration + 50; // TODO change
         Crafty.e('Option')
           .text(optionTitle)
           .place(iteration)
@@ -32,6 +31,7 @@ Crafty.c('OptionsBox', {
           .movePlayer(playerMove)
           .receiveCall(newSkill)
           .optionType(type);
+        iteration = iteration + 50;
       }
     }
     optType = type; // global variable needed to specify what to destroy
@@ -39,21 +39,21 @@ Crafty.c('OptionsBox', {
 });
 
 // define options in pop up
-  // width: 435px; height: 20px; font: 16px; transform: translate3d(165px, 115px, 0px);
+  // width: 435px; height: 20px; font: 16px; transform: translate3d(165px, 65, 0px);
 Crafty.c('Option', {
   init: function() {
     this.addComponent('2D, DOM, Color, Text');
     this.w = 435;
     this.h = 20;
-    this.textFont({ size: '16px' }) //, weight: 'bold' })
+    this.textFont({ size: '16px', weight: 'bold' })
     this.css({ 'font-family': 'VT323, monospace' })
   },
   text: function(text) {
     this.text = text;
   },
   place: function(iteration) {
-    this.x = 35;
-    this.y = 23 + iteration;
+    this.x = 165;
+    this.y = 65 + iteration;
     return this; // without this line, custom methods (e.g., changeScore) will not work
   },
   changeScore: function(scoreEffect) {
