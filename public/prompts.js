@@ -83,14 +83,19 @@ function promptWorldEvent(){
     }
   }]
 
-  const worldEventsArr = [friendEventObj, napEventObj, outsideEventObj]
-  let randomNum
-  if (currentLocation === 'bedroom') {
-    randomNum = Math.floor(Math.random() * 3) // all 3 prompts [0,1,2]
-  } else if (currentLocation === 'livingroom') {
-    randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds [1,2]
-  } else if (currentLocation === 'outside') {
-    randomNum = Math.floor(Math.random() * 2) // nap & friends [0,1]
+  const worldEventsArr = [friendEventObj, outsideEventObj, napEventObj]
+  let num
+
+  if (playerMetrics.platter.sleepTime < 2 /* && gameTime -- greater than/equal to */ ) {
+    num = 2
+  } else {
+    if (currentLocation === 'bedroom') {
+      num = Math.floor(Math.random() * 2) // [0, 1]
+    } else if (currentLocation === 'livingroom') {
+      num = 1
+    } else if (currentLocation === 'outside') {
+      num = 0
+    }
   }
   makePopUp(worldEventsArr[randomNum], 'gamePrompt')
 }
