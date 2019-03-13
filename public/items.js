@@ -1,16 +1,18 @@
 // define interactable items
 Crafty.c('Item', {
   init: function() {
-    this.addComponent('2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench, tree')
-    this.w = 30
-    this.h = 30
+    this.addComponent(
+      '2D, DOM, phone, weed, laundry, dog, treadmill, roommate, bench, tree'
+    );
+    this.w = 30;
+    this.h = 30;
   },
   place: function(x, y) {
-    this.x = x
-    this.y = y
-    return this
+    this.x = x;
+    this.y = y;
+    return this;
   }
-})
+});
 
 function generateBedroomItems() {
   Crafty.e('Item, phone')
@@ -128,72 +130,72 @@ function generateLivingRoomItems() {
     });
 
   Crafty.e('Item, roommate')
-  .place(530, 180)
-  .attr({
-    itemType: 'roommate',
-    optionsList: {
-      option1: {
-        type: 'interactable',
-        title: 'CHAT WITH FRIEND',
-        scoreEffect: {
-          primaryMetrics: { stress: -1 },
-          platter: { connectingTime: +1 },
+    .place(530, 180)
+    .attr({
+      itemType: 'roommate',
+      optionsList: {
+        option1: {
+          type: 'interactable',
+          title: 'CHAT WITH FRIEND',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }
+        },
+        option2: {
+          type: 'interactable',
+          title: 'WATCH TV',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { downTime: +1 }
+          }
+        },
+        option3: {
+          type: 'interactable',
+          title: 'GO BACK'
         }
-      },
-      option2: {
-        type: 'interactable',
-        title: 'WATCH TV',
-        scoreEffect: {
-          primaryMetrics: { stress: -1 },
-          platter: { downTime: +1 },
-        }
-      },
-      option3: {
-        type: 'interactable',
-        title: 'GO BACK'
       }
-    }
-  });
+    });
 
   Crafty.e('Item, dog')
-  .place(230, 130)
-  .attr({
-    itemType: 'dog',
-    optionsList: {
-      option1: {
-        type: 'interactable',
-        title: 'PLAY WITH DOG',
-        scoreEffect: {
-          primaryMetrics: { stress: -1 },
-          platter: { playTime: +1 }
+    .place(230, 130)
+    .attr({
+      itemType: 'dog',
+      optionsList: {
+        option1: {
+          type: 'interactable',
+          title: 'PLAY WITH DOG',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { playTime: +1 }
+          }
+        },
+        option3: {
+          type: 'interactable',
+          title: 'GO BACK'
         }
-      },
-      option3: {
-        type: 'interactable',
-        title: 'GO BACK'
       }
-    }
-  });
+    });
 
   Crafty.e('Item, treadmill')
-  .place(630, 80)
-  .attr({
-    itemType: 'treadmill',
-    optionsList: {
-      option1: {
-        type: 'interactable',
-        title: 'GET A WORK OUT',
-        scoreEffect: {
-          primaryMetrics: { stress: -1 },
-          platter: { physicalTime: +1 },
+    .place(630, 80)
+    .attr({
+      itemType: 'treadmill',
+      optionsList: {
+        option1: {
+          type: 'interactable',
+          title: 'GET A WORK OUT',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { physicalTime: +1 }
+          }
+        },
+        option3: {
+          type: 'interactable',
+          title: 'GO BACK'
         }
-      },
-      option3: {
-        type: 'interactable',
-        title: 'GO BACK'
       }
-    }
-  });
+    });
 }
 
 function generateOutsideItems() {
@@ -204,7 +206,7 @@ function generateOutsideItems() {
       location: 'livingroom',
       w: 3,
       h: 3
-    })
+    });
 
   Crafty.e('Item, bench')
     .place(150, 200)
@@ -216,7 +218,7 @@ function generateOutsideItems() {
           title: 'SIT BACK AND CHILL FOR A BIT',
           scoreEffect: {
             primaryMetrics: { stress: -1 },
-            platter: { focusTime: +1 },
+            platter: { focusTime: +1 }
           }
         },
         option2: {
@@ -232,7 +234,7 @@ function generateOutsideItems() {
           title: 'GO BACK'
         }
       }
-    })
+    });
   Crafty.e('Item, tree')
     .place(430, 200)
     .attr({

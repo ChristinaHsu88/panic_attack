@@ -4,8 +4,8 @@ Crafty.scene('bedroom', function() {
     '#57342E url(assets/bedroom2_update.png) no-repeat center right'
   );
   // generate all entities in this scene
-  Crafty.sprite(30, 'assets/phone_2.png', { phone: [0, 0] });
-  Crafty.sprite(30, 'assets/weed.png', { weed: [0, 0] });
+  Crafty.sprite(72, 'assets/phone.png', { phone: [0, 0] });
+  Crafty.sprite(30, 'assets/potleaf.png', { pot: [0, 0] });
   Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
   // generate player
   Crafty.sprite(32, 'assets/dude.png', {
