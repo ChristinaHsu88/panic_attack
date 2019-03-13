@@ -37,14 +37,14 @@ MongoClient.connect(uri, (err, client) => {
     })
 
     app.post('/data', (req, res) => {
-        console.log(req.body)
+        console.log('request body:', req.body)
         db.collection('data').replaceOne(
             { 'gameData.name': req.body.gameData.name },
             { 'gameData': req.body.gameData },
             { upsert: true },
             (err, doc) => {
                 if (err) {
-                    console.log('update/add failed')
+                    console.log('ERROR: update/add failed: \n', err)
                 } else {
                     console.log('update/add worked')
                 }
