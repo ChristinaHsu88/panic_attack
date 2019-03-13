@@ -16,7 +16,7 @@ function timer() {
     if (!gameOver) {
       if (!pause && gameTime > 0) {
         // count down time
-        gameTime = gameTime - 1
+        gameTime -= 1
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
@@ -47,6 +47,7 @@ function pauseTimerAndScoringAndTogglePause() {
 }
 
 document.onkeydown = function (e) {
+  e.preventDefault()
   if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
     pauseTimerAndScoringAndTogglePause()
