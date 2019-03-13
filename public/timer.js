@@ -4,7 +4,7 @@ let gameTime = 180
 
 // called at start of game
 function timer() {
-  setInterval(tickTock, 500)
+  setInterval(tickTock, 250)
   document.getElementById("timer").innerHTML = gameTime
 
   const worldTimes = worldEventsTimes()
@@ -84,7 +84,7 @@ document.onkeydown = function (e) {
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
   gameOver = true
-  gameTime = 180 // reset time // TODO - BUG - not working properly
+  gameTime = 180
 
   let timer = document.getElementById("timer")
   timer.style.display = 'none'
