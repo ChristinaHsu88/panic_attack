@@ -21,6 +21,12 @@ Crafty.c('PauseBox', {
   // game
   // scene-welcome
   // scene-bedroom
+  // scene-lr
+  // scene-lr2
+  // scene-outside
+  // scene-endgame
+  // scene-cats
   // items
   // options
+  // handle-options
   // prompts
