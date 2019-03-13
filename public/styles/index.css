@@ -55,6 +55,8 @@ h1 {
 }
 
 #intro {
+  display: flex;
+  flex-direction: row-reverse;
   font-family: 'VT323', monospace;
   font-size: 25px;
   width: 28em;
