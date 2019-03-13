@@ -42,25 +42,6 @@ function promptWorldEvent(){
       }
     }
   }]
-  const outsideEventObj = [{
-    obj: {
-      optionsList: {
-        option1: {
-          type: 'prompt',
-          title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
-          playerMove: 'outside',
-          scoreEffect: {
-            primaryMetrics: { stress: -1 },
-            platter: { connectingTime: +1 }
-          }
-        },
-        option2: {
-          title: 'GO BACK',
-          type: 'prompt',
-        }
-      }
-    }
-  }]
 
   const napEventObj = [{
     obj: {
@@ -82,14 +63,34 @@ function promptWorldEvent(){
     }
   }]
 
-  const worldEventsArr = [friendEventObj, outsideEventObj, napEventObj]
+  const outsideEventObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          type: 'prompt',
+          title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
+          playerMove: 'outside',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }
+        },
+        option2: {
+          title: 'GO BACK',
+          type: 'prompt',
+        }
+      }
+    }
+  }]
+
+  const worldEventsArr = [friendEventObj, napEventObj, outsideEventObj]
   let randomNum
   if (currentLocation === 'bedroom') {
-    randomNum = Math.floor(Math.random() * 3) // all 3 prompts
+    randomNum = Math.floor(Math.random() * 3) // all 3 prompts [0,1,2]
   } else if (currentLocation === 'livingroom') {
-    randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
+    randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds [1,2]
   } else if (currentLocation === 'outside') {
-    randomNum = Math.floor(Math.random() * 2) // nap & friends
+    randomNum = Math.floor(Math.random() * 2) // nap & friends [0,1]
   }
   makePopUp(worldEventsArr[randomNum], 'gamePrompt')
 }
