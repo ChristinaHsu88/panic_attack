@@ -45,33 +45,9 @@ function worldEventsTimes(){
   const worldEvents = [160, 130, 100, 70, 40, 10]
   return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
-
-function pauseTimerAndScoring() {
-  pause ? pause = false : pause = true
-  if (pause) {
-    pauseScene(currentLocation)
-  } else {
-    Crafty.enterScene(currentLocation)
-  }
-}
-
-/* determine which pause view to use */
-function pauseScene(location) {
-  if (location === 'bedroom') {
-    Crafty.enterScene('bedroom_pause')
-  } else if (location === 'livingroom') {
-    Crafty.enterScene('livingroom_pause')
-  } else if (location === 'livingroom2') {
-    Crafty.enterScene('livingroom_pause')
-  } else if (location === 'outside') {
-    Crafty.enterScene('outside_pause')
-  }
-}
-
 document.onkeydown = function (e) {
   if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
-    pauseTimerAndScoring()
   } else if (e.code === 'Enter') { // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()
@@ -85,7 +61,6 @@ document.onkeydown = function (e) {
 function endGame(metrics, panic) {
   gameOver = true
   gameTime = 180 // reset time // TODO - BUG - not working properly
-
   let timer = document.getElementById("timer")
   timer.style.display = 'none'
   timer.innerHTML = gameTime // is this nec?
