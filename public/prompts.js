@@ -86,7 +86,7 @@ function promptWorldEvent(){
   const worldEventsArr = [friendEventObj, outsideEventObj, napEventObj]
   let num
 
-  if (playerMetrics.platter.sleepTime < 2 /* && gameTime -- greater than/equal to */ ) {
+  if (playerMetrics.platter.sleepTime < 2 && gameTime < 90 && gameTime > 50) {
     num = 2
   } else {
     if (currentLocation === 'bedroom') {
