@@ -7,8 +7,9 @@ let playerMetrics = {
     newSkill: false // false triggers therapist call on daysPlayed > 0; answering call toggles to true
   },
   primaryMetrics: {
-    stress: 5, // affected directly actions (+ and -, sometimes with same action); indirectly by all
+    stress: 5, // affected directly and indirectly by (nearly) all actions
     energy: 5, // affected directly by playTime, game time and eating; indirectly by sleepTime, physicalTime
+    satiation: 5 // eating
   },
   platter: { // affected by player actions; set by startingScore at start of game/round
     timeIn: 6,
@@ -30,7 +31,7 @@ function startingScore(metrics){
     if (metrics.platter[metric] < 3) {
       metrics.platter[metric] = 2 // no metric should be 0 at game start
     } else if (metrics.platter[metric] > 9) {
-      metrics.platter[metric] = 8 // no metric should be 10+ at game start // this may be redundant with correctAboveTen
+      metrics.platter[metric] = 8 // no metric should be 10+ at game start // this may be redundant with correctAboveTenBelowZero
     }
   }
   calculateStress(metrics)
@@ -38,7 +39,7 @@ function startingScore(metrics){
   if (metrics.previousDays.daysPlayed && !metrics.previousDays.newSkill) {
     setTimeout(promptTherapistCall, 2000)
   }
-  return
+  return console.log('STARTING SCORE: \n', metrics)
 }
 
 // called after every metric changing method (except calculateEnergy)
@@ -77,7 +78,7 @@ function areYouPanicking(stressLevel) {
 
 // called by calcStress
 function isPlatterImbalanced(metrics) {
-  correctAboveTen(metrics)
+  correctAboveTenBelowZero(metrics)
   let bigGap
   const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
   const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
@@ -86,16 +87,20 @@ function isPlatterImbalanced(metrics) {
 }
 
 // called by isPlatterImbalanced
-function correctAboveTen(metrics) {
+function correctAboveTenBelowZero(metrics) {
   for (let metric in metrics.platter) {
     if (metrics.platter[metric] > 10) {
       metrics.platter[metric] = 10
+    } else if (metrics.platter[metric] < 0) {
+      metrics.platter[metric] = 0
     }
   }
   for (let metric in metrics.primaryMetrics) {
     if (metrics.primaryMetrics[metric] > 10) {
       metrics.primaryMetrics[metric] = 10
-    }
+    } else if (metrics.primaryMetrics[metric] < 0) {
+      metrics.primaryMetrics[metric] = 0
+     }
   }
   return metrics
 }
@@ -114,6 +119,7 @@ function calculateEnergy(metrics) {
 // called by timer at 30s intervals
 function timeScoreChanger(metrics) {
   metrics.primaryMetrics.energy -= 1
+  metrics.primaryMetrics.satiation -= 1
   for (let metric in metrics.platter) {
     if (metric !== 'downTime') {
       metrics.platter[metric] -= 1

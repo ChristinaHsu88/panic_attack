@@ -50,7 +50,7 @@ function generateBedroomItems() {
           type: 'interactable',
           title: 'SMOKE WEED',
           scoreEffect: {
-            primaryMetrics: { stress: -1, energy: -1 },
+            primaryMetrics: { stress: -1, energy: -1, satiation: -1 },
             platter: { downTime: +1 }
           }
         },
@@ -164,7 +164,7 @@ function generateLivingRoomItems() {
         type: 'interactable',
         title: 'PLAY WITH DOG',
         scoreEffect: {
-          primaryMetrics: { stress: -1 },
+          primaryMetrics: { stress: -1, energy: +1 },
           platter: { playTime: +1 }
         }
       },
@@ -184,7 +184,7 @@ function generateLivingRoomItems() {
         type: 'interactable',
         title: 'GET A WORK OUT',
         scoreEffect: {
-          primaryMetrics: { stress: -1 },
+          primaryMetrics: { stress: -1, satiation: -1 },
           platter: { physicalTime: +1 },
         }
       },
