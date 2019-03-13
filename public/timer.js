@@ -5,7 +5,7 @@ let currentLocation // must be global
 
 // called at start of game
 function timer() {
-  setInterval(tickTock, 250)
+  setInterval(tickTock, 1000)
   document.getElementById("timer").innerHTML = gameTime
 
   // const worldTimes = [160, 130, 100, 70, 40, 15].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
