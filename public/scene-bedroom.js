@@ -1,5 +1,7 @@
 // scene 2 - bedroom
 Crafty.scene('bedroom', function() {
+  currentLocation = 'bedroom'
+
   Crafty.e('PauseBox')
 
   Crafty.background(
@@ -60,7 +62,7 @@ Crafty.scene('bedroom', function() {
     w: 5
   });
 
-  if (!currentLocation) {
+  if (gameTime > 175) {
     makePlayer(340, 50); // in bed at start of game
   } else {
     makePlayer(400, 250);

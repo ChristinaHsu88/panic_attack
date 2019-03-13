@@ -1,5 +1,6 @@
 /* outside scene */
 Crafty.scene('outside', function() {
+  currentLocation = 'outside'
   Crafty.e('PauseBox')
   Crafty.background(
     '#57342E url(assets/outside_map.png) no-repeat center right'
