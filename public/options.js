@@ -1,12 +1,14 @@
 let optType;
 // defines pop up
 Crafty.c('OptionsBox', {
+  // width: 525px; height: 250px; transform: translate3d(120px, 30px, 0px); border-radis: 5px;
   init: function() {
     this.addComponent('2D, DOM, Color');
-    this.x = 20;
-    this.y = 20;
-    this.w = 400;
-    this.h = 400;
+    this.x = 120;
+    this.y = 30;
+    this.w = 525;
+    this.h = 250;
+    this.css = ({ backgroundColor: '#96F443', borderRadius: '5px',  })
   },
   boxType: function(type) {
     this.addComponent(type);
@@ -22,7 +24,7 @@ Crafty.c('OptionsBox', {
       let newSkill = optionsObj[option].newSkill;
       type = optionsObj[option].type;
       if (optionTitle) {
-        iteration = iteration + 50;
+        iteration = iteration + 50; // TODO change
         Crafty.e('Option')
           .text(optionTitle)
           .place(iteration)
@@ -37,11 +39,14 @@ Crafty.c('OptionsBox', {
 });
 
 // define options in pop up
+  // width: 435px; height: 20px; font: 16px; transform: translate3d(165px, 115px, 0px);
 Crafty.c('Option', {
   init: function() {
     this.addComponent('2D, DOM, Color, Text');
-    this.w = 250;
+    this.w = 435;
     this.h = 20;
+    this.textFont({ size: '16px' }) //, weight: 'bold' })
+    this.css({ 'font-family': 'VT323, monospace' })
   },
   text: function(text) {
     this.text = text;
