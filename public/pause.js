@@ -5,7 +5,7 @@ Crafty.c('PauseMsg', {
     this.h = 75
     this.x = 265
     this.y = 125
-    this.z = 6
+    this.z = 7
     this.textFont({ size: '75px', weight: 'bold' })
     this.css({ 'font-family': 'VT323, monospace', 'display': 'none' })
     this.text('PAUSED')
@@ -19,7 +19,7 @@ Crafty.c('PauseBox', {
     this.h = 305
     this.x = 10
     this.y = 10
-    this.z = 5
+    this.z = 6
     this.css({ 'display': 'none' })
     this.color('rgba(214, 208, 215, 0.8)')
   }
