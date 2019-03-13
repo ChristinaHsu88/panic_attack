@@ -1,5 +1,5 @@
 // scene1 - outside of house
-// does not appear if player starts new game from end page (i.e., hitting enter at end game skips this page)
+  // renders on browser refresh
 const alphabet = {
   A: 'A',
   B: 'B',
