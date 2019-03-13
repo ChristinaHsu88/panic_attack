@@ -1,6 +1,7 @@
 let pause = false
 let gameOver = false
 let gameTime = 180
+let currentLocation // must be global
 
 // called at start of game
 function timer() {

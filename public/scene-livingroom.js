@@ -1,5 +1,6 @@
 // living room from bedroom
 Crafty.scene('livingroom', function() {
+  currentLocation = 'livingroom'
   Crafty.e('PauseBox')
   Crafty.background(
     '#57342E url(assets/livingroom_update.png) no-repeat center right'
@@ -7,9 +8,9 @@ Crafty.scene('livingroom', function() {
   Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] });
   Crafty.sprite(32, 'assets/dog.png', { dog: [0, 0] });
   Crafty.sprite(32, 'assets/treadmill.png', { treadmill: [0, 0] });
-  Crafty.sprite(32, 'assets/roommate.png', { roommate: [0, 0] }); 
+  Crafty.sprite(32, 'assets/roommate.png', { roommate: [0, 0] });
   /* wall */
-  /* keep this wall here for now as a reference for the side door */ 
+  /* keep this wall here for now as a reference for the side door */
   Crafty.e(
     '2D, DOM, Color, Solid, WallLeft, Collision,'
   )

@@ -1,5 +1,4 @@
 let wasInBedroom = true /* testing */
-let currentLocation = '' // must be global
 
 Crafty.c('Player', {
   init: function() {
