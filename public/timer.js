@@ -8,7 +8,7 @@ function timer() {
   setInterval(tickTock, 250)
   document.getElementById("timer").innerHTML = gameTime
 
-  const worldTimes = [160, 130, 100, 70, 40, 10].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
+  const worldTimes = [160, 130, 100, 70, 40, 15].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
 
@@ -16,7 +16,7 @@ function timer() {
     if (!gameOver) {
       if (!pause && gameTime > 0) {
         // count down time
-        gameTime = gameTime - 1
+        gameTime -= 1
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
         // trigger game prompts
@@ -47,6 +47,7 @@ function pauseTimerAndScoringAndTogglePause() {
 }
 
 document.onkeydown = function (e) {
+  e.preventDefault()
   if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
     pauseTimerAndScoringAndTogglePause()
