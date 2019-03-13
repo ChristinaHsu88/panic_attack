@@ -7,6 +7,7 @@ Crafty.c('OptionsBox', {
     this.y = 30;
     this.w = 525;
     this.h = 250;
+    this.z = 3
     this.css = ({ backgroundColor: '#96F443', borderRadius: '5px',  })
   },
   boxType: function(type) {
@@ -43,7 +44,7 @@ Crafty.c('Option', {
     this.addComponent('2D, DOM, Color, Text');
     this.w = 435;
     this.h = 20;
-    this.z = 1
+    this.z = 5
     this.textFont({ size: '20px' })
     this.css({ 'font-family': 'VT323, monospace' })
   },
@@ -98,6 +99,7 @@ function makePopUp(hitItem, boxType) {
       h: 30,
       x: 150,
       y: 60,
+      z: 4,
       selectOption: { canSelect: false, optionObj: undefined }
     })
     .color('rgba(255, 99, 71, 0.5)')
