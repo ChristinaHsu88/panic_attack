@@ -54,8 +54,7 @@ function makePlayer(x, y) {
     })
     .bind('KeyDown', function(e) {
       if (e.key === Crafty.keys.T) {
-        // console.log('Player stats: \n', playerMetrics) // to check score during development
-        console.log(currentLocation)
+        console.log('Player stats: \n', playerMetrics) // to check score during development
       }
     })
     // Creates boundaries of where Sprite can and can not go (aka creates walls)
