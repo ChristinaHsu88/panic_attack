@@ -1,15 +1,15 @@
 /* outside scene */
 Crafty.scene('outside', function() {
-  currentLocation = 'outside'
+  currentLocation = 'outside';
 
-  Crafty.e('PauseMsg')
-  Crafty.e('PauseBox')
+  Crafty.e('PauseMsg');
+  Crafty.e('PauseBox');
 
   Crafty.background(
     '#57342E url(assets/outside_map.png) no-repeat center right'
   );
   Crafty.sprite(32, 'assets/cat.png', { player: [0, 1] });
-  Crafty.sprite(47, 'assets/bench.png', { bench: [0, 0] });
+  Crafty.sprite(100, 'assets/parkbench.png', { bench: [0, 0] });
   /* walls */
   Crafty.e('2D, DOM, Color, Solid, WallLeft, Collision,')
     .attr({ x: 70, y: 0, h: 350, w: 5 })
