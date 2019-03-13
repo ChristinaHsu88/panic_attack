@@ -38,7 +38,7 @@ function startingScore(metrics){
   if (metrics.previousDays.daysPlayed && !metrics.previousDays.newSkill) {
     setTimeout(promptTherapistCall, 2000)
   }
-  return
+  return console.log('STARTING SCORE: \n', metrics)
 }
 
 // called after every metric changing method (except calculateEnergy)
