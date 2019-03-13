@@ -44,7 +44,7 @@ Crafty.c('Option', {
     this.w = 435;
     this.h = 20;
     this.z = 1
-    this.textFont({ size: '16px', weight: 'bold' })
+    this.textFont({ size: '20px' })
     this.css({ 'font-family': 'VT323, monospace' })
   },
   text: function(text) {
@@ -95,7 +95,7 @@ function makePopUp(hitItem, boxType) {
   const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
     .attr({
       w: 470,
-      h: 25,
+      h: 30,
       x: 150,
       y: 60,
       selectOption: { canSelect: false, optionObj: undefined }
