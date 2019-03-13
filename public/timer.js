@@ -7,10 +7,9 @@ function timer() {
   setInterval(tickTock, 250)
   document.getElementById("timer").innerHTML = gameTime
 
-  const worldTimes = worldEventsTimes()
+  const worldTimes = [160, 130, 100, 70, 40, 10].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
-  const napPromptTime = [85] // DUE FOR REFACTOR TODO
 
   function tickTock() {
     if (!gameOver) {
@@ -38,12 +37,6 @@ function timer() {
 // called by user interaction
 function loseTime(){
   gameTime -= 10
-}
-
-// returns 2 times randomly from array
-function worldEventsTimes(){
-  const worldEvents = [160, 130, 100, 70, 40, 10]
-  return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
 }
 
 function pauseTimerAndScoring() {
