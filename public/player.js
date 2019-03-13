@@ -77,9 +77,6 @@ function makePlayer(x, y) {
 // render new scenes when player moves through doors; sets player location accordingly
 function renderNewScene(hitItem) {
   const location = hitItem['0'].obj.location
-  if (location) {
-    console.log(hitItem['0'].obj.location)
-  }
   currentLocation = location
   if (location === 'livingroom' && wasInBedroom) {
     Crafty.enterScene(location)
