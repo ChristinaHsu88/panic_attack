@@ -7,39 +7,34 @@
     <div id="navbar-flex">
       <h1>Don't Panic!</h1>
     </div>
-    <div id="game-flex">
-      <div id="game"></div>
-      <span id="timer"></span>
-      <span id="new-skill"></span>
-      <span>
-      <p id="intro">
-        Spend the day as Penny-Ann, your average, everyday woman who struggles
-        with anxiety. Help her navigate her world in a way that doesn't send her
-        stress levels through the roof. As you steer Penny-Ann through her house
-        you'll be presented with a series of options. To find out what those
-        options are, walk up to an item and hit enter. Use the arrow keys to
-        make a decision, hit enter again, and watch the impact it has on
-        Penny-Ann's stess bar. At the end of each game, you will see a chart pop
-        up at the bottom of the screen. The goal of this game is to keep
-        Penny-Ann  calm, and keep that chart as balanced as possible.
-      </br>
-    </br>
-    How to Play: </br>
-        ~ Navigate: arrow keys </br>
-        ~ Select: enter </br>
-        ~ Pause: space </br>
-        <span id="new-skill"></span>
 
+    <div id="flex-row">
+      <div id="instructions">
+        <div id="instructions-title">HOW TO PLAY:</div>
+        <div>Navigate • ARROW KEYS</div>
+        <div>Select • ENTER</div>
+        <div>Pause • SPACE</div>
+        <div id="new-skill"></div>
+      </div>
 
-      </p>
-    </span>
-      <canvas
-        id="myChart"
-        width="200"
-        height="100"
-        style="display: none"
-      ></canvas>
-      <script type="text/javascript" src="./chart.js"></script>
+      <div id="flex-column">
+        <div id="game"></div>
+        <span id="timer"></span>
+        <p id="intro">
+          Spend the day as Penny-Ann, your average, everyday woman who struggles
+          with anxiety. Help her navigate her world in a way that doesn't send her
+          stress levels through the roof. As you steer Penny-Ann through her house
+          you'll be presented with a series of options. To find out what those
+          options are, walk up to an item and hit enter. Use the arrow keys to
+          make a decision, hit enter again, and watch the impact it has on
+          Penny-Ann's stess bar. At the end of each game, you will see a chart pop
+          up at the bottom of the screen. The goal of this game is to keep
+          Penny-Ann  calm, and keep that chart as balanced as possible.
+        </p>
+        <canvas id="myChart" width="200" height="100" style="display: none" ></canvas>
+        <script type="text/javascript" src="./chart.js"></script>
+      </div>
+      <div id="filler"></div>
     </div>
     <!-- add axios CDN here -->
     <script

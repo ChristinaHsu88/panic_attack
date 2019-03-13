@@ -1,19 +1,35 @@
 body {
   background-color: #87ceeb;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
 }
-#game-flex {
+#instructions {
+  margin-top: 5em;
+  text-align: center;
+  padding-right: 2em;
+}
+#filler {
+  width: 260px;
+}
+#instructions-title {
+  font-size: 1.5em;
+}
+#flex-row {
+  display: flex;
+  justify-content: center;
+}
+#flex-column {
   display: flex;
   flex-direction: column;
-  padding-left: 23em;
   align-content: space-around;
 }
 #timer {
-  font-family: 'VT323', monospace;
-  font-size: 20;
+  /*font-family: 'VT323', monospace;*/
+  font-size: 20px;
 }
 #new-skill {
-  font-family: 'VT323', monospace;
-  font-size: 25px;
+  /*font-family: 'VT323', monospace;*/
+  /*font-size: 25px;*/
 }
 #navbar-flex {
   display: flex;
