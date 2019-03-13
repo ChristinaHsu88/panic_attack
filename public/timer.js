@@ -42,8 +42,12 @@ function loseTime(){
 
 function pauseTimerAndScoringAndTogglePause() {
   pause ? pause = false : pause = true
+
   const pauseBox = document.getElementsByClassName('PauseBox')[0]
   pause ? pauseBox.style.display = 'block' : pauseBox.style.display = 'none'
+
+  const pauseMsg = document.getElementsByClassName('PauseMsg')[0]
+  pause ? pauseMsg.style.display = 'block' : pauseMsg.style.display = 'none'
 }
 
 document.onkeydown = function (e) {

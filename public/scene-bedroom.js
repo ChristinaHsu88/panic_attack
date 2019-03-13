@@ -2,6 +2,7 @@
 Crafty.scene('bedroom', function() {
   currentLocation = 'bedroom'
 
+  Crafty.e('PauseMsg')
   Crafty.e('PauseBox')
 
   Crafty.background(

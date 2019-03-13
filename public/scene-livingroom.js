@@ -1,7 +1,7 @@
 // living room from bedroom
 Crafty.scene('livingroom', function() {
   currentLocation = 'livingroom'
-  Crafty.e('PauseBox')
+  Crafty.e('PauseMsg')
   Crafty.background(
     '#57342E url(assets/livingroom_update.png) no-repeat center right'
   );
