@@ -3,8 +3,8 @@ Crafty.c('PauseMsg', {
   init: function () {
     this.w = 200
     this.h = 75
-    this.x = 285
-    this.y = 115
+    this.x = 265
+    this.y = 125
     this.z = 6
     this.textFont({ size: '75px', weight: 'bold' })
     this.css({ 'font-family': 'VT323, monospace', 'display': 'none' })
