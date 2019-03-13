@@ -26,7 +26,7 @@ function timer() {
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
-      if (gameTime === 0) {
+      if (gameTime <= 0) {
         endGame(playerMetrics, false)
         timeScoreChanger(playerMetrics)
       }
