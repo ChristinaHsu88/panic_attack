@@ -4,13 +4,12 @@ let gameTime = 180
 
 // called at start of game
 function timer() {
-  setInterval(tickTock, 500)
+  setInterval(tickTock, 250)
   document.getElementById("timer").innerHTML = gameTime
 
-  const worldTimes = worldEventsTimes()
+  const worldTimes = [160, 130, 100, 70, 40, 10].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
   const scoreChangeTimes = [150, 120, 90, 60, 30]
   const eatPromptTimes = [145, 95, 45]
-  const napPromptTime = [85] // DUE FOR REFACTOR TODO
 
   function tickTock() {
     if (!gameOver) {
@@ -27,7 +26,7 @@ function timer() {
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }
-      if (gameTime === 0) {
+      if (gameTime <= 0) {
         endGame(playerMetrics, false)
         timeScoreChanger(playerMetrics)
       }
@@ -40,38 +39,16 @@ function loseTime(){
   gameTime -= 10
 }
 
-// returns 2 times randomly from array
-function worldEventsTimes(){
-  const worldEvents = [160, 130, 100, 70, 40, 10]
-  return worldEvents.sort(() => 0.5 - Math.random()).slice(0, 2)
-}
-
-function pauseTimerAndScoring() {
+function pauseTimerAndScoringAndTogglePause() {
   pause ? pause = false : pause = true
-  if (pause) {
-    pauseScene(currentLocation)
-  } else {
-    Crafty.enterScene(currentLocation)
-  }
-}
-
-/* determine which pause view to use */
-function pauseScene(location) {
-  if (location === 'bedroom') {
-    Crafty.enterScene('bedroom_pause')
-  } else if (location === 'livingroom') {
-    Crafty.enterScene('livingroom_pause')
-  } else if (location === 'livingroom2') {
-    Crafty.enterScene('livingroom_pause')
-  } else if (location === 'outside') {
-    Crafty.enterScene('outside_pause')
-  }
+  const pauseBox = document.getElementsByClassName('PauseBox')[0]
+  pause ? pauseBox.style.display = 'block' : pauseBox.style.display = 'none'
 }
 
 document.onkeydown = function (e) {
   if (e.code === 'Space') { // pause game and functionality
     Crafty.pause()
-    pauseTimerAndScoring()
+    pauseTimerAndScoringAndTogglePause()
   } else if (e.code === 'Enter') { // close boxes
     Crafty('BodyCheck, bodyCheckMessage').destroy()
     Crafty('TherapistCall, newSkillMessage').destroy()
@@ -84,7 +61,7 @@ document.onkeydown = function (e) {
 // called when timer runs out or when player has a panic attack
 function endGame(metrics, panic) {
   gameOver = true
-  gameTime = 180 // reset time // TODO - BUG - not working properly
+  gameTime = 180
 
   let timer = document.getElementById("timer")
   timer.style.display = 'none'

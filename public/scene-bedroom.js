@@ -1,5 +1,7 @@
 // scene 2 - bedroom
 Crafty.scene('bedroom', function() {
+  Crafty.e('PauseBox')
+
   Crafty.background(
     '#57342E url(assets/bedroom2_update.png) no-repeat center right'
   );

@@ -9,7 +9,6 @@ Crafty.c('OptionsBox', {
     this.h = 400;
   },
   boxType: function(type) {
-    // TODO add boxType wherever OptionsBox is generated
     this.addComponent(type);
     return this;
   },
