@@ -30,7 +30,7 @@ function startingScore(metrics){
     if (metrics.platter[metric] < 3) {
       metrics.platter[metric] = 2 // no metric should be 0 at game start
     } else if (metrics.platter[metric] > 9) {
-      metrics.platter[metric] = 8 // no metric should be 10+ at game start // this may be redundant with correctAboveTen
+      metrics.platter[metric] = 8 // no metric should be 10+ at game start // this may be redundant with correctAboveTenBelowZero
     }
   }
   calculateStress(metrics)
@@ -77,7 +77,7 @@ function areYouPanicking(stressLevel) {
 
 // called by calcStress
 function isPlatterImbalanced(metrics) {
-  correctAboveTen(metrics)
+  correctAboveTenBelowZero(metrics)
   let bigGap
   const platterArray = Object.values(metrics.platter).sort((a,b) => {return a-b})
   const biggestGapBetweenMetrics = platterArray[platterArray.length - 1] - platterArray[0]
@@ -86,16 +86,20 @@ function isPlatterImbalanced(metrics) {
 }
 
 // called by isPlatterImbalanced
-function correctAboveTen(metrics) {
+function correctAboveTenBelowZero(metrics) {
   for (let metric in metrics.platter) {
     if (metrics.platter[metric] > 10) {
       metrics.platter[metric] = 10
+    } else if (metrics.platter[metric] < 0) {
+      metrics.platter[metric] = 0
     }
   }
   for (let metric in metrics.primaryMetrics) {
     if (metrics.primaryMetrics[metric] > 10) {
       metrics.primaryMetrics[metric] = 10
-    }
+    } else if (metrics.primaryMetrics[metric] < 0) {
+      metrics.primaryMetrics[metric] = 0
+     }
   }
   return metrics
 }
