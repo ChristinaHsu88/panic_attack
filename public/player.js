@@ -5,6 +5,7 @@ Crafty.c('Player', {
     this.addComponent('2D, DOM, Fourway, Collision, Keyboard, SpriteAnimation');
     this.w = 40;
     this.h = 40;
+    this.z = 2
   },
   place: function(x, y) {
     this.x = x;

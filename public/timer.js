@@ -5,12 +5,12 @@ let currentLocation // must be global
 
 // called at start of game
 function timer() {
-  setInterval(tickTock, 250)
+  setInterval(tickTock, 1000)
   document.getElementById("timer").innerHTML = gameTime
 
-  const worldTimes = [160, 130, 100, 70, 40, 15].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
+  // const worldTimes = [160, 130, 100, 70, 40, 15].sort(() => 0.5 - Math.random()).slice(0, 2) // returns two nums randomly from array
   const scoreChangeTimes = [150, 120, 90, 60, 30]
-  const eatPromptTimes = [145, 95, 45]
+  // const eatPromptTimes = [145, 95, 45]
 
   function tickTock() {
     if (!gameOver) {
@@ -19,11 +19,11 @@ function timer() {
         gameTime -= 1
         // update score every 30s
         scoreChangeTimes.includes(gameTime) ? timeScoreChanger(playerMetrics) : ''
-        // trigger game prompts
-        if (Crafty('OptionsBox').length === 0) {
-          eatPromptTimes.includes(gameTime) ? promptEat() : ''
-          worldTimes.includes(gameTime) ? promptWorldEvent() : ''
-        }
+        // trigger game prompts // WORLD PROMPTS ARE DISABLED UNTIL PROPERLY DEBUGGED
+        // if (Crafty('OptionsBox').length === 0) {
+        //   eatPromptTimes.includes(gameTime) ? promptEat() : ''
+        //   worldTimes.includes(gameTime) ? promptWorldEvent() : ''
+        // }
         // update DOM
         document.getElementById("timer").innerHTML = gameTime
       }

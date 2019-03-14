@@ -218,7 +218,7 @@ function generateOutsideItems() {
           title: 'SIT BACK AND CHILL FOR A BIT',
           scoreEffect: {
             primaryMetrics: { stress: -1 },
-            platter: { focusTime: +1 }
+            platter: { downTime: +1 }
           }
         },
         option2: {
@@ -258,14 +258,16 @@ function generateOutsideItems() {
 
 function itemPopUp(hitItem) {
   Crafty.e('ItemPopUp, 2D, DOM, Color, Text')
-    .color('grey')
+    .color('yellow')
     .attr({
-      x: 300,
-      y: 300,
-      w: 100,
-      h: 30
+      x: 140,
+      y: 280,
+      w: 153,
+      h: 20
     })
-    .text(`HIT ENTER TO SELECT THIS ${hitItem[0].obj.itemType}`)
+    .text('HIT ENTER TO SELECT') // THIS ${hitItem[0].obj.itemType}`)
+    .textFont({ size: '20px' })
+    .css({ 'font-family': 'VT323, monospace', padding: '6px' })
     .bind('KeyDown', function(e) {
       if (e.key == Crafty.keys.ENTER) {
         makePopUp(hitItem, 'selectedItem');
