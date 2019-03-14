@@ -3,13 +3,13 @@ let optType;
 Crafty.c('OptionsBox', {
   init: function() {
     this.addComponent('2D, DOM, Color');
-    this.x = 20;
-    this.y = 20;
-    this.w = 400;
-    this.h = 400;
+    this.x = 120;
+    this.y = 30;
+    this.w = 525;
+    this.h = 250;
+    this.css = ({ backgroundColor: '#96F443', borderRadius: '5px',  })
   },
   boxType: function(type) {
-    // TODO add boxType wherever OptionsBox is generated
     this.addComponent(type);
     return this;
   },
@@ -23,7 +23,6 @@ Crafty.c('OptionsBox', {
       let newSkill = optionsObj[option].newSkill;
       type = optionsObj[option].type;
       if (optionTitle) {
-        iteration = iteration + 50;
         Crafty.e('Option')
           .text(optionTitle)
           .place(iteration)
@@ -31,6 +30,7 @@ Crafty.c('OptionsBox', {
           .movePlayer(playerMove)
           .receiveCall(newSkill)
           .optionType(type);
+        iteration = iteration + 50;
       }
     }
     optType = type; // global variable needed to specify what to destroy
@@ -41,15 +41,18 @@ Crafty.c('OptionsBox', {
 Crafty.c('Option', {
   init: function() {
     this.addComponent('2D, DOM, Color, Text');
-    this.w = 250;
+    this.w = 435;
     this.h = 20;
+    this.z = 1
+    this.textFont({ size: '20px' })
+    this.css({ 'font-family': 'VT323, monospace' })
   },
   text: function(text) {
     this.text = text;
   },
   place: function(iteration) {
-    this.x = 35;
-    this.y = 23 + iteration;
+    this.x = 165;
+    this.y = 65 + iteration;
     return this; // without this line, custom methods (e.g., changeScore) will not work
   },
   changeScore: function(scoreEffect) {
@@ -91,10 +94,10 @@ function makePopUp(hitItem, boxType) {
 
   const selector = Crafty.e('Selector, 2D, DOM, Color, Collision')
     .attr({
-      w: 300,
-      h: 20,
-      x: 30,
-      y: 70,
+      w: 470,
+      h: 30,
+      x: 150,
+      y: 60,
       selectOption: { canSelect: false, optionObj: undefined }
     })
     .color('rgba(255, 99, 71, 0.5)')

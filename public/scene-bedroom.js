@@ -1,12 +1,17 @@
 // scene 2 - bedroom
 Crafty.scene('bedroom', function() {
+  currentLocation = 'bedroom';
+
+  Crafty.e('PauseMsg');
+  Crafty.e('PauseBox');
+
   Crafty.background(
     '#57342E url(assets/bedroom2_update.png) no-repeat center right'
   );
   // generate all entities in this scene
-  Crafty.sprite(30, 'assets/phone_2.png', { phone: [0, 0] });
-  Crafty.sprite(30, 'assets/weed.png', { weed: [0, 0] });
-  Crafty.sprite(30, 'assets/laundry.png', { laundry: [0] });
+  Crafty.sprite(50, 'assets/phone.png', { phone: [0, 0] });
+  Crafty.sprite(40, 'assets/leaf.png', { weed: [0, 0] });
+  Crafty.sprite(42, 'assets/laundry.png', { laundry: [0] });
   // generate player
   Crafty.sprite(32, 'assets/dude.png', {
     PlayerTowards: [3, 0],
@@ -58,7 +63,7 @@ Crafty.scene('bedroom', function() {
     w: 5
   });
 
-  if (!currentLocation) {
+  if (gameTime > 175) {
     makePlayer(340, 50); // in bed at start of game
   } else {
     makePlayer(400, 250);

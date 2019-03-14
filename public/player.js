@@ -1,5 +1,4 @@
 let wasInBedroom = true /* testing */
-let currentLocation = '' // must be global
 
 Crafty.c('Player', {
   init: function() {
@@ -75,7 +74,7 @@ function makePlayer(x, y) {
 
 // TODO - refactor
 // render new scenes when player moves through doors; sets player location accordingly
-function renderNewScene(hitItem) {
+function renderNewScene(hitItem) { // hitItem in a door for this method
   const location = hitItem['0'].obj.location
   currentLocation = location
   if (location === 'livingroom' && wasInBedroom) {

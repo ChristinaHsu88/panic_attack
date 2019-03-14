@@ -1,6 +1,6 @@
 // game prompts are called in timer and handled in options
 function promptEat(){
-  Crafty('Player').freeze()
+  // Crafty('PlayerTowards').freeze()
   const eatOptionsObj = [{
     obj: {
       optionsList: {
@@ -8,7 +8,10 @@ function promptEat(){
           type: 'prompt',
           title: 'YOU\'RE HUNGRY. EAT?',
           scoreEffect: {
-            primaryMetrics: { energy: +1 }
+            primaryMetrics: {
+              energy: +1,
+              satiation: +1
+            }
           }
         },
         option2: {
@@ -18,11 +21,13 @@ function promptEat(){
       }
     }
   }]
-  makePopUp(eatOptionsObj, 'gamePrompt')
+  if (playerMetrics.primaryMetrics.satiation < 2) {
+    makePopUp(eatOptionsObj, 'gamePrompt')
+  }
 }
 
 function promptWorldEvent(){
-  Crafty('Player').freeze()
+  // Crafty('PlayerTowards').freeze()
   const friendEventObj = [{
     obj: {
       optionsList: {
@@ -34,25 +39,6 @@ function promptWorldEvent(){
             primaryMetrics: { stress: -1 },
             platter: { connectingTime: +1 }
           }*/ // commented out until above question answered
-        },
-        option2: {
-          title: 'GO BACK',
-          type: 'prompt',
-        }
-      }
-    }
-  }]
-  const outsideEventObj = [{
-    obj: {
-      optionsList: {
-        option1: {
-          type: 'prompt',
-          title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
-          playerMove: 'outside',
-          scoreEffect: {
-            primaryMetrics: { stress: -1 },
-            platter: { connectingTime: +1 }
-          }
         },
         option2: {
           title: 'GO BACK',
@@ -82,21 +68,46 @@ function promptWorldEvent(){
     }
   }]
 
+  const outsideEventObj = [{
+    obj: {
+      optionsList: {
+        option1: {
+          type: 'prompt',
+          title: 'YOU HEAR BIRDS CHIRPING. GO OUTSIDE?',
+          playerMove: 'outside',
+          scoreEffect: {
+            primaryMetrics: { stress: -1 },
+            platter: { connectingTime: +1 }
+          }
+        },
+        option2: {
+          title: 'GO BACK',
+          type: 'prompt',
+        }
+      }
+    }
+  }]
+
   const worldEventsArr = [friendEventObj, outsideEventObj, napEventObj]
-  let randomNum
-  if (currentLocation === 'bedroom') {
-    randomNum = Math.floor(Math.random() * 3) // all 3 prompts
-  } else if (currentLocation === 'livingroom') {
-    randomNum = Math.floor(Math.random() * 2 + 1) // nap & birds
-  } else if (currentLocation === 'outside') {
-    randomNum = Math.floor(Math.random() * 2) // nap & friends
+  let num
+
+  if (playerMetrics.platter.sleepTime < 2 && gameTime < 90 && gameTime > 50) {
+    num = 2
+  } else {
+    if (currentLocation === 'bedroom') {
+      num = Math.floor(Math.random() * 2) // [0, 1]
+    } else if (currentLocation === 'livingroom') {
+      num = 1
+    } else if (currentLocation === 'outside') {
+      num = 0
+    }
   }
-  makePopUp(worldEventsArr[randomNum], 'gamePrompt')
+  makePopUp(worldEventsArr[num], 'gamePrompt')
 }
 
 // called in scoring, handled in options
 function promptTherapistCall() {
-  Crafty('Player').freeze()
+  // Crafty('PlayerTowards').freeze()
   const therapistCall = [{
     obj: {
       optionsList: {
@@ -105,7 +116,7 @@ function promptTherapistCall() {
           title: 'YOUR THERAPIST IS CALLING. ANSWER?',
           newSkill: { // nested object bc new box pops up from previous box
             objectShapeKeeper: {
-              title: 'Want to avoid another panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.',
+              title: 'Want to avoid a panic attack? Learn what you need by checking in with your body - just hit the "SHIFT" key.',
               type: 'newSkillMessage'
             }
           }
@@ -124,9 +135,9 @@ function promptTherapistCall() {
 function bodyCheck(platter) {
   platter.timeIn += 1
   const lowMetricsMessages = {
-    timeIn: 'You need to check in with your body more often.',
-    downTime: 'You need some down time. Have a seat and enjoy the scenery.',
-    focusTime: 'You need to engage your brain. Try drawing or tidying up.',
+    timeIn: 'You feel out of touch with your body.',
+    downTime: 'You need to daydream. Find a place to sit.',
+    focusTime: 'You need to DO something! Try drawing or tidying up.',
     playTime: 'You need to play!',
     connectingTime: 'You need to connect. Is there anyone you can speak to?',
     sleepTime: 'You need to sleep.',

@@ -2,15 +2,14 @@ Crafty.scene('endgame', function() {
   Crafty.background(
     'white url(assets/end.png) no-repeat center center'
   ); /* image for testing purpose */
-
   /* GAME OVER && message depending on the stress level */
   Crafty.e('2D, DOM, Canvas, Text, Mouse')
     .attr({ x: 20, y: 70 })
     .text(function() {
       if (playerMetrics.primaryMetrics.stress >= 10) {
-        return 'Chill out! It is going alright.';
+        return 'Oh dear...take a breath and try again...';
       } else {
-        return 'Time for some good sleep';
+        return 'Yay! You made it through the day!';
       }
     })
     .textColor('white')

@@ -1,5 +1,11 @@
 // living room from outside
+// TODO - can we eliminate this file and simply pass the desired coordinates to the makePlayer method as in bedroom?
 Crafty.scene('livingroom2', function() {
+  currentLocation = 'livingroom'
+
+  Crafty.e('PauseMsg')
+  Crafty.e('PauseBox')
+
   Crafty.background(
     '#57342E url(assets/livingroom_update.png) no-repeat center right'
   );
@@ -12,8 +18,7 @@ Crafty.scene('livingroom2', function() {
     '2D, DOM, Color, Solid, WallLeft, Collision,'
   )
     .attr({ x: 120, y: 0, h: 350, w: 5 })
-    .css({ visibility: 'hidden' })
-    .color('black');
+    .color();
 
   Crafty.e('2D, DOM, Color, Solid, WallTop, Collision')
     .attr({ x: 87, y: 56, h: 5, w: 600 })
