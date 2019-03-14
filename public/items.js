@@ -59,20 +59,6 @@ function generateBedroomItems() {
         option2: {
           type: 'interactable',
           title: 'GO BACK'
-        },
-        option3: {
-          type: 'interactable',
-          title: 'INSTANT PANIC / DEV ONLY',
-          scoreEffect: {
-            primaryMetrics: { stress: 10 }
-          }
-        },
-        option4: {
-          type: 'interactable',
-          title: 'REDUCE METRIC / DEV ONLY',
-          scoreEffect: {
-            platter: { downTime: -6 }
-          }
         }
       }
     });
