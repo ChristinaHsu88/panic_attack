@@ -24,7 +24,7 @@ This game is not out-of-the-box ready. You'll need to do a bit of set up to play
 4. Open `localhost:8080` on your browser
 
 ## HOW TO PLAY
-![Game Play Gif](/docs/gameplay-sequence.gif)
+![Game Play Gif](/docs/gameplay.gif)
 1. Type your name and press enter. (**SEE KNOWN BUGS**)
 2. Move your character around using the `ARROW KEYS`
 3. Interact with items by pressing `ENTER` (Note: a yellow pop up will appear to indicate interactability.)
